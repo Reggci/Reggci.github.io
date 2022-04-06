@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Perceptual Loss</title>
+      <link href="/2022/04/06/Perceptual%20Loss/"/>
+      <url>/2022/04/06/Perceptual%20Loss/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>生成任务中损失函数分为分为两个阶段：</p><ol><li>计算生成图像与输入图像之间的损失，被称为<mark> Per-Pixel Loss </mark>，经研究发现，如果将原图向任意方向偏移一个像素，这样做实际上本身分辨率和风格均未发生太大变换，但是Per-Pixel Loss却会因这一个像素的偏移出现显著上升，可推论Per-Pixel Loss并未反映&#x2F;约束图像高级特征信息</li><li>基于Per-Pixel Loss的缺陷，提出将约束角度从出入与输出转向约束feature，即Pixel-&gt;feature，故生成了<mark> Perceptual Loss </mark>（意为能感知到高层语义特征）</li></ol><p><a href="https://blog.csdn.net/WhaleAndAnt/article/details/107116360?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522164920726816782248548021%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=164920726816782248548021&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-3-107116360.142%5Ev5%5Epc_search_result_control_group,157%5Ev4%5Econtrol&utm_term=%E6%84%9F%E7%9F%A5%E6%8D%9F%E5%A4%B1%E5%85%AC%E5%BC%8F&spm=1018.2226.3001.4187">参考博文</a></p><p><a href="https://blog.csdn.net/studyeboy/article/details/118724526?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522164920726816782248586959%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=164920726816782248586959&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-6-118724526.142%5Ev5%5Epc_search_result_control_group,157%5Ev4%5Econtrol&utm_term=%E6%84%9F%E7%9F%A5%E6%8D%9F%E5%A4%B1%E5%85%AC%E5%BC%8F&spm=1018.2226.3001.4187">参考博文</a><br>关于感知损失的使用方法参考文献：<a href="https://arxiv.org/abs/2103.10571">Generic Perceptual Loss for Modeling Structured Output Deppendencies</a></p><h1 id="2-Loss"><a href="#2-Loss" class="headerlink" title="2. Loss"></a>2. Loss</h1><blockquote><p>感知损失目的是约束高层语义信息，其形式大体可总结为两个部分</p></blockquote><ol><li>feature损失<ol><li>高层feature内容损失</li><li>高层feature风格损失</li></ol></li><li>Per-Pixel损失</li></ol><p>$$\text{Perceptual Loss} &#x3D; \text{Loss_feature} + \text{Loss_style} + \text{Loss_Per-Pixel}$$</p><p>为了让输出图像的风格和内容均保持输入的原图与风格图像的特征信息，只约束输入与输出会导致中间层收敛方向不明确（个人猜测），故在中间特征层也使用感知损失来约束，从而确定在整个过程中整个模型均向同一个方向优化</p><ol><li>内容损失<code>Loss_feature</code>作用在较低特征层上即可——保留一些纹理细节</li><li>风格损失<code>Loss_style</code>可以作用在从低到高所有特征层上——保留一些语义上的信息</li></ol><h1 id="3-常见的生成模型损失函数"><a href="#3-常见的生成模型损失函数" class="headerlink" title="3. 常见的生成模型损失函数"></a>3. 常见的生成模型损失函数</h1><p>所谓的感知损失并没有固定的公式，只要是在特征级上的损失即可视为感知损失，下方的损失函数可自行组合</p><h2 id="3-1-Feature-Reconstruction-Loss"><a href="#3-1-Feature-Reconstruction-Loss" class="headerlink" title="3.1 Feature Reconstruction Loss"></a>3.1 Feature Reconstruction Loss</h2><p>$$l_{\text {feat }}^{\phi, j}(\hat{y}, y)&#x3D;\frac{1}{C_{j} H_{j} W_{j}}\left|\phi_{j}(\hat{y})-\phi_{j}(y)\right|_{2}^{2}$$</p><p>计算第j层的特征重建损失，CHW是第j层feature_map的size</p><h2 id="3-2-Style-Reconstruction-Loss"><a href="#3-2-Style-Reconstruction-Loss" class="headerlink" title="3.2 Style Reconstruction Loss"></a>3.2 Style Reconstruction Loss</h2><p>对于风格重建的损失函数，首先要先计算 Gram 矩阵:</p><p>$$G_{j}^{\phi}(x)<em>{c, c^{\prime}}&#x3D;\frac{1}{C</em>{j} H_{j} W_{j}} \sum_{h&#x3D;1}^{H_{j}} \sum_{w&#x3D;1}^{W_{j}} \phi_{j}(x)<em>{h, w, c} \phi</em>{j}(x)_{h, w, c^{\prime}}$$</p><p>产生的 feature_map 的大小为 CjHjWjCjHjWj，可以看成是 CjCj 个特征，这些特征两两之间的内积的计算方式如上。</p><p>$$l_{\text {style }}^{\phi, j}(\hat{y}, y)&#x3D;\left|G_{j}^{\phi}(\hat{y})-G_{j}^{\phi}(y)\right|_{F}^{2}$$</p><p>两张图片，在 loss 网络的每一层都求出 Gram 矩阵，然后对应层之间计算欧式距离，最后将不同层的欧氏距离相加，得到最后的风格损失。</p><h2 id="3-3-Simple-Loss-Function"><a href="#3-3-Simple-Loss-Function" class="headerlink" title="3.3 Simple Loss Function"></a>3.3 Simple Loss Function</h2><h3 id="3-3-1-Pixel-Loss"><a href="#3-3-1-Pixel-Loss" class="headerlink" title="3.3.1 Pixel Loss"></a>3.3.1 Pixel Loss</h3><p>pixel loss 是输出 y^ 和目标 y 之间的欧几里得距离</p><p>$$l_{\text {pixel }}(\hat{y}, y)&#x3D;|\hat{y}-y|_{2}^{2}$$</p><h3 id="3-3-1-Total-Variation-Regularization"><a href="#3-3-1-Total-Variation-Regularization" class="headerlink" title="3.3.1 Total Variation Regularization"></a>3.3.1 Total Variation Regularization</h3><p>Total Variation Loss，实际上是一个平滑项（一个正则化项），目的是使生成的图像在局部上尽可能平滑，而它的定义和马尔科夫随机场（MRF）中使用的平滑项非常相似。</p><p>$$ l_{T V}(\hat{y})&#x3D;\sum_{n}\left|\hat{y}<em>{n+1}-\hat{y}</em>{n}\right|_{2}^{2} $$</p><p>其中 yn+1 和 yn+1 是相邻像素</p><h2 id="3-4-计算判别器之间的损失"><a href="#3-4-计算判别器之间的损失" class="headerlink" title="3.4 计算判别器之间的损失"></a>3.4 计算判别器之间的损失</h2><p>$$ l_{\text {feat }}^{D, l}\left(\mathbf{x}, \mathbf{x}^{\prime}\right)&#x3D;\frac{1}{2 C_{l} H_{l} W_{l}}\left|D_{l}(\mathbf{x})-D_{l}\left(\mathbf{x}^{\prime}\right)\right|_{F}^{2} $$</p><p>其中x , x’，x分别表示源和生成图像，D 表示判别器网络，l 表示判别器的第l 层，CHW为特征图size</p><ul><li><input checked="" disabled="" type="checkbox"> 注意这里计算判别器之间的损失：其作用是什么，放在融合网络中可以进行特征补偿么，查看其原文论文为什么这么做</li></ul><ol><li>Li M, Zuo W, Zhang D, et al. Deep Identity-aware Transfer of Facial Attributes.[J]. arXiv: Computer Vision and Pattern Recognition, 2016</li><li>Wang C, Xu C, Wang C, et al. Perceptual Adversarial Networks for Image-to-Image Transformation[J]. IEEE Transactions on Image Processing, 2018, 27(8): 4066-4079</li></ol><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul><li>匹配低层特征可以保留几何、纹理等低级语义信息，匹配深层特征可以保留内容、风格等高级语义信息。</li><li>预训练网络提取的特征附带预训练时的任务属性，会对生成模型产生影响，所以预训练模型尽量选择与生成任务相关的模型参数。</li><li>选择特征匹配层不必局限于激活层，选择激活层之前的特征进行匹配，可以为生成模型提供更强的监督信息。</li><li>对于具有Ground Truth的任务，深度特征匹配可以设置多层且较强的约束；对于没有Ground Truth仅使用感知损失做重构的任务，深度特征匹配应设置单层且较弱的约束。</li></ul><h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><ol><li>使用项目两个判别器中的feature计算loss有什么作用，请查看原文献<ul><li>已经解决：因为原项目分类器预训练使用的其他数据集，之后固定了参数，故转向判别器进行约束，其中判别器使用的是自己的数据集</li></ul></li><li>在这些损失函数中使用L1loss和L2loss有什么区别</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> img_fusion </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2</title>
+      <link href="/2022/04/03/%E4%BA%B2%E7%88%B1%E7%9A%84%E5%A7%91%E5%A8%98%EF%BC%9A%E6%88%91%E6%83%B3%E8%AF%B4%E5%8F%A5%E6%8A%B1%E6%AD%89/"/>
+      <url>/2022/04/03/%E4%BA%B2%E7%88%B1%E7%9A%84%E5%A7%91%E5%A8%98%EF%BC%9A%E6%88%91%E6%83%B3%E8%AF%B4%E5%8F%A5%E6%8A%B1%E6%AD%89/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="d97aff4b256e06de5f6b745002518349373595d52c7adb064578799d8eaaac62">7ab9d85c8eda3888a25d4b7fa9c695bd44f6ad7c704f97ef3b670a2230628f08</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> life </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Me </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>1</title>
+      <link href="/2022/04/03/%E8%87%B4%E6%88%91%E5%B0%86%E8%A6%81%E5%96%9C%E6%AC%A2%E7%9A%84%E5%A7%91%E5%A8%98/"/>
+      <url>/2022/04/03/%E8%87%B4%E6%88%91%E5%B0%86%E8%A6%81%E5%96%9C%E6%AC%A2%E7%9A%84%E5%A7%91%E5%A8%98/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="0b4927115b1be92104c2d0bc157641c0936b0d61c7baf31e7d81bea4cd6e6a31">661d78eb8061ffc98aff07f0d7343e2d07b1af3758ceb59b4c7fb8a4dfaa9899184712fc5f504d916283a0f61102baa42eaa83f5064ffd3c0aa41bc8546e1887dec1ca9475edd43242a409b54656b46adf0132059f0d230499bced73bc74567bcdc233233cd8d42c89ab97640f9fd305d706d82a8f0027d82a0346e7968f2d0ad843ea1387dae909cae0503ffe190997bf104728a89817e891003892b7dde18143aa498aee9b6dbcb18e6590e5f830aaad9ecdb0f2a001c98d2b3e89cb3ae0185057aff9d1a04873dfd7f1b640df44e6654c3d785dd3491e75a970f0cf863bd58f7775ab9b303c94ac3d56f42e26d65bda61e3c94430531fd43a6957e21dab8bdd2425c0962a6983e73b8b877a73348b1446df6dd6b29836c29c6dfe18e6ab03d560bb762ecbb620ea7cefc965c638187e4ca7ee03de0b60a7f7f3c16b53ae02e986992b76fa887d3248a9b50adf8b8d6688f29a55ac2ab3049682ef5db0acfe8b8e8e6ab044bd048cc3f07c25bf2fe28074a1c7ad0325d7f43ad7df34e6154767225ec4c432058aab29ef7ceab3c8bbbf3a7ea73e26a09192a4eeb0caa72766bfd12a2628c5f4024b408ed3d25f6efaf95d259591a1873e1e37ec7ba74d863a31747f3cd4602cb20cc94d48b79543bbcfe1558cf1e6c98cce6090c4c377e855fb0d900e057fa622c593e42d0dbe51c10d023e36548285b845c9b23985ef2878180c5ade8f92e5e932d88a931492abcdd7e3a4958c9887557bbfcb3664454d0296923ce15cb410bd2855018619b6380e5efff28ac7892351acc79081555b16dd1aa2c999b1a7c9251a893fe2e8d69448e447d5716f0441f8d45c96cfabedb21cba3f8dfedb966986a80b8b2a4c3ed067cef0254a1632d67ccc167816e6fe8e435693f6fd1f0438723a16b6bb5c49e8fe348b3a40c0954259e6cf35e9a108f26fefac8eea0269d6aa59b4eaafb3cf9a49191e779ab78603e49bff47b2cf940bc551a0985303a1b24b4c545f6a17c7ef8dab984bb959257869f467c8a2be754ca1dbe1705f1717252586d7b07ad47341034ba5ae75033eeb1cb50b7d90ff8f01971ff56fe752a619662fae0313bd902720c88cca7ec54db715d0b92258dc3e65aa150f4edb81c3bebfab8a9331fd4c8ff4ee5bf4f30ec3e0ec3fb6d13cc10d90781f30cb1923b4c03ae0f1027a1e701a62ac6a0f7ae34a62a96189cc37d9edc821102cdf6d7121a6c2b130753e8bf7bfa77c69101545f3fe6491f609b16bd35ae4e88f86876e56645ce81805ac002411e1dd4c2828f338bac701151ae1649ace7c4358424ef73419cd9136da97c76b852c1a0e6e563fd0838ff234f78c24c1d38493d210abbb72e49bcb66ae9d7c634c6525c1c243e22919a0dd90e6f4d2bac95dafaf337c9151f4c8a0f4a5caa3a8c0710ead84033e9a065939f22426c3b4142e71bbc9ea1928a585aaa7a88ff65810b21653d599eb6dd93518b2b2542776acc57796dc39da5176ce49f42c25a1bfa3de8af81bdabf69202368faf6e0ab16ce93514ee0fcae6b85dcbbe6aed593a4527f93b72941c69d04f8569fea462977a94f302d3c01c3e932c21100c1260a6191168ca4c1505c770630c4d8197816a5893b5bb08e5936ae8eb260dd67727d988c69faf5ee0c69e530bef6b3cacb73b7608b922f35eed8a8de1d79b52115967ed18909b652a6cd028d1c6e413de60b18a9856038955102f9ee75062d3efb5bbe4068f367895d4ab690ef50d45d80c22e4711fbd9dc2aace25d640522e1f743c45ebc00797bededd5e2f5de4d8d9b29ba90719fc88c1d51006b5e40cf23f7b941f550ea148331874ea4e72eaf49e054ed9fcef1066f94b49d98d782c3891ab25ce3f468d654b1eb378578764f04605dcb04f29ae88cfb84f65addbb7896fee9b62f67f047a182aa14d83bf3a103c54563b8eb230a68b8adc101132477ffe3b52b4760c6cd0f1fa36b11cdb5dd8b0cab2b1c106e2dd08e4039061a9de7f2e17863b187714e05c1d7d8a216d67d90b9faeda4a53497529b07c6e0d7b718f4398dc35e16add642d8b353ec16226d892245eb0f65719d8a7427ab5e8d9b3d2a3bdf26ca888cfb2f2e22db713156c771a3e7b9e02efee7e353bc4ad8c5ee3a8feca2a84d224b08a46823846d617a3541cbb8329ba1b7934250c349a4895505ad4cc8479ab348482d74f4c4d5f99281cd84af8c75d67acd8b91c7a54817b3a6898dbb02df1186feb692d1ba054c88a773435997a163d7fc76a8890006d23dd7ae4f32a7cc86fc8d981637eedcb712d844ef80cb0fef6d943aed236c7a6ea224f3a339f3cda0178162e2eb4a3260970c5bd5b01008148b4facabde4b8788eeed1c32557cbeb202405817d0d53526abd7e9769e0e8a474b7a22c669f06b435176ae74fc2ea45bf18597909b4f9f1bb07ad753072d7ec988e5a6d074fa7ec3aa33a25734566e4617e13748f86d55055c1a32859e01c5dec9ef27ae4b167388d3cb9397cc53af0705e4f520bec56f8bca41701c648cbbf3023e6dd633d622b2f9b2711b507ed504c8fabb1d548ee355c58152af419d80a33fb5e2c5a259ff39296bf19ccee3ea22d952f5f4e2f7c14d81a7b90aa35c5f16dc73a8803a7624abb059f5e8629a81f80a8344edbda52ad08bf0e7db7713cb7d45e434f012afae892c4879847187a8245dd5bcb4b472b02dd0c4b992abf04f700d10709866208a9770290fd81aa4c68b1801cd76200b00fb12b6a741155822ac30b7fe6badbecac0a29ea5a1a54c88fca50292b6f8203d6e4d87d05cf0887122a98fe1bbc070703a62a79fc60629582b3018b93b677f0768c26f49be7a3816fa2df0ff460fa2e5fe56c7d65eaf274226c4ebdad8f2a68d806d7f0b2a0fc7e87c2526a74b7c8508fc0aac4aee433fd6e360282538e55f0d7221a94f8276269243bef630ade8189a053fea19f11418393574b46c491ba1ac3fb6df6e1b85477fe901dcd7461655c23f7ca9627f5b59e8c7e73b5ea3b4c5b35cad387f1f68d0993d24716e2a5a96ff2bfe7783ed90f985db0f1f461ed8d363c5f06726383cb42ec2dbc1234fb6c5068c91ab4ed5865b7157141292f1215f65e29d07a8dfd3f06f15c7cca0bd371d5acecc12d1844a3293760a27ed3b99ae10673377ad33248a69429efd2af8d17626f4b64ba7ab7d1a4082c8356061b1428e48142f5d89c0dd2577b0127b0d7c4c75e7ab2a2a6f80dc8e355e6b23798174e9136d0ff57c4722a37ae88529d58e1c549315b3905e9add8c048caeadc4a5f74230eb3bb2b1851755bc8260cba055b5a30927ed12dd3867c78cabed0c15b001e36a5a2038ffb1804204a49adee7bf101ad4f3a748fab009a34803995a55e1ed7ad79daf44f35e75e88085c4b2256d03cac8cabdabab76e5c454e8efff0e4fdba65cdfeb2e994fb7757744432a0a5ba3a0b9114bbfb3e1eeb42f8fee901a38cec55364e81db38ba0ff9be2f19dce0ac11c8be0aa0cb162dfe3104f81029aeb29980085e49c471d867466460f8758637d7e225147b91b0f240a9826b64112ef39598b883149b62115c9433da4968e92712968b0fd7417d568328a5910f6a36995eb63d2d805c53bfc65cb2b6943c85f52f701986e3eee317d547703a688e5d6b874aef86b908edcdabcd604ce85734beafd7db31cebd1e12ee55d0cf21dbadf60c9826727268cbd60afcfa202c1d10178e4997214374a323bf3fb015af61fd21d32a1f8ca0436da944576f8a3b5e0e7ac0cc17f0dd4169bb9b333670317dc43efb454682fdcf184cee092aadc56cdf556611a59cd48f9bfc65a8371e386618cde9fd462ad4024426bab55d80a99397650df2cca12609c06cc2be721ce751e6022772db7922cbd48539998c8f0519987123b536b06f743a19651f0d9d825295490f18d4676d8f812edc3f4bda294310675a22acd8050abe7c1da0f7529699e3fa548e221288b1c721952b5b77a992a981879d8767ea92748532427096ba8451bd8abe06fef8da973e4f30c5e1680f78844aed5ddf4d5f718b36a2d0519defff1cdea97fed29908348c5550fd54c3ce9b07c8efbc5df0da672d02ee3d73fad1ce010e234afac88a11d307604a7e3891a451d6f2ca8093dc1e839ff0f143446abcba540eea2dc899f3bb6c223e1d2581827b631464d5c47c592c068480078ba68bfa2e2441671d9021a7d4e3924569f385b6347294fb9d37c22fe43d8a5edad8281a68e182b0167ab271463a87ae2a70910bb11b9ed0fde15a25cec6</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> life </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Me </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Idea</title>
+      <link href="/2022/04/02/Idea/"/>
+      <url>/2022/04/02/Idea/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="73fc77f843c6aeacab1f0cdc3579a71bddd0bb62b040e0e7bbc7e8b2a1826e77">b37e1c5f21f5af8a2d0feaf56fcb9ee1b85e5698fc43d4497edf61ce25fb459a8ab63d148a137dd47c5985e2afd45fa6fd605ef6c7198f5da845bc1e151e1e9d4207ad8b96f7a00bcf6385a3aa611fefbe63c640a45fc904f5f50aaa90eb46a89c4355d4b4037c51ccc3b1374d987c5c1d01d739bab095b55ae7964a58c1b3d419ef6cc6156e2434121cbba8b66c88849d328bba7deff6d2ffe0cacf756a0fd1d7f1c8a7061dd7c1dbafad0e31487fdf55493e72feb3cfa0a1fe3eb6bb9fc83956a05b5efb0428e938410c950a3db6a37dedc557dc10ca73b354de0b4c935527aeedba1d14d00f1658ab182ef2054149e09bada79d61d6127d44a6752ae7457932b3ad609052a0733b59b2a7518d44296912fba943d9abfc500259c21c7f176c1faf9c55332e699767c31581700bac6700f56ecaac83e6e89b8d92ef2a25abfa6fa6dab599208ba9e716a6995f233912e08aaff891f68aeedb1df9800b423c00e2ec753ac2d8c666ca8b018dbe0651e686b3aba08fda3ac2fe61e1f28e6fa1f53c858f45f7d6945d97b9d1698dc48434e048d0086162eb05e953c9d16cfcc38e22eb7187a904abe2d73df0164568b16869610cd2fa1f31522ae1cb7de957a4314d1050ae024132951a0f2af363ff2f5441986fcb99ab3ffe4044e9b81ead3384822cecd37aab4f515853414847af006d0adad4e21456a8d5b3b05f712207cb2a08c4a93bb4444bbf29e6fdcc1b175324e565a9eef07c1787ca39627c35702de5b26ee9fe9360e80b3b7f9820c5d22ef4ff59775514e0b6cc701138c3a66dd28d32d46091afd7b0fe02156bee9b8e779d3c7ff29da187c84bd1e9a75f4add4249a52cc4f6aadeae8dbcb62defe7ebf32b</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> life </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo博客中渲染数学公式</title>
+      <link href="/2022/04/01/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%B8%B2%E6%9F%93%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/"/>
+      <url>/2022/04/01/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%B8%B2%E6%9F%93%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、更换渲染引擎"><a href="#一、更换渲染引擎" class="headerlink" title="一、更换渲染引擎"></a>一、更换渲染引擎</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure><p><mark>注意此处有坑，更换渲染引擎之后会导致hexo某些markdown语法无法正常显示，以及hexo博客中图片无法显示</mark></p><ul><li>由于无法正常显示，我重新将卸载的引擎重新安装后异常消失了，更换的引擎也就没有卸载了</li></ul><h1 id="二、解决语义冲突"><a href="#二、解决语义冲突" class="headerlink" title="二、解决语义冲突"></a>二、解决语义冲突</h1><ol><li>进入博客根目录：</li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node_modules\kramed\lib\rules\inline.js</span><br></pre></td></tr></table></figure><ol><li>修改该文件中两处代码</li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一处位于11行</span></span><br><span class="line">//  escape: /^\\([\\`*&#123;&#125;\[\]()<span class="comment">#$+\-.!_&gt;])/,</span></span><br><span class="line">  escape: /^\\([`*\[\]()<span class="comment">#$+\-.!_&gt;])/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二处位于20行</span></span><br><span class="line">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br><span class="line">  em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span><br></pre></td></tr></table></figure><ol start="3"><li>开启主题配置文件中mathjax引擎渲染</li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意其中per_page可以不开启，但是enable必须开启使用</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># MathJax</span></span><br><span class="line">mathjax:</span><br><span class="line">  enable: true</span><br><span class="line">  per_page: false</span><br></pre></td></tr></table></figure><ol start="4"><li>没有使用per_page时则在每篇文章开头写</li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mathjax: true</span><br></pre></td></tr></table></figure><p>三、公式书写注意</p><ol><li>得到的LaTeX公式需要加上<mark>单$</mark>才能成功渲染</li><li>对LaTeX公式加<mark>双$包裹</mark>可将公式居中显示</li><li>注意公式上下的回车空行</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CUDA安装后出现的两种报错</title>
+      <link href="/2022/04/01/CUDA%E5%AE%89%E8%A3%85%E5%90%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%8A%A5%E9%94%99/"/>
+      <url>/2022/04/01/CUDA%E5%AE%89%E8%A3%85%E5%90%8E%E5%87%BA%E7%8E%B0%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%8A%A5%E9%94%99/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>安装CUDA之后，运行代码，会出现两种报错<br>1.cuda安装的版本过高，NVIDIA显卡驱动无法驱动<br>2.cuda安装的是pytorch，其版本和cuda不太适配</p></blockquote><hr><h1 id="问题一："><a href="#问题一：" class="headerlink" title="问题一："></a>问题一：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The NVIDIA driver on your system <span class="keyword">is</span> too old (found version <span class="number">10010</span>).</span><br></pre></td></tr></table></figure><ul><li><input checked="" disabled="" type="checkbox"> 解决：安装版本较低的cuda——查看GPU最高版本要求</li></ul><h1 id="问题二："><a href="#问题二：" class="headerlink" title="问题二："></a>问题二：</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Torch <span class="keyword">not</span> compiled <span class="keyword">with</span> CUDA enabled</span><br></pre></td></tr></table></figure><ul><li><input checked="" disabled="" type="checkbox"> 解决：不安装官网给出的pytorch-cudatoolkit那种conda安装命令，使用torch-cu那种pip安装命令</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SSIM</title>
+      <link href="/2022/03/31/SSIM/"/>
+      <url>/2022/03/31/SSIM/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>结构相似性指数SSIM(论文：Image Quality Assessment: From Error Visibility to Structural Similarity)用于度量两幅图像间的结构相似性，结构被定义为三个关键特征：</p><ol><li>亮度</li><li>对比度</li><li>结构</li></ol><p>其中SSIM值越大，图像越相似，两幅图片完全相同时，SSIM&#x3D;1，<mark>故作为损失函数时，应该取负号（即越相似loss越小）</mark>，如：loss &#x3D; 1-SSIM</p></blockquote><p>实际loss使用：</p><p>$$\text{loss}(x, y) &#x3D; \frac{1 - \text{SSIM}(x, y)}{2}$$</p><h1 id="1-原理"><a href="#1-原理" class="headerlink" title="1. 原理"></a>1. 原理</h1><p>这个系统计算2幅给定图像之间的结构相似度指数，取值范围[0,1]，其中极端值具有相同的含义。用均值作为亮度的估计，标准差作为对比度的估计，协方差作为结构相似程度的估计</p><h2 id="1-1-亮度"><a href="#1-1-亮度" class="headerlink" title="1.1 亮度"></a>1.1 亮度</h2><p>将图像的平均灰度作为测量估计。用μ表示为：</p><p>$$\mu_{x}&#x3D;\frac{1}{N} \sum_{i&#x3D;1}^{N} x_{i}$$</p><p>对应到图像中：</p><p>$$\mu_{X}&#x3D;\frac{1}{H \times M} \sum_{i&#x3D;1}^{H} \sum_{j&#x3D;1}^{M} X(i, j)$$</p><h2 id="1-2-对比度"><a href="#1-2-对比度" class="headerlink" title="1.2 对比度"></a>1.2 对比度</h2><p>将图像的标准差(方差的平方根)作为测量估计。用σ表示为：</p><p>$$\sigma_{x}&#x3D;\left(\frac{1}{N-1} \sum_{i&#x3D;1}^{N}\left(x_{i}-\mu_{x}\right)^{2}\right)^{\frac{1}{2}}$$</p><p>对应到图像中：</p><p>$$\sigma_{X}&#x3D;\left(\frac{1}{H+W-1} \sum_{i&#x3D;1}^{H} \sum_{j&#x3D;1}^{M}\left(X(i, j)-\mu_{X}\right)^{2}\right)^{\frac{1}{2}}$$</p><h2 id="1-3-结构"><a href="#1-3-结构" class="headerlink" title="1.3 结构"></a>1.3 结构</h2><p>结构比较是通过使用一个合并公式来完成的(后面会详细介绍)，但在本质上，我们用输入信号的标准差来除以它，因此结果有单位标准差，这可以得到一个更稳健的比较。</p><p>$$\left(\mathbf{x}-\mu_{x}\right) &#x2F; \sigma_{x}$$</p><p>其中x是输入图像。</p><h1 id="2-比较函数"><a href="#2-比较函数" class="headerlink" title="2. 比较函数"></a>2. 比较函数</h1><ol><li>亮度比较函数：由函数定义，l(x, y)，如下图所示。μ表示给定图像的平均值。x和y是被比较的两个图像。</li></ol><p>$$l(\mathbf{x}, \mathbf{y})&#x3D;\frac{2 \mu_{x} \mu_{y}+C_{1}}{\mu_{x}^{2}+\mu_{y}^{2}+C_{1}}$$</p><p>其中C1为常数，保证分母为0时的稳定性。C1这样给出：</p><p>$$C_{1}&#x3D;\left(K_{1} L\right)^{2}$$</p><p>其中k1&#x3D;0.01,L代表输入数据的最大值（没有归一化处理的图像取值255，归一化取值1）</p><ol start="2"><li>对比度函数：由函数c(x, y)定义，如下图所示。σ表示给定图像的标准差。x和y是被比较的两个图像。</li></ol><p>$$c(\mathbf{x}, \mathbf{y})&#x3D;\frac{2 \sigma_{x} \sigma_{y}+C_{2}}{\sigma_{x}^{2}+\sigma_{y}^{2}+C_{2}}$$</p><p>其中C2这样给出：</p><p>$$C_{2}&#x3D;\left(K_{2} L\right)^{2}$$</p><p>其中k2&#x3D;0.03</p><p>3.结构比较函数：由函数s(x, y)定义，如下图所示。σ表示给定图像的标准差。x和y是被比较的两个图像。</p><p>$$s(\mathbf{x}, \mathbf{y})&#x3D;\frac{\sigma_{x y}+C_{3}}{\sigma_{x} \sigma_{y}+C_{3}}$$</p><p>其中c3&#x3D;c2&#x2F;2</p><h1 id="3-SSIM测量函数"><a href="#3-SSIM测量函数" class="headerlink" title="3. SSIM测量函数"></a>3. SSIM测量函数</h1><h2 id="3-1-SSIM的定义式"><a href="#3-1-SSIM的定义式" class="headerlink" title="3.1 SSIM的定义式"></a>3.1 SSIM的定义式</h2><p>$$\begin{aligned}<br>\operatorname{SSIM}(x, y) &amp;&#x3D;f(l(x, y), c(x, y), s(x, y)) \<br>&amp;&#x3D;[l(x, y)]^{\alpha}[c(x, y)]^{\beta}[s(x, y)]^{\gamma}<br>\end{aligned}$$</p><p>其中， α、β、γ &gt; 0，用来调整这三个模块的重要性<br>假设α、β、γ都为1，C3 &#x3D; C2 &#x2F; 2 ,则</p><p>$$S S I M(x, y)&#x3D;\frac{\left(2 \mu_{x} \mu_{y}+C_{1}\right)\left(2 \sigma_{x y}+C_{2}\right)}{\left(\mu_{x}^{2}+\mu_{y}^{2}+C_{1}\right)\left(\sigma_{x}^{2}+\sigma_{y}^{2}+C_{2}\right)}$$</p><p>SSIM函数的值域为[0, 1], 值越大说明图像失真越小，两幅图像越相似。</p><h2 id="3-2-SSIM函数满足的三个条件"><a href="#3-2-SSIM函数满足的三个条件" class="headerlink" title="3.2 SSIM函数满足的三个条件"></a>3.2 SSIM函数满足的三个条件</h2><ol><li>对称性：S(x,y)&#x3D;S(y,x)</li><li>有界性：S(x,y)≤1</li><li>最大值唯一性：当且仅当x&#x3D;y时，S(x,y)&#x3D;1</li></ol><h1 id="4-实际应用"><a href="#4-实际应用" class="headerlink" title="4. 实际应用"></a>4. 实际应用</h1><p>使用在全局范围会导致局部信息受损，故一般使用一个固定大小的滑窗，计算局部SSIM，故此，公式进行局部约束：</p><p>$$\begin{aligned}<br>\mu_{x} &amp;&#x3D;\sum_{i&#x3D;1}^{N} w_{i} x_{i} \<br>\sigma_{x} &amp;&#x3D;\left(\sum_{i&#x3D;1}^{N} w_{i}\left(x_{i}-\mu_{x}\right)^{2}\right)^{\frac{1}{2}} \<br>\sigma_{x y} &amp;&#x3D;\sum_{i&#x3D;1}^{N} w_{i}\left(x_{i}-\mu_{x}\right)\left(y_{i}-\mu_{y}\right)<br>\end{aligned}$$</p><p>其中wi是高斯加权函数。</p><h1 id="5-遗留"><a href="#5-遗留" class="headerlink" title="5. 遗留"></a>5. 遗留</h1><ol><li>均值、标准差、归一化为什么可以分别作为亮度、对比度、结构特征的计算，这三种数据计算方法的几何意义、物理意义是什么？</li><li>SSIM论文中应该有相关信息没有注意到</li><li>为什么2ab&#x2F;(a+b)的形式能够作为对比？</li><li>损失函数后面调整为负值，进行加减等操作会对反向传播造成什么影响？</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> img_fusion </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>DCGAN训练思考</title>
+      <link href="/2022/03/30/DCGAN%E8%AE%AD%E7%BB%83%E6%80%9D%E8%80%83/"/>
+      <url>/2022/03/30/DCGAN%E8%AE%AD%E7%BB%83%E6%80%9D%E8%80%83/</url>
+      
+        <content type="html"><![CDATA[<h1 id="工作说明"><a href="#工作说明" class="headerlink" title="工作说明"></a>工作说明</h1><blockquote><p>用了两天的时间使用MNIST数据集训练DCGAN</p><ol><li>第一天怎么训练，loss D都在两个batch_size内快速下降到0.0x，之后直接趋向于0</li><li>第二天训练的各项数据正常</li></ol></blockquote><h1 id="问题回顾"><a href="#问题回顾" class="headerlink" title="问题回顾"></a>问题回顾</h1><ol><li><p>第一天的训练：</p><ol><li>错误的认为loss D应该保持在0.5左右——保持在0.5左右的是D(x)和D(G(Z))，而不是loss函数</li><li>将real_label设置为0，fake_label设置为1——对训练有一定的影响，必要时可以对调，更好的方法是使用软标签</li></ol></li><li><p>第二天的训练：</p><ol><li>添加D(x)和D(G(Z))可视化曲线</li><li>将标签对调为正常情况</li></ol></li></ol><h1 id="可视化"><a href="#可视化" class="headerlink" title="可视化"></a>可视化</h1><ul><li>INFO：数据</li></ul><center> D、G[1:1]更新 </center><pre><code class="python">Epoch [0/5] Batch 0/469                 D(x):0.5047，D(G(z)): 0.5004，output: 0.4535，Loss D: 0.6889,loss G: 0.7908Epoch [0/5] Batch 100/469               D(x): 0.9880，D(G(z)): 0.0171，output: 0.0165，Loss D:0.0147， loss G: 4.1140Epoch [e/5] Batch 200/469               D(x):0.8712，D(G(z)): 0.8090，output: 0.6145，Loss D: 0.9081，loss G: 0.4901Epoch [0/5] Batch 300/469               D(x):0.6222，D(G(z)): 0.3736，output: 0.3109，Loss D: 0.4783，loss G: 1.1826Epoch [0/5] Batch 400/469               D(x): 0.6995，D(G(z)): 0.4954，output: 0.1875，Loss D: 0.5354,loss G: 1.7224Epoch [1/5] Batch 0/469                 D(x):0.5371，D(G(z)):0.3516，output: 0.4096，Loss D: 0.5372，loss G: 0.9151Epoch [1/5] Batch 100/469               D(x): 0.5416，D(G(z)):0.4679，output: 0.3907，Loss D: 0.6339,loss G: 0.9563Epoch [1/5] Batch 200/469               D(x):0.5662，D(G(z)):0.4320，output: 0.4054,Loss D: 0.5761， loss G: 0.9195Epoch [1/5] Batch 300/469               D(x): 0.5569，D(G(z)): 0.4211，output:0.3418,Loss D: 0.5769, loss G: 1.0925Epoch [1/5] Batch 400/469               D(x):0.4531，D(G(z)): 0.2992，output: 0.5755，Loss D: 0.5908， loss G: 0.5740Epoch [2/5] Batch 0/469                 D(x): 0.5905，D(G(z)): 0.4527，output: 0.3409，Loss D: 0.5796，loss G: 1.1067Epoch [2/5] Batch 100/469               D(x):0.6021，D(G(z)):0.4192，output: 0.3489,Loss D: 0.5394，loss G: 1.0880Epoch [2/5] Batch 200/469               D(x): 0.5366，D(G(z)): 0.4305，output: 0.4065,Loss D: 0.6069，loss G: 0.9206Epoch [2/5] Batch 300/469               D(x):0.5416，D(G(z)):0.2691，output: 0.4179，Loss D: 0.4877， loss G: 0.9194Epoch [2/5] Batch 400/469               D(x):0.7101，D(G(z)):0.4133，output: 0.1640，Loss D:0.4520，loss G: 1.8622Epoch [3/5] Batch 0/469                 D(x):0.7748，D(G(z)): 0.3042，output: 0.0808，Loss D: 0.3200，loss G: 2.6203Epoch [3/5] Batch 100/469               D(x): 0.6514,D(G(z)):0.1118，output: 0.1721，Loss D: 0.2863，loss G: 1.9265Epoch [3/5] Batch 200/469               D(x):0.8176，D(G(z)):0.3861，output: 0.0538，Loss D: 0.3626,loss G: 3.1119Epoch [3/5] Batch 300/469               D(x): 0.7629，D(G(z)):0.3083，output: 0.0762，Loss D: 0.3354，loss G: 2.7599Epoch [3/5] Batch 400/469               D(x): 0.8042，D(G(z)):0.2689，output: 0.1024，Loss D: 0.2779,loss G: 2.4286Epoch [4/5] Batch 0/469                 D(x):0.8273，D(G(z)): 0.3855，output: 0.0283，Loss D: 0.3615，loss G: 3.8461Epoch [4/5] Batch 100/469               D(x):0.8260，D(G(z)):0.1448,output: 0.1007,Loss D: 0.1850， loss G: 2.5335Epoch [4/5] Batch 200/469               D(x):0.9277，D(G(z)):0.4498,output: 0.0191，Loss D: 0.3639，loss G: 4.2212Epoch [4/5] Batch 300/469               D(x): 0.5809，D(G(z)):0.0402，output: 0.4912，Loss D: 0.3201，loss G: 0.8003Epoch [4/5] Batch 400/469               D(x): 0.9238，D(G(z)):0.5808,output: 0.1350,Loss D: 0.5133, loss G: 2.1491</code></pre><ol><li>从图中可以发现，第一、第二个batch_size明显虚高，是因为GAN的训练特性——在G尚未学习的情况下首先更新D，由此导致前几个batch_size中D的分数较高，不过个人猜测是正常情况</li><li>随着训练epoch增加，D(x)的性能平均保持在0.8左右，而G的分数一直保持在0.3左右，个人猜测是G的学习能力较低——应降低D的学习频率，增加G的学习频率<ul><li>经过测试后发现，减少D的训练频率会导致G偷懒，从噪声生成的所有图片都是一个样子来欺骗D,其中设置G的训练频率是D的[4,14,32]倍——从4倍起就开始偷懒，<mark>故调整训练频率保持在[2,3]倍左右，或者不调整训练频率，改为调整学习率。</mark></li></ul></li></ol><center> D、G[1:2]更新 </center><pre><code class="python">Epoch [0/5] Batch 0/469                     D(x): 0.4946, D(G(z)): 0.4892, output: 0.4453, Loss D: 0.6879, loss G: 0.8089Epoch [0/5] Batch 100/469                   D(x): 0.9524, D(G(z)): 0.0601, output: 0.0536, Loss D: 0.0558, loss G: 2.9602Epoch [0/5] Batch 200/469                   D(x): 0.9416, D(G(z)): 0.1034, output: 0.0751, Loss D: 0.0856, loss G: 2.6562Epoch [0/5] Batch 300/469                   D(x): 0.4917, D(G(z)): 0.4844, output: 0.4827, Loss D: 0.6864, loss G: 0.7284Epoch [0/5] Batch 400/469                   D(x): 0.4993, D(G(z)): 0.4931, output: 0.4904, Loss D: 0.6872, loss G: 0.7127Epoch [1/5] Batch 0/469                     D(x): 0.4806, D(G(z)): 0.3470, output: 0.7397, Loss D: 0.5817, loss G: 0.3027Epoch [1/5] Batch 100/469                   D(x): 0.4667, D(G(z)): 0.4295, output: 0.4518, Loss D: 0.6636, loss G: 0.7955Epoch [1/5] Batch 200/469                   D(x): 0.4734, D(G(z)): 0.4435, output: 0.4776, Loss D: 0.6698, loss G: 0.7406Epoch [1/5] Batch 300/469                   D(x): 0.5026, D(G(z)): 0.4947, output: 0.4927, Loss D: 0.6868, loss G: 0.7092Epoch [1/5] Batch 400/469                   D(x): 0.5637, D(G(z)): 0.5503, output: 0.4108, Loss D: 0.6870, loss G: 0.8902Epoch [2/5] Batch 0/469                     D(x): 0.5009, D(G(z)): 0.4761, output: 0.5022, Loss D: 0.6697, loss G: 0.6893Epoch [2/5] Batch 100/469                   D(x): 0.5442, D(G(z)): 0.5315, output: 0.4591, Loss D: 0.6839, loss G: 0.7789Epoch [2/5] Batch 200/469                   D(x): 0.5498, D(G(z)): 0.5392, output: 0.4371, Loss D: 0.6871, loss G: 0.8279Epoch [2/5] Batch 300/469                   D(x): 0.4320, D(G(z)): 0.4212, output: 0.5299, Loss D: 0.6934, loss G: 0.6352Epoch [2/5] Batch 400/469                   D(x): 0.3814, D(G(z)): 0.3730, output: 0.5444, Loss D: 0.7159, loss G: 0.6087Epoch [3/5] Batch 0/469                     D(x): 0.5367, D(G(z)): 0.5260, output: 0.4762, Loss D: 0.6847, loss G: 0.7421Epoch [3/5] Batch 100/469                   D(x): 0.5263, D(G(z)): 0.5135, output: 0.5199, Loss D: 0.6817, loss G: 0.6546Epoch [3/5] Batch 200/469                   D(x): 0.3974, D(G(z)): 0.3897, output: 0.5477, Loss D: 0.7087, loss G: 0.6024Epoch [3/5] Batch 300/469                   D(x): 0.5390, D(G(z)): 0.5214, output: 0.4688, Loss D: 0.6780, loss G: 0.7582Epoch [3/5] Batch 400/469                   D(x): 0.5181, D(G(z)): 0.5077, output: 0.4879, Loss D: 0.6836, loss G: 0.7180Epoch [4/5] Batch 0/469                     D(x): 0.4994, D(G(z)): 0.4818, output: 0.5079, Loss D: 0.6764, loss G: 0.6781Epoch [4/5] Batch 100/469                   D(x): 0.5411, D(G(z)): 0.5297, output: 0.4642, Loss D: 0.6854, loss G: 0.7683Epoch [4/5] Batch 200/469                   D(x): 0.5262, D(G(z)): 0.5221, output: 0.4577, Loss D: 0.6912, loss G: 0.7824Epoch [4/5] Batch 300/469                   D(x): 0.4609, D(G(z)): 0.4493, output: 0.5305, Loss D: 0.6862, loss G: 0.6345Epoch [4/5] Batch 400/469                   D(x): 0.5205, D(G(z)): 0.5072, output: 0.4688, Loss D: 0.6810, loss G: 0.7585   </code></pre><ul><li>观察发现数值按照预期一样，但是图像可视化中显示生成人眼可辨识的数字在epoch慢于[1:1]速率——故在此不推荐更改训练速率，更改学习率即可</li></ul><h1 id="DCGAN生成手写数字集项目总结"><a href="#DCGAN生成手写数字集项目总结" class="headerlink" title="DCGAN生成手写数字集项目总结"></a>DCGAN生成手写数字集项目总结</h1><ul><li><input checked="" disabled="" type="checkbox"> 拟解决问题</li></ul><blockquote><ol><li>本项目中查看了torchvision.utils.transformers.Normalize函数，在GAN中需要将输入图片经过ToTensor转化到[0,1]之间，在经过Normalize图像矩阵中的数据从[0,1]转化到[-1,1]之间，同时将生成器最后一层生成的数据经过tanh函数映射到[-1,1]之间</li><li>为什么需要将数据归一化，且为什么归一化到[0,1]或[-1,1]之间？<ol><li>加快梯度下降求最优解的速度将数据约束在已知范围内——统一输入数据分布<mark>（深度学习的本质就是在学习数据分布）</mark>，否则网络需要适应不同分布的数据，降低网络训练速度</li><li>有可能提高精度</li></ol></li></ol></blockquote><ul><li><input disabled="" type="checkbox"> 拟生成问题</li></ul><blockquote><p>模型如何通过loss的约束来调整模型，如何确定约束时最大还是最小</p></blockquote><ul><li><input disabled="" type="checkbox"> 项目训练总结</li></ul><blockquote><ol><li>训练直接崩塌可对调label</li><li>可视化数据中D(x)在后期保持高分，D(G)一直保持低分，这种情况是G的学习能力差，调整学习率即可</li><li>中途怀疑batch_size对训练有影响，但是尝试[32,64,128]，经过不仔细观察影响效果不大</li></ol></blockquote><h1 id="遗漏"><a href="#遗漏" class="headerlink" title="遗漏"></a>遗漏</h1><ul><li>本次模型调试中没有可视化曲线图、直方图</li><li>没有可视化特征层</li><li>没有可视化卷积核</li></ul><p>【预计在后面调试融合模型出现问题时会回头查看该模型的各层权重直方图】</p><h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> torchvision.datasets <span class="keyword">as</span> datasets</span><br><span class="line"><span class="keyword">import</span> torchvision.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"></span><br><span class="line"><span class="comment"># Hyperparameters etc.</span></span><br><span class="line">device = torch.device(<span class="string">&quot;cuda&quot;</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">&quot;cpu&quot;</span>)</span><br><span class="line">LEARNING_RATE = <span class="number">2e-4</span>  <span class="comment"># could also use two lrs, one for gen and one for disc</span></span><br><span class="line">BATCH_SIZE = <span class="number">128</span></span><br><span class="line">IMAGE_SIZE = <span class="number">64</span></span><br><span class="line">CHANNELS_IMG = <span class="number">1</span></span><br><span class="line">NOISE_DIM = <span class="number">100</span></span><br><span class="line">NUM_EPOCHS = <span class="number">5</span></span><br><span class="line">FEATURES_DISC = <span class="number">64</span></span><br><span class="line">FEATURES_GEN = <span class="number">64</span></span><br><span class="line"></span><br><span class="line">transforms = transforms.Compose(</span><br><span class="line">    [</span><br><span class="line">        transforms.Resize(IMAGE_SIZE),</span><br><span class="line">        transforms.ToTensor(),</span><br><span class="line">        transforms.Normalize(</span><br><span class="line">            [<span class="number">0.5</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(CHANNELS_IMG)], [<span class="number">0.5</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(CHANNELS_IMG)]</span><br><span class="line">        ),</span><br><span class="line">    ]</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># If you train on MNIST, remember to set channels_img to 1</span></span><br><span class="line">dataset = datasets.MNIST(root=<span class="string">&quot;dataset/&quot;</span>, train=<span class="literal">True</span>, transform=transforms,</span><br><span class="line">                       download=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># comment mnist above and uncomment below if train on CelebA</span></span><br><span class="line"><span class="comment">#dataset = datasets.ImageFolder(root=&quot;celeb_dataset&quot;, transform=transforms)</span></span><br><span class="line">dataloader = DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Discriminator</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, channels_img, features_d</span>):</span><br><span class="line">        <span class="built_in">super</span>(Discriminator, self).__init__()</span><br><span class="line">        self.disc = nn.Sequential(</span><br><span class="line">            <span class="comment"># input: N x channels_img x 64 x 64</span></span><br><span class="line">            nn.Conv2d(</span><br><span class="line">                channels_img, features_d, kernel_size=<span class="number">4</span>, stride=<span class="number">2</span>, padding=<span class="number">1</span></span><br><span class="line">            ),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">            <span class="comment"># _block(in_channels, out_channels, kernel_size, stride, padding)</span></span><br><span class="line">            self._block(features_d, features_d * <span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>),</span><br><span class="line">            self._block(features_d * <span class="number">2</span>, features_d * <span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>),</span><br><span class="line">            self._block(features_d * <span class="number">4</span>, features_d * <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>),</span><br><span class="line">            <span class="comment"># After all _block img output is 4x4 (Conv2d below makes into 1x1)</span></span><br><span class="line">            nn.Conv2d(features_d * <span class="number">8</span>, <span class="number">1</span>, kernel_size=<span class="number">4</span>, stride=<span class="number">2</span>, padding=<span class="number">0</span>),</span><br><span class="line">            nn.Sigmoid(),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_block</span>(<span class="params">self, in_channels, out_channels, kernel_size, stride, padding</span>):</span><br><span class="line">        <span class="keyword">return</span> nn.Sequential(</span><br><span class="line">            nn.Conv2d(</span><br><span class="line">                in_channels,</span><br><span class="line">                out_channels,</span><br><span class="line">                kernel_size,</span><br><span class="line">                stride,</span><br><span class="line">                padding,</span><br><span class="line">                bias=<span class="literal">False</span>,</span><br><span class="line">            ),</span><br><span class="line">            nn.BatchNorm2d(out_channels),</span><br><span class="line">            nn.LeakyReLU(<span class="number">0.2</span>),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.disc(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Generator</span>(nn.Module):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, channels_noise, channels_img, features_g</span>):</span><br><span class="line">        <span class="built_in">super</span>(Generator, self).__init__()</span><br><span class="line">        self.net = nn.Sequential(</span><br><span class="line">            <span class="comment"># Input: N x channels_noise x 1 x 1</span></span><br><span class="line">            self._block(channels_noise, features_g * <span class="number">16</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">0</span>),  <span class="comment"># img: 4x4</span></span><br><span class="line">            self._block(features_g * <span class="number">16</span>, features_g * <span class="number">8</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>),  <span class="comment"># img: 8x8</span></span><br><span class="line">            self._block(features_g * <span class="number">8</span>, features_g * <span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>),  <span class="comment"># img: 16x16</span></span><br><span class="line">            self._block(features_g * <span class="number">4</span>, features_g * <span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span>),  <span class="comment"># img: 32x32</span></span><br><span class="line">            nn.ConvTranspose2d(</span><br><span class="line">                features_g * <span class="number">2</span>, channels_img, kernel_size=<span class="number">4</span>, stride=<span class="number">2</span>, padding=<span class="number">1</span></span><br><span class="line">            ),</span><br><span class="line">            <span class="comment"># Output: N x channels_img x 64 x 64</span></span><br><span class="line">            nn.Tanh(),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_block</span>(<span class="params">self, in_channels, out_channels, kernel_size, stride, padding</span>):</span><br><span class="line">        <span class="keyword">return</span> nn.Sequential(</span><br><span class="line">            nn.ConvTranspose2d(</span><br><span class="line">                in_channels,</span><br><span class="line">                out_channels,</span><br><span class="line">                kernel_size,</span><br><span class="line">                stride,</span><br><span class="line">                padding,</span><br><span class="line">                bias=<span class="literal">False</span>,</span><br><span class="line">            ),</span><br><span class="line">            nn.BatchNorm2d(out_channels),</span><br><span class="line">            nn.ReLU(),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">forward</span>(<span class="params">self, x</span>):</span><br><span class="line">        <span class="keyword">return</span> self.net(x)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">initialize_weights</span>(<span class="params">model</span>):</span><br><span class="line">    <span class="comment"># Initializes weights according to the DCGAN paper</span></span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> model.modules():</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(m, (nn.Conv2d, nn.ConvTranspose2d, nn.BatchNorm2d)):</span><br><span class="line">            nn.init.normal_(m.weight.data, <span class="number">0.0</span>, <span class="number">0.02</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">gen = Generator(NOISE_DIM, CHANNELS_IMG, FEATURES_GEN).to(device)</span><br><span class="line">disc = Discriminator(CHANNELS_IMG, FEATURES_DISC).to(device)</span><br><span class="line">initialize_weights(gen)</span><br><span class="line">initialize_weights(disc)</span><br><span class="line"></span><br><span class="line">opt_gen = optim.Adam(gen.parameters(), lr=LEARNING_RATE, betas=(<span class="number">0.5</span>, <span class="number">0.999</span>))</span><br><span class="line">opt_disc = optim.Adam(disc.parameters(), lr=LEARNING_RATE, betas=(<span class="number">0.5</span>, <span class="number">0.999</span>))</span><br><span class="line">criterion = nn.BCELoss()</span><br><span class="line"></span><br><span class="line">fixed_noise = torch.randn(<span class="number">32</span>, NOISE_DIM, <span class="number">1</span>, <span class="number">1</span>).to(device)</span><br><span class="line">writer_real = SummaryWriter(<span class="string">f&quot;logs/real&quot;</span>)</span><br><span class="line">writer_fake = SummaryWriter(<span class="string">f&quot;logs/fake&quot;</span>)</span><br><span class="line">step = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">gen.train()</span><br><span class="line">disc.train()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(NUM_EPOCHS):</span><br><span class="line">    <span class="comment"># Target labels not needed! &lt;3 unsupervised</span></span><br><span class="line">    <span class="keyword">for</span> batch_idx, (real, _) <span class="keyword">in</span> <span class="built_in">enumerate</span>(dataloader):</span><br><span class="line">        real = real.to(device)</span><br><span class="line">        noise = torch.randn(BATCH_SIZE, NOISE_DIM, <span class="number">1</span>, <span class="number">1</span>).to(device)</span><br><span class="line">        fake = gen(noise)</span><br><span class="line"></span><br><span class="line">        <span class="comment">### Train Discriminator: max log(D(x)) + log(1 - D(G(z)))</span></span><br><span class="line">        <span class="keyword">if</span> batch_idx % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">            disc_real = disc(real).reshape(-<span class="number">1</span>)</span><br><span class="line">            loss_disc_real = criterion(disc_real, torch.ones_like(disc_real))</span><br><span class="line">            disc_fake = disc(fake.detach()).reshape(-<span class="number">1</span>)</span><br><span class="line">            loss_disc_fake = criterion(disc_fake, torch.zeros_like(disc_fake))</span><br><span class="line">            loss_disc = (loss_disc_real + loss_disc_fake) / <span class="number">2</span></span><br><span class="line">            disc.zero_grad()</span><br><span class="line">            loss_disc.backward()</span><br><span class="line">            opt_disc.step()</span><br><span class="line"></span><br><span class="line">        <span class="comment">### Train Generator: min log(1 - D(G(z))) &lt;-&gt; max log(D(G(z))</span></span><br><span class="line"></span><br><span class="line">        output = disc(fake).reshape(-<span class="number">1</span>)</span><br><span class="line">        loss_gen = criterion(output, torch.ones_like(output))</span><br><span class="line">        gen.zero_grad()</span><br><span class="line">        loss_gen.backward()</span><br><span class="line">        opt_gen.step()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Print losses occasionally and print to tensorboard</span></span><br><span class="line">        <span class="keyword">if</span> batch_idx % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(</span><br><span class="line">                <span class="string">f&quot;Epoch [<span class="subst">&#123;epoch&#125;</span>/<span class="subst">&#123;NUM_EPOCHS&#125;</span>] Batch <span class="subst">&#123;batch_idx&#125;</span>/<span class="subst">&#123;<span class="built_in">len</span>(dataloader)&#125;</span> \</span></span><br><span class="line"><span class="string">                  D(x): <span class="subst">&#123;disc_real.mean().item():<span class="number">.4</span>f&#125;</span>, D(G(z)): <span class="subst">&#123;disc_fake.mean().item():<span class="number">.4</span>f&#125;</span>, output: <span class="subst">&#123;output.mean().item():<span class="number">.4</span>f&#125;</span>, Loss D: <span class="subst">&#123;loss_disc:<span class="number">.4</span>f&#125;</span>, loss G: <span class="subst">&#123;loss_gen:<span class="number">.4</span>f&#125;</span>&quot;</span></span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">            <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">                fake = gen(fixed_noise)</span><br><span class="line">                <span class="comment"># take out (up to) 32 examples</span></span><br><span class="line">                img_grid_real = torchvision.utils.make_grid(</span><br><span class="line">                    real[:<span class="number">32</span>], normalize=<span class="literal">True</span></span><br><span class="line">                )</span><br><span class="line">                img_grid_fake = torchvision.utils.make_grid(</span><br><span class="line">                    fake[:<span class="number">32</span>], normalize=<span class="literal">True</span></span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">                writer_fake.add_image(<span class="string">&quot;Fake&quot;</span>, img_grid_fake, global_step=step)</span><br><span class="line"></span><br><span class="line">            step += <span class="number">1</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>blog-markdown书写规则</title>
+      <link href="/2022/03/29/blog-markdown%E4%B9%A6%E5%86%99%E8%A7%84%E5%88%99/"/>
+      <url>/2022/03/29/blog-markdown%E4%B9%A6%E5%86%99%E8%A7%84%E5%88%99/</url>
+      
+        <content type="html"><![CDATA[<h1 id="blog-markdown书写规则"><a href="#blog-markdown书写规则" class="headerlink" title=" blog-markdown书写规则 "></a><center> blog-markdown书写规则 </center></h1><ul><li>站内文章链接：<code>&#123;% post_link file_name %&#125;</code><ul><li>检索关键词：站内文章</li></ul></li><li>文字效果：&lt;<code>b/i/u/s/big/mark</code>&gt; ******* &lt;&#x2F;<code>b/i/u/s/big/mark</code>&gt;</li><li>文章首行缩进：<code>&lt;p style=&quot;text-indent:2em&quot; &gt;</code></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>TOC</title>
+      <link href="/2022/03/29/LIFE%20TOC/"/>
+      <url>/2022/03/29/LIFE%20TOC/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="5abf0cfd53bb5c38ed384ae3c3bf49b289de76d90a4293432961aa38f502daf5">901015936e2ec1bc2a4d01c822635a06dbabc75c330bdf0d123f64dbd819e43430d0a05c3025834c03c24ebf318f6df515738cb63f9a216b3cae01030f30249b4c39b0efee78df4317fd591b23e5ad8076fd989204ca0663875ca43ddf17ac047e07e2008653afaaedb91f3cc83954156c99bb710833be778b8c37fc25407c487afe0884174bec091d37da6a9571d6638822e59a719bbf7009d1aafcb89e62fa86a2ef73ad1e4584fdb376c7fedd7f63a9c46da3fff5c7094bc754c90a09b98f131e3076a2e093bee8f59a315680ee6229104fedcbde1be9619e6e65e6ad6f5fe5d0cc46a2edd0f29c5b75f501f7483cbd4382ee2ee0cfa37c1436611f8f6e0577e68efdd7f0f406e3a05e73e8313a106fd9bf70b8e49d67e64c12965b6952ce9398d86c71a2a168f1a15ec9c9b933c743823a64a85c90f23ef014085c2f52600acd38f9969a80bd42adc79f5a64ed86e48183a92c313b255878352da9cdf4a026aae16f08dd7d6736c58c2f5cc66243fa22a4167d2e638fe2cc618a03ab05874dd6744d18055ee2494661bcc031577020854fd17b0ae44a1b224b07e017a1922e9afbf1fd8925ca885824ecf9dd17639f177918a183e2b7081b16433d3476ea3a2e6b8085316c9a508fedf7cd128e3924052667e74c73731a454cb2467ebe75fece399b1200a3a9cffbd8394ee02b444bf358f2385390c2648bec2edec03f95659f1c8ac1af7016652256c80553f9932039e3e63ee50dccd38a9d692eaf21ff56e47bb5cbcb94b59a9f9d93af2965df02c786d6b8ba77231d44c9ad20ddb8935cd49fef48de350124b1a245f56691c65b9a21abbb31f4cc26ff70d6b244f6d81cc71824a86f3bc0f1f6a69aaa9ed0fc70b568606f63c7eef6b3da1735bdadd879a0a77de38c6614b7e40957c5633b43b6fc473614bcdd62e6011e65c9edf9e7613e7899138ccc58e1fe31dd811f2541b030e7c5bc11b0eb851143b06cdd030f7949f3c15316fe6edd5412555fac646c5658b830f684d9ca0934aee0d1614feca12052fcc30ada902bcbbe758f70af8e1c33e8bcdaa1e3508679f557d0a41569a901d61c8c38548fd95e2d419b5b0d4afecf81fb9e64ab638c6579cd2d4c557af35b9fe1a669e153a3769d1c380aad71a1f4f7422aceddf58c22761a4dc323ba0b41613ca91cfe88c37de4844c805006642d5e92771b560edd2e46bdae00d3126173ded7981108da867504b1c08056b6a782d49ab63fd96bcc96f5f20811936e99d81128482a549713eb97a402c91fb1d902e6165eebebe7516ee322d678a205653ae9a25dbc3fc232da15282c87b0e00795c551e279de2e58f24363ae8bcd9d808687a6e7a0db6d085e45c1e69198281d80f9141defcee6569923a18bf6a5e36e6a43bd34e137fe6ed0891d9735fe38</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> life </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> TOC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>3</title>
+      <link href="/2022/03/29/%E5%85%B3%E4%BA%8E%E8%A1%A8%E7%99%BD%E5%A2%99%E4%B8%8A%E4%B8%80%E5%88%99%E5%8F%8C%E5%90%91%E4%B8%8E%E6%96%B0%E9%B2%9C%E6%84%9F%E3%80%81%E4%BB%AA%E5%BC%8F%E6%84%9F%E6%8A%95%E7%A8%BF%E7%9A%84%E6%84%9F%E8%A7%A6/"/>
+      <url>/2022/03/29/%E5%85%B3%E4%BA%8E%E8%A1%A8%E7%99%BD%E5%A2%99%E4%B8%8A%E4%B8%80%E5%88%99%E5%8F%8C%E5%90%91%E4%B8%8E%E6%96%B0%E9%B2%9C%E6%84%9F%E3%80%81%E4%BB%AA%E5%BC%8F%E6%84%9F%E6%8A%95%E7%A8%BF%E7%9A%84%E6%84%9F%E8%A7%A6/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="c89fb12ebdfd2ce00ed8d2b221fea91a9aa40c737ca8541c01040aa9b4742fe5">d8eb541f534e62ff3f46f2f28f0d52a5a1cc6b8838a78340aa66e10bc3a389411123a8e26eecb6d8e16d64418164ed19020aa495700bffdfd5bc9dce1c28f86effba5c06d69bb9741f76c7c8fcb95c76cdcb028fd22690e1110134dcd9df3c2e255924d15160f6dbc18803f06c762044a161653cab4d7283144587248b2870df513c38b156dcb7ac9c5f4b189b46c69cc001a6f326058c08f5b01e5c8c3770f2fdfe6f53b7df9a1d8f1b4e4e9b8a11cca3cb2e47073a25eb6d685997bb127d7b68b35fe28e9852d6d4e5daece160cc48005baa59fccd715970803a68bd82a82b29be2bdb237b0b30fa5fbf828e7ef621872ae5a7df7548765294d473a419ee0118b52a2026afdab44908f6994aca32bc7ddf7f21868fd60eda6ce13592b6b6b1368b2bc7c83f9d67895d778762136f39c4cc30632c689fd5d4e07360465d5f0eac7e34c9d22f5adafef4007830e740b777bb5021d5305ccf6d0335ab86e995bd4bdffc4dd7199a4411d20de69051c07cf0be3b6ac6ce920d551ecf7c3a96583a7c0ccf88ff5e01436fc33bd3e18b6c5e</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> life </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Review</title>
+      <link href="/2022/03/28/Review/"/>
+      <url>/2022/03/28/Review/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 索引关键词说明：</span></span><br><span class="line">今日计划：</span><br><span class="line">今日完成：</span><br><span class="line">今日遗留：</span><br><span class="line"></span><br><span class="line">明日计划：</span><br><span class="line"></span><br><span class="line">说明：明天任务中需要的文件</span><br><span class="line">预计：短期工作任务</span><br><span class="line">记录：某些信息检索的关键</span><br><span class="line"></span><br><span class="line">Stack：该问题短时间难以解决</span><br><span class="line"></span><br></pre></td></tr></table></figure><h1 id="Retrospective"><a href="#Retrospective" class="headerlink" title=" Retrospective "></a><center> Retrospective </center></h1><h2 id="2022"><a href="#2022" class="headerlink" title="2022"></a>2022</h2><h3 id="4-4"><a href="#4-4" class="headerlink" title="4.4"></a>4.4</h3><ul><li><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong><ul><li><input checked="" disabled="" type="checkbox"> <ol><li>学习了什么是感知损失</li></ol></li></ul></li></ul><hr><h3 id="4-4-1"><a href="#4-4-1" class="headerlink" title="4.4"></a>4.4</h3><ul><li><input disabled="" type="checkbox"> <strong>Stack</strong><ul><li><input disabled="" type="checkbox"> 无法理解作者的解释，关于[Generative Image Inpainting with Contextual Attention]一文中的input[x,ones_like(x),masked]为何concat全一矩阵：加入该层是为了指出图像的边界<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Issues:</span><br><span class="line">during earlier development of this work, we use mirror</span><br><span class="line">padding. However, we find this <span class="keyword">is</span> almost equivalent to</span><br><span class="line">concatenate ones (indicating the boundaries of images) <span class="keyword">as</span> <span class="built_in">input</span></span><br><span class="line"></span><br><span class="line">convolution automatically pad zeros <span class="keyword">as</span> <span class="keyword">in</span> <span class="string">&#x27;SAME&#x27;</span> mode.</span><br></pre></td></tr></table></figure></li></ul></li></ul><hr><h3 id="4-2"><a href="#4-2" class="headerlink" title="4.2"></a>4.2</h3><ul><li><input disabled="" type="checkbox"> <strong>记录</strong><ul><li><input disabled="" type="checkbox"> 关键词：纹理合成、纹理缝合、纹理生成</li></ul></li></ul><hr><h3 id="4-1"><a href="#4-1" class="headerlink" title="4.1"></a>4.1</h3><ul><li><p><input disabled="" type="checkbox"> <strong>今日计划</strong></p><ul><li><input disabled="" type="checkbox"> 写一篇关于GPU信息含义如何理解的博客</li></ul></li><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong></p><ul><li><input checked="" disabled="" type="checkbox"> 阅读SSIM源码，理解SSIM公式，同时在SSIM博客中提出问题</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>明日计划</strong></p><ul><li><input disabled="" type="checkbox"> 完成图像梯度原理理解</li></ul></li><li><p><input disabled="" type="checkbox"> <mark><strong>idea</strong></mark></p><ul><li><p>发现了一篇关于local attention为何起作用的<a href="https://arxiv.org/abs/2106.04263">论文</a>，其中有网络设计准则，值得参考，其推荐博客已经存储在网络结构设计中</p></li><li><p>depth-wise conv有些忘记，需要回顾</p></li></ul></li></ul><hr><h3 id="3-31"><a href="#3-31" class="headerlink" title="3.31"></a>3.31</h3><ul><li><p><input disabled="" type="checkbox"> <strong>今日计划</strong></p><ul><li><input disabled="" type="checkbox"> 训练DIDfuse代码，观察训练时间，必要时可视化模型</li><li><input disabled="" type="checkbox"> 学习异常检测代码</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>遇到问题</strong></p><ul><li><input checked="" disabled="" type="checkbox"> SSIM原理</li><li><input checked="" disabled="" type="checkbox"> 什么是一维向量</li></ul></li><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong></p><ul><li><input checked="" disabled="" type="checkbox"> 如何提取图像梯度</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>说明</strong></p><ul><li><input disabled="" type="checkbox"> 需要使用的代码在Image-Fusion-Transformer、FusionGAN-pytorch-master代码中</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>今日遗留</strong></p><ul><li><input disabled="" type="checkbox"> 几篇关于SSIM的博客</li><li><input disabled="" type="checkbox"> 写一篇关于SSIM的博客</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>预计</strong></p><ul><li><input disabled="" type="checkbox"> 修改代码中关于梯度的loss函数</li></ul></li></ul><hr><h3 id="3-30"><a href="#3-30" class="headerlink" title="3.30"></a>3.30</h3><ul><li><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong><ul><li><input checked="" disabled="" type="checkbox"> 完成DCGAN生成MNIST数据集，分析DCGAN训练不work的原因 </li><li><input checked="" disabled="" type="checkbox"> 阅读清单中遗留文章已查阅</li><li><input checked="" disabled="" type="checkbox"> 搭建完成全卷积siam网络模型，正在训练</li></ul></li><li><input disabled="" type="checkbox"> <strong>明日计划</strong><ul><li><input disabled="" type="checkbox"> 由于训练较慢，初步判断为预测特征图导致，故训练他人的模型进行对比</li></ul></li></ul><hr><h3 id="3-29"><a href="#3-29" class="headerlink" title="3.29"></a>3.29</h3><ul><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong>:</p><ul><li><input checked="" disabled="" type="checkbox"> 进行了DCGAN对MNIST数据集的训练，效果极差，查找发现他人训练好后证明效果还行的源码直接拿来训练也效果极差，初步估计为GAN模型极易崩塌</li><li><input checked="" disabled="" type="checkbox"> 进行了WGAN对MNIST数据集的训练，效果人眼可分辨</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>预计</strong>:</p><ul><li><input disabled="" type="checkbox"> 1.完成遗留任务</li><li><input disabled="" type="checkbox"> 2.进行FGAN或者其他融合网络的训练，主要进行可视化操作（loss、image、特征图、卷积核）</li></ul></li></ul><hr><h3 id="3-28"><a href="#3-28" class="headerlink" title="3.28"></a>3.28</h3><ul><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong>:</p><ul><li><input checked="" disabled="" type="checkbox"> 1.完成loss、image、histogram可视化代码</li><li><input checked="" disabled="" type="checkbox"> 2.完成风格损失1000-1-50-100的训练</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>今日遗留</strong>:</p><ul><li><input disabled="" type="checkbox"> 1.阅读清单中几篇文章</li><li><input disabled="" type="checkbox"> 2.阅读清单中有两个博主的其他博客需要查看</li><li><input disabled="" type="checkbox"> 3.缓存了几个网页需要查阅</li><li><input disabled="" type="checkbox"> 4.完成风格损失1000-1-50-100的可视化理解</li><li><input disabled="" type="checkbox"> 5.完成内容损失1000-1-50-100的理解</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>预计</strong>:</p><ul><li><input disabled="" type="checkbox"> 1.卷积核的可视化</li><li><input disabled="" type="checkbox"> 2.特征层的可视化</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>模型调整方法探究</title>
+      <link href="/2022/03/27/%E6%A8%A1%E5%9E%8B%E8%B0%83%E6%95%B4%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6/"/>
+      <url>/2022/03/27/%E6%A8%A1%E5%9E%8B%E8%B0%83%E6%95%B4%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>探究问题：在结合新idea搭建好模型后，该模型毫无疑问不会达到预期的效果，甚至是没有效果，本文欲找出问题所在之处并，进行数据分析，最后调整</p></blockquote><p>总体步骤分解为：<strong>定位——分析——调整</strong></p><h2 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h2><ol><li>可视化<ol><li>可视化loss数据</li><li>可视化每个卷积层输出的特征层</li><li>可视化卷积核</li></ol></li><li>可疑之处<ol><li>loss变化减缓</li><li>特征层奇怪</li><li>卷积核奇怪</li></ol></li></ol><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="1-出问题的部分在loss数据中如何体现？"><a href="#1-出问题的部分在loss数据中如何体现？" class="headerlink" title="1. 出问题的部分在loss数据中如何体现？"></a>1. 出问题的部分在loss数据中如何体现？</h3><h4 id="1-loss"><a href="#1-loss" class="headerlink" title="1.loss"></a>1.loss</h4><blockquote><p>主要表现为突变</p></blockquote><h4 id="2-histogram"><a href="#2-histogram" class="headerlink" title="2.histogram"></a>2.<strong>histogram</strong></h4><p>【<a href="https://blog.csdn.net/u011668104/article/details/90517879?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522164846316016782094836597%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=164846316016782094836597&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-2-90517879.142%5Ev5%5Epc_search_result_control_group,143%5Ev6%5Eregister&utm_term=add_histogram&spm=1018.2226.3001.4187">参考博客</a>】</p><ol><li>训练好的模型权重更加集中，波动范围更小</li><li>初始化很重要，查看初始化权重以及训练好的权重，差异不大的话很有可能网络没有学到任何东西（一般来说其收敛中心有变化，变换范围更小）</li></ol><h3 id="2-探究多任务损失函数系数对训练的影响"><a href="#2-探究多任务损失函数系数对训练的影响" class="headerlink" title="2. 探究多任务损失函数系数对训练的影响"></a>2. 探究多任务损失函数系数对训练的影响</h3><blockquote><p>就风格迁移模型，风格损失刚开始在1200左右，内容损失在[0,20]，</p></blockquote><ol><li><p>将风格损失的权重设置为[1,50,100]实际上在图片上的影响效果基本没有影响，各自图片变化阶段也基本相同——<mark>说明系数并不会影响对应loss约束的特征在训练中提早&#x2F;延后表征</mark></p></li><li><p>但是随着风格损失权重增大（下图1000-1-50-100），可发现风格损失权重越大，内容损失会随着训练次数逐渐升高（越来越抽象且和原图像差距越来越大）——<mark>说明调整loss权重，只是更关注某个loss约束的特征，该特征表征能力保持不变——表现为loss变化幅度基本没有，其他特征表征能力下降——表现为loss原本应该下降或平缓，在增大其他权重时，loss开始上升</mark></p></li></ol><center> content_loss </center><p><img src="/../img/1000-1-50-100.png" alt="训练图片"></p><p>3.从模型的三个loss曲线中观察，权重较大的loss基本没有变换，相反权重较小的loss从原来的收敛变成增加（从上往下风格损失权重：1-50-100）</p><center> content_loss-------------------loss--------------------style_loss </center><p><img src="/../img/1000-1-50-100-all_loss.png" alt="训练图片"></p><ol start="3"><li>直方图基本没有任何变换</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>人工智能学习建议</title>
+      <link href="/2022/03/26/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE/"/>
+      <url>/2022/03/26/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="1783964657b2d4989af6f3221d07e0f40b81e343c8c9496ed0a2813ef2ce4e28">f7617627da7617c0627994017e9b91968b2e9f8e4658b110cdfd043f9f5649b300c8e7a657cefb7624e4a155602e35d5a553ce703f67783176a38fb41db2bd788eeb8569d7e9eb3254e09dde5f6baa734184798fe0064b7c7459c357413da34d11c2c7033483a035a2a36f7d048fc12fd4172c7889d516ede2331b142ce1913b1c9c4b60264fc27337742e57d5c2667b75ce4628c69a1117d02846ef0655b1c9f631781e51c248a1c2f776ba1dc73cb8dbf31b788e8f6700356b46ad9211449cde9bf69275480e21e1645209a6568464039bcf3b99796cb552fcfbe442c19b2455529b96bcd2c4fe8db0f56ae895692ffa4592f39dc3cb16f7059c5b821e7e4f5bca1d6901a5a8dd3a247730295b9a98c7350263d8eff71e3e7336108583880df3ba8ded75461d35257b7caac43950b813be3f4f8d7df99b5ac1917592a458cb9d16701e316b1679341d232f87aee18b08c2e1ec18bc64af6283fa02cefe70b927f93ed0cf68afb8152b49278db25803669d0953f4473e910e276d4afb8e6b2b51650c6cb1ae16367f96892941b3d08c94e0cd859d118a26d91d19337c83c63a4a892fdb644f5474b31945f1d059df003feecc8fbcf93564c59b04735ebe2b1069c7014625d91595a7114110453e7a73a10d9ef5ad3f958412296d2c9b5164b0eb623c626396471c486ab3e80378fd598f281ec2e3b4344c457b20738425b347599001f81a23f15f98ca4d8455dec52e05547e3eb4c29fb7016ccad26d94c0e859305a927918c314333a32a53bc8f107ee75d20dc4cba914dbba6390d8adc2f156de8aea018e5a1a96c6ce98a58cf38d9545f67b635492305878224816acfacf36f8aba21bd611c00261b54af187eb9383b58298fd135d58973c82861fd1d8e4566c05609a3bbc8376c99bbb0256bf4f4f96faeb5c51bd196053054a15608bd87b741e622208984805648822f5de1d8accd4ddb95f24b84c6688b247b2dbfddce2c6be39bad2fcf25cc5afe3b0f07d95b29bdb6da0fe9ea655113e972f5df31425e7892867a35a5e76d23be8b9bc8573e6c70d2aa9337223522d79d667c18b2e99b6ea846ce4036901aefbc542f7d1ac7778d1f258ab8c213af3fd329ca385f2ad4b47652da1a76c8cf3e43efc4a7a56f2a4982549c4decae64e0101af6d5149c01c248aedd2a1a296c4a94688b6f1a4b8867bb728a085dccad10ad6b620e581c71769ab1a63beb0c8286357f621b588b33aeaacacada9ce4daf3fb92c982318166ba9bf49dd4be865b05f8407837c8e54652929b1b4433e60a7c3dd7bddd6cb1bc53369f90fa24d176840337954d7655282b6689fc9085be01225af083fbfd8dce3d3eb568357b31b08fbce1ed1f32640130aff08bffb895fd6bcde420f9d0731d33b9454e28bf203436b1e0ed06116fb85e218e08d2e63f772250c85062bd5bfef411b56964562c358a0ffb3dea4b3c131749f5c9ec7393ca05c9bc9a5443b06c9d6ecbfd1bc55b7a5a846236bc4f2476e715ed4ea5b137e66afa66c36bee7a8e51495ad9aebf8d2b4bd7edfb037c0ecd27cf9da41390e8159263deec027ebd0e9684dd0b7db9e79241aa5e4ab05c4ded8c123c5f6a1d76feda1f06b79a14be892b545dbb616f044a32ba78baaf472f1816b9d49641ece3df23dcce5a119d0a8855325d121aff90d12a379dfa68bb2ed0ff6bfb0809849b7ff30a832815e5bafbe1e12ed4ab751b50b074cab543d4254848c616d0df8d31d2e0146e0baeede4822001928d0891b5f40febfdf456571d3accfb50411de31dd1b954c86ac57a57c023abe321a559cb6e6059121ba5c931e8796f76d936e6bc60362242b23cfb210ec446307e3ee05edbd62a02b5f2669409baf18534f87ebfa90d7709b2ed4bfa26a50661f5eafcd269216cbb6b83bd43ca0d20116deb0de8ba243a45f793b40e32ee299b0d2508f7150dc9cb518a129bd10b8e49c9bfc7ce0d022828ac9628c24a594cf0f2ab29bdc045cb64bbd96612a29ba9927a8cedc46e6ec7a7cad854bd05513441998a03316d81e4c40ccf6a2b0a8fb6889c9814cc3301601719f32357aaede72ea4b4713e39624087119c4b70e9cdfb9fa9498df4926b546f51869023e8a014e123bb5d9ab97585e3ad68b1ee2b6220bf6a2bf34cc5d1136701a95e44b72ccfa850a876e0173a803146c02352f1450cfd87295c41f1f97abe12c6c838f2e4c1c9f9143811dde253e03cfb08c992a236941b8a9e6c6ba04c244849927cb7c8d51614fba2194a87ceacbf1047195706aaf2b5058a269c6044ed760ed583cf7be9325d0c1d1c8863967fafaeaa46c1a777c3373d410003150d32187dabec9d015727ec5297e29de36d30bdf07b684b7099b6e465fc33a4b43e464d58f729bb22dd86debff1b49ffca93deab77e3ac2d1bd58949adec81c8ab6ab782a93dc89613b89e51c0f9971ebc4cff2bd3404ba39d5e58cd4142214396edc850c0692fc85a61a464eb7f360b1c6efe472e56ea2433487e8e4eb6682538b8e7a878bd70bb5d6129af4038a733a60699305c8448d4c723f993b16a2d157b4eb26e1604b24661ee67e616c7d1bd12e1287ad6dfdfe2c4e3da99aa85c92e797666b9b8050e0ef256df9de5de810dcca4934050d7fa0662af8da0353930af172728df23fb0bd3ebd863d02c11fbad3aa70feeebb44c95cbbe6eef8c5c36cbf04acd153a6d4ade86f527cdcd34af6988b241a4a37e7171fea53ff2bfb3fef95009519b8f4c8c7560389b7a414ce0793c6e8623807df2c49d2f26a61040b03094ebf53e1466ca1bf78c8ac599b6beaa4b563c4c84f08349173148ba4993dc3d2305e72394766d6503fb46bc2fdb50e93ac8a85831ae196a9505bd6ac0f54fac1d0d651fad9f0a44ce9bd747e6417fe53bdc79936ddf6294ea094c872a0ecc63907198c30c7de105186daacc61eb8a10575b545677aeada1af94487a732103f937ef07c854fbcbd0127a93bff9547735c060311b412bc73794907e9832e4fcf6bf2675917485cece8206b62118422c1c2fbdef08b8b07f41b8f9b30f5118d6547bf0b11bbf14257bd7f63302f930572509186576feff9d45e1df63518df8f4282e6968a5526544fe71c12d855b3ae7b09510f3d18b364c31c7bba97f5996994780fdc43d141ea562a7dc02c96deef67f57aa6f4c167d6d99101157375f80abc9eda141e6f38be82ba022d5a4f7221fdfac68843a4360ee2f829c1372db83b7d9011afcb0458b8d8f347f1197c1a06d23c16847a2e23203dae2755c230a8565cf5575a044bb2b8b4f8c48942fd78ce51ad1dbab7d07e39e3e4d1631dafc5efdbbedc76985814bd05fb1fcf45212bbd60a7cc6e2f5255a43461253e5f7762a4bcbaa34fd3118aa519bf204ab22f0b8f560b47ab146ac3b9511a86fe88d3476f4fcbbc7d78d0764962da561ef37d29001c9f94a8537e67bdf2d75f1c2d9d6592fae10b5f3fc34aaeee53f140097e43fbb19c5b9d1bd88e159253fdd707197f9c6429116f65bf800b25d4f209ac69c9984069a2cd42150a3820e439726be98aef3f748c4a796360275960d6381ce3035e16a7e8348903f1ba4c5508f701edba8d3a83967610f42c132d2f242d5a78d1b2f5aa18ba455555551ac7735592aa038f7cad674db467ca8985bad560d78835ec6f52dfa3f49e7ac9933e87b7279af4436fc9a30525532bb35f406db7ae0adf18ef26f6c805f59078480106d572c6cad341dc33e11a86055a9f7bfbff1606cf88ace70f43d0c61b860d236c35a96e651a018ac9d8c991d415ad6a52666529b0289c818cec7d888a2d2747f62608cb7db61f1110470f694f0881ccb41f634e862f907d2ff4071cdb4951d618f7583a77b018b3a85345ddac262282ab6759b88e84561515ade26c12c9eb0b4a46ba833e98d34829ae8f01efafb8f24d04515fa5d476d5fc2540dfa45b95b84a40488fc46aed7cebeaa0e1ccdea4697f5bef2f9feadc35d1799b83a7b276ec60bc1d20d153efd32eb00f4163b</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Paper</title>
+      <link href="/2022/03/25/Paper/"/>
+      <url>/2022/03/25/Paper/</url>
+      
+        <content type="html"><![CDATA[<h1 id="文献总览"><a href="#文献总览" class="headerlink" title="文献总览"></a>文献总览</h1><h2 id="图像修复"><a href="#图像修复" class="headerlink" title="图像修复"></a>图像修复</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="">Generative Image Inpainting with Contextual Attention</a></td><td align="center">使用背景信息填补前景遮盖</td><td align="center">互补特征并没有加减操作，直接concat特征层，使用膨胀卷积扩大感受野</td></tr></tbody></table><h2 id="GAN"><a href="#GAN" class="headerlink" title="GAN"></a>GAN</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="">Training Generative Adversarial Networks in One Stage</a></td><td align="center">将GAN的双阶段训练改为单阶段训练，但无法多次训练D，只训练一次G</td><td align="center">训练源码，没有任何效果</td></tr></tbody></table><h2 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="">Axial attention in multidimesional transformers</a></td><td align="center">将整幅图片进行patch转换成仅关注轴向信息，有效降低transformer计算量</td><td align="center">None</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>博客参考资料</title>
+      <link href="/2022/03/18/%E5%8D%9A%E5%AE%A2%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/"/>
+      <url>/2022/03/18/%E5%8D%9A%E5%AE%A2%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/</url>
+      
+        <content type="html"><![CDATA[<p>主题配置：<a href="https://butterfly.js.org/posts/ceeb73f/">butterfly</a></p><p>学习视频：<a href="https://www.bilibili.com/video/BV1Rg41177pX/?spm_id_from=333.788">视频</a></p><p>博客推荐：<a href="https://zfe.space/">小冰博客</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>训练loss总览</title>
+      <link href="/2022/03/17/%E8%AE%AD%E7%BB%83loss%E6%80%BB%E8%A7%88/"/>
+      <url>/2022/03/17/%E8%AE%AD%E7%BB%83loss%E6%80%BB%E8%A7%88/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>第一次使用tensorboard可视化loss</p></blockquote><p><img src="/../img/md1.jpg" alt="训练图片"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> life </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Fragments </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>github响应超时</title>
+      <link href="/2022/03/17/github%E8%B6%85%E6%97%B6%E7%9B%B8%E5%BA%94%E9%97%AE%E9%A2%98/"/>
+      <url>/2022/03/17/github%E8%B6%85%E6%97%B6%E7%9B%B8%E5%BA%94%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>问题描述：github相应超时，经常无法快速连接</p></blockquote><p>解决：更改本地hosts文件，文件位置如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:/Windows/system32/divers/etc/hosts</span><br></pre></td></tr></table></figure><h1 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h1><p>打开上述hosts文件增加如下内容：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#           140.82.112.4       github.com</span><br></pre></td></tr></table></figure><h1 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h1><ul><li>进入<a href="https://gitee.com/doshengl/GitHub520">相关网址</a>，复制其中的hosts地址粘贴到本地文件即可——该网站会实时更新地址</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo部署中SSH相关问题</title>
+      <link href="/2022/03/17/hexo%E9%83%A8%E7%BD%B2%E4%B8%ADSSH%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/"/>
+      <url>/2022/03/17/hexo%E9%83%A8%E7%BD%B2%E4%B8%ADSSH%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>问题描述：将github账户作为仓库存储代码，或者将其作为远端时，出现相关报错或者提示——存在ssh相关信息</p></blockquote><h1 id="问题一："><a href="#问题一：" class="headerlink" title="问题一："></a>问题一：</h1><p>下方是在hexo中将Github作为远端，使用<code>heox d</code>远端推送时出现ssh密钥失效的问题，具体错误代码如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access <span class="string">&#x27;https://github.com/Reggci/Reggci.github.io/&#x27;</span>: OpenSSL SSL_read: Connection was reset, errno <span class="number">10054</span></span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (E:\blog\node_modules\hexo-util\lib\spawn.js:<span class="number">51</span>:<span class="number">21</span>)</span><br><span class="line">      at ChildProcess.emit (node:events:<span class="number">390</span>:<span class="number">28</span>)</span><br><span class="line">      at ChildProcess.cp.emit (E:\blog\node_modules\cross-spawn\lib\enoent.js:<span class="number">34</span>:<span class="number">29</span>)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (node:internal/child_process:<span class="number">290</span>:<span class="number">12</span>) &#123;</span><br><span class="line">    code: <span class="number">128</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something<span class="string">&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span></span><br></pre></td></tr></table></figure><ul><li>解决：</li></ul><blockquote><ol><li>可能是时间久了后本地与Github连接失效</li><li>可能是网络延迟无法push</li></ol></blockquote><ol><li>首先查看本地用户名以及邮箱是否是自己的Github（可跳过步骤）</li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git config user.name  <span class="comment"># 查看本地用户名配置</span></span><br><span class="line">git config user.email <span class="comment"># 查看本地邮箱配置</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果不是重新配置即可</span></span><br><span class="line">git config --<span class="keyword">global</span> user.name <span class="string">&#x27;xxxx&#x27;</span></span><br><span class="line">git config --<span class="keyword">global</span> user.email <span class="string">&#x27;xxxx&#x27;</span></span><br></pre></td></tr></table></figure><ol start="2"><li>生成本地公钥</li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;your github 注册邮箱&quot;</span></span><br></pre></td></tr></table></figure><ol start="3"><li>打开 C:\Users.ssh文件夹，将公钥文件中的内容复制到GitHub的SSH中</li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">id_rsa<span class="comment"># 私钥</span></span><br><span class="line">id_rsa.pub<span class="comment"># 公钥</span></span><br></pre></td></tr></table></figure><ol start="4"><li>检测SSH Key生效</li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh git@github.com</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
