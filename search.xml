@@ -4,11 +4,412 @@
   
     
     <entry>
-      <title>风格迁移1</title>
+      <title>DETR深度理解</title>
+      <link href="/2022/04/28/paper/DETR%E6%B7%B1%E5%BA%A6%E7%90%86%E8%A7%A3/"/>
+      <url>/2022/04/28/paper/DETR%E6%B7%B1%E5%BA%A6%E7%90%86%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<center> End-to-End Object Detection with Transformers </center><blockquote><ol><li>因为预测是模型预测，而标记是人为标记，得到的预测第一个不一定就直接与认为标记好的目标直接对应，如何将预测到的[class, box]和GT对应？</li></ol></blockquote><p>首先用二分图的方法进行信息匹配，匹配预测和标记之间相似程度，每一个预测目标只能与一个GT对应。对应好后进行损失计算</p><blockquote><ol start="2"><li>decoder输入的object queries</li></ol></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图像修改检测</title>
+      <link href="/2022/04/28/paper/%E5%9B%BE%E5%83%8F%E4%BF%AE%E6%94%B9%E6%A3%80%E6%B5%8B/"/>
+      <url>/2022/04/28/paper/%E5%9B%BE%E5%83%8F%E4%BF%AE%E6%94%B9%E6%A3%80%E6%B5%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="ObjectFormer-for-Image-Manipulation-Detection-and-Localization"><a href="#ObjectFormer-for-Image-Manipulation-Detection-and-Localization" class="headerlink" title=" ObjectFormer for Image Manipulation Detection and Localization "></a><center> ObjectFormer for Image Manipulation Detection and Localization </center></h1><h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><p>现有的图像篡改检测方法通常使用CNN (卷积神经网络) 提取图像内的篡改信息，它们往往关注图像层面（高层）或者像素层面（底层）的视觉一致信息，而没有明确地对物体层面（中层）的表示进行建模。相比之下，我们认为，图像操纵检测不仅要检查某些像素是否具有异常，还要考虑物体之间是否一致。</p><h1 id="技术基础"><a href="#技术基础" class="headerlink" title="技术基础"></a>技术基础</h1><ol><li>transformer能探索不同patch之间的相关性——用于明确地建模物体层面地视觉一致性信息。</li><li>使用可学习的参数作为query，用于发现对象一致性作为中层表征，这能够表征两个特征中特定区域地一致性，通过这种一致性来改进patch-level的一致性重建</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图像的高低频</title>
+      <link href="/2022/04/28/work/%E5%9B%BE%E5%83%8F%E7%9A%84%E9%AB%98%E4%BD%8E%E9%A2%91/"/>
+      <url>/2022/04/28/work/%E5%9B%BE%E5%83%8F%E7%9A%84%E9%AB%98%E4%BD%8E%E9%A2%91/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>不同频率信息在图像结构中有不同的作用。图像的主要成分是低频信息，它形成了图像的基本灰度等级，对图像结构的决定作用较小；中频信息决定了图像的基本结构，形成了图像的主要边缘结构；高频信息形成了图像的边缘和细节，是在中频信息上对图像内容的进一步强化。</p></blockquote><p>图像的频率：灰度值变化剧烈程度的指标，是灰度在平面空间上的梯度。</p><h1 id="什么是低频"><a href="#什么是低频" class="headerlink" title="什么是低频?"></a>什么是低频?</h1><p>低频就是颜色缓慢地变化,也就是灰度缓慢地变化,就代表着那是连续渐变的一块区域,这部分就是低频. 对于一幅图像来说，除去高频的就是低频了，也就是边缘以内的内容为低频，而边缘内的内容就是图像的大部分信息，即图像的大致概貌和轮廓，是图像的近似信息。</p><h1 id="什么是高频"><a href="#什么是高频" class="headerlink" title="什么是高频?"></a>什么是高频?</h1><p>反过来, 高频就是频率变化快.图像中什么时候灰度变化快?就是相邻区域之间灰度相差很大,这就是变化得快.图像中,一个影像与背景的边缘部位,通常会有明显的差别,也就是说变化那条边线那里,灰度变化很快,也即是变化频率高的部位.因此，图像边缘的灰度值变化快，就对应着频率高，即高频显示图像边缘。图像的细节处也是属于灰度值急剧变化的区域，正是因为灰度值的急剧变化，才会出现细节。</p><p>另外噪声（即噪点）也是这样,在一个像素所在的位置,之所以是噪点,就是因为它与正常的点颜色不一样了，也就是说该像素点灰度值明显不一样了,,也就是灰度有快速地变化了,所以是高频部分，因此有噪声在高频这么一说。</p><p>其实归根到底,是因为我们人眼识别物体就是这样的.假如你穿一个红衣服在红色背景布前拍照,你能很好地识别么?不能,因为衣服与背景融为一体了,没有变化,所以看不出来,除非有灯光从某解度照在人物身上,这样边缘处会出现高亮和阴影,这样我们就能看到一些轮廓线,这些线就是颜色（即灰度）很不一样的地方.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> img_fusion </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>self-attention意义分析</title>
+      <link href="/2022/04/27/work/self-attention%E6%84%8F%E4%B9%89%E5%88%86%E6%9E%90/"/>
+      <url>/2022/04/27/work/self-attention%E6%84%8F%E4%B9%89%E5%88%86%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<p>Attention Function函数如下：<br>$$ \operatorname{Attention}(Q, K, V)&#x3D;\operatorname{softmax}\left(\frac{Q K^{T}}{\sqrt{d_{k}}}\right) V$$</p><ol><li>$ QK^{T} $是计算相似度没错，但是为什么这样相乘能计算相似度？由此引出以下问题：</li></ol><blockquote><ul><li>向量的内积是什么？如何计算，几何意义是什么？</li></ul></blockquote><p>向量内积表征两个向量的夹角，表征一个向量在另一个向量上的投影，而这个投影值大，意味着两个向量的相关度高；如果两个向量的夹角是90°，那么这两个向量线性无关。</p><blockquote><ul><li>矩阵与自身转置相乘$ XX^{T} $，代表什么意义？</li></ul></blockquote><p>计算上理解：第一行与其它行内积、第二行与其它行内积…<br>意义上理解：计算每行与其他行的相似度，相当于遍历每行与其他行的相似度，得到的是一个相似度矩阵，其第一行第i个元素对应着原矩阵第一行与第i行相似度。<br>应用上理解：当图片切成patch后，矩阵中的每一行代表每个patch中的所有像素值，计算时相当于计算每个patch与其他patch之间的相似度</p><blockquote><ul><li>相似度矩阵再乘以原矩阵如何理解？</li></ul></blockquote><p>计算上理解：相似度矩阵第一行是原矩阵第一行与其它行的相似度，原矩阵第一列是每行的第一个数值，全部乘积完后的第一行，相当于以第一行为基准，用第一行和其它行相似度对应着调整其它行的占比。<br>应用上理解：用第一个patch与其他patch的相似度调整原矩阵中的第一行（第一个patch），而调整后的第一行是以相似度为基准，对所有patch的加权。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>张量的广播性质</title>
+      <link href="/2022/04/26/work/%E5%BC%A0%E9%87%8F%E7%9A%84%E5%B9%BF%E6%92%AD%E6%80%A7%E8%B4%A8/"/>
+      <url>/2022/04/26/work/%E5%BC%A0%E9%87%8F%E7%9A%84%E5%B9%BF%E6%92%AD%E6%80%A7%E8%B4%A8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="维度解读"><a href="#维度解读" class="headerlink" title="维度解读"></a>维度解读</h1><ul><li>[3, 4, 5]<blockquote><p>该张量包含3个二维张量，每个二维张量都包含4个一维张量，每个一维张量都包含5个标量&#x2F;零维张量</p></blockquote><h1 id="相同维度但不同形状"><a href="#相同维度但不同形状" class="headerlink" title="相同维度但不同形状"></a>相同维度但不同形状</h1><h2 id="1、某个维度的形状不同且其中有一个维度为1"><a href="#1、某个维度的形状不同且其中有一个维度为1" class="headerlink" title="1、某个维度的形状不同且其中有一个维度为1"></a>1、某个维度的形状不同且其中<mark>有一个维度为1</mark></h2><blockquote><p>如形状为[1,4]和[3,4]的两个张量相加相当于分别将a与b的三个一维张量相加（实际上广播的操作是将a的维度扩展，复制其二维数据成三份，此时其尺寸和b相同）</p></blockquote></li></ul><ol><li>[1,4]和[3,4]、[4,1]和[4,3]</li><li>[1,4]和[3,1]也可以相加，相加前相当于分别扩展为[3,4]进行加和操作</li><li>[2,3]和[3,2,1]</li></ol><ul><li>注意：形状不相同的维度只要某个维度为1就能广播，单纯的形状不同且其中没有任何一个维度为1则不能广播</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Learning Affinity from Attention:End-to-End Weakly-Supervised Semantic Segmentation with Transformers</title>
+      <link href="/2022/04/25/paper/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B21/"/>
+      <url>/2022/04/25/paper/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B21/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Learning-Affinity-from-Attention-End-to-End-Weakly-Supervised-Semantic-Segmentation-with-Transformers"><a href="#Learning-Affinity-from-Attention-End-to-End-Weakly-Supervised-Semantic-Segmentation-with-Transformers" class="headerlink" title=" Learning Affinity from Attention:End-to-End Weakly-Supervised Semantic Segmentation with Transformers "></a><center> Learning Affinity from Attention:End-to-End Weakly-Supervised Semantic Segmentation with Transformers </center></h1><blockquote><p>将transformer引入图像分割，使用MHSA得到的激活图作为预处伪标签，其作为标签还需要细化预伪标签。</p><ol><li>AFA模块来学习transformer中MHSA中的语义亲和力</li><li>自适应细化模块PAR用来有效地控制AFA生成亲和力标签的可靠性并确保伪标签的局部一致性</li></ol></blockquote><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ol><li>语义分割通常需要大量标记labels，故提出使用弱&#x2F;廉价标签，常用的方法是：首先使用一个分类模型生成类激活图作为伪标签，再经过细化后才能被用来作为语义分割网络的训练标签——这意味着需要训练多个模型</li><li>AFA能学习MHSA中的语义亲和力用于改进初始伪标签，但为了确保这种改进的可靠和局部一致性，提出自适应细化模块</li></ol><blockquote><p>模型思想：</p><ol><li>Transformer作为backbone，输入图像</li><li>分支一：提取由transformer得到的语义亲和力信息，通过MLP进行语义亲和力预测得到亲和力特征信息A，</li><li>分支二：对transformer提取到的特征图直接进行分类层，其一将其通过类激活得到初始伪标签B，该标签再由PAR细化处理并得到亲和力特征信息C，[A,C]计算亲和力信息损失；其二经由类别预测直接输出类别损失</li><li>分支三：将由transformer得到的特征图经由decoder重建得到分割特征的预测信息D,将[A, B]进行Random wolk后再PAR细化得到分割模型能用来训练的最终伪标签E，计算[D,E]的预测损失</li></ol></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SimMIM：a Simple Framework for Masked Image Modeling</title>
+      <link href="/2022/04/23/paper/%E5%9B%BE%E5%83%8F%E6%8E%A9%E8%86%9C/"/>
+      <url>/2022/04/23/paper/%E5%9B%BE%E5%83%8F%E6%8E%A9%E8%86%9C/</url>
+      
+        <content type="html"><![CDATA[<h1 id="SimMIM-a-Simple-Framework-for-Masked-Image-Modeling"><a href="#SimMIM-a-Simple-Framework-for-Masked-Image-Modeling" class="headerlink" title=" SimMIM:a Simple Framework for Masked Image Modeling "></a><center> SimMIM:a Simple Framework for Masked Image Modeling </center></h1><blockquote><p>本文模型不需要特殊设计，使用简单的离散VAE或聚类实现masking和Tokenization就行<br>探究图像掩膜模型表征好的原因:</p><ol><li>使用中等大小（32）的掩膜对图像随机掩码</li><li>直接对原始像素进行回归预测</li><li>预测头架构简单，且性能不比复杂层差</li></ol></blockquote><h1 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h1><p>[1]——使用附加网络进行patch tokenization，通过掩膜来破坏短距离连接</p><h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h1><p>1.1 掩码的自监督学习范式广泛应用于NLP领域却在计算机视觉表现的不温不火的原因：</p><ol><li>图像具有更强的局部关系，即相互靠近的像素往往是高度相关的。复制靠近的像素可以很好地完成任务，显然通过语义推理并不容易办到。</li><li>视觉信号是原始的、低层次的，而文本分词是由人类产生的高级概念。那么，对低层次信号的预测是否对高层次的视觉识别任务有用？ </li><li>视觉信号是连续的，而文本分词是离散的。那么，如何利用基于分类的掩码语言建模方法处理连续的视觉信号？</li></ol><p>【注意】：掩膜大小为32在很宽的掩膜率范围内性能都能表现的富有竞争力，但是掩膜大小为8就需要掩膜率高达80%才表现良好</p><p>模型共有四个部分：masking strategy——encoder architecture——prediction head</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>transformer的意义在哪里</title>
+      <link href="/2022/04/21/work/transformer%E7%9A%84%E6%84%8F%E4%B9%89%E5%9C%A8%E5%93%AA%E9%87%8C/"/>
+      <url>/2022/04/21/work/transformer%E7%9A%84%E6%84%8F%E4%B9%89%E5%9C%A8%E5%93%AA%E9%87%8C/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>1.transformer是如何出现的<br>2.transformer如何使用？</p></blockquote><h1 id="transformer的背景"><a href="#transformer的背景" class="headerlink" title="transformer的背景"></a>transformer的背景</h1><ul><li>transformer基于self-attention<ul><li>self-attention比CNN看的更宽更远(感受野大，同时是全局远距离关联)</li><li>self-attention比lstm训练更快</li></ul></li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>卷积</title>
+      <link href="/2022/04/19/work/%E5%8D%B7%E7%A7%AF/"/>
+      <url>/2022/04/19/work/%E5%8D%B7%E7%A7%AF/</url>
+      
+        <content type="html"><![CDATA[<h1 id="转置卷积Transposed-Convolution"><a href="#转置卷积Transposed-Convolution" class="headerlink" title="转置卷积Transposed Convolution"></a>转置卷积Transposed Convolution</h1><blockquote><p>用来对图像进行上采样，扩大图像尺寸</p></blockquote><h2 id="运算步骤："><a href="#运算步骤：" class="headerlink" title="运算步骤："></a>运算步骤：</h2><ol><li>在输入特征图元素间填充s-1行、列0</li><li>在输入特征图四周填充k-p-1行、列0</li><li>将卷积核参数上下、左右翻转</li><li>做正常卷积运算（填充0，步距1）</li></ol><h1 id="膨胀卷积Dilated-convolution"><a href="#膨胀卷积Dilated-convolution" class="headerlink" title="膨胀卷积Dilated convolution"></a>膨胀卷积Dilated convolution</h1><blockquote><p>保证图像尺寸不变，但感受野扩大的卷积</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>激活函数以零为中心的意义</title>
+      <link href="/2022/04/19/work/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E4%BB%A5%E9%9B%B6%E4%B8%BA%E4%B8%AD%E5%BF%83%E7%9A%84%E6%84%8F%E4%B9%89/"/>
+      <url>/2022/04/19/work/%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E4%BB%A5%E9%9B%B6%E4%B8%BA%E4%B8%AD%E5%BF%83%E7%9A%84%E6%84%8F%E4%B9%89/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>在很多介绍激活函数的文章中看到一条：该函数不以零为中心。并将其列为该激活函数的缺点</p></blockquote><p>要说明激活函数以零为中心的意义，需要做以下证明：</p><ul><li>某次反向传播的方向实则仅与输入的值相关。</li></ul><h1 id="证明："><a href="#证明：" class="headerlink" title="证明："></a>证明：</h1><h2 id="1-神经元单元中输入输出步骤说明"><a href="#1-神经元单元中输入输出步骤说明" class="headerlink" title="1. 神经元单元中输入输出步骤说明"></a>1. 神经元单元中输入输出步骤说明</h2><p>神经网络完全仿照人类大脑的神经元，在某个神经元 $ i $ ：上个神经元的输出作为本次输入 $ X_i $ ，经过神经元 $ i $ 整合之后： $ z(\vec{x};\vec{w},b) &#x3D; \sum_i w_ix_i + b $ ,再通过激活 $ f(z) $得到输出。 </p><h2 id="2-sigmoid和tanh"><a href="#2-sigmoid和tanh" class="headerlink" title="2. sigmoid和tanh"></a>2. sigmoid和tanh</h2><p>本文为说明激活函数以零为中心的意义，选用sigmoid和tanh对比说明</p><ul><li>区别</li></ul><ol><li>sigmoid区间为[0,1]，但tanh以零为中心</li></ol><ul><li>相同（在本文中无关，但是当时困扰我很多）</li></ul><ol><li>其导数均大于0</li></ol><h2 id="3-收敛速度"><a href="#3-收敛速度" class="headerlink" title="3. 收敛速度"></a>3. 收敛速度</h2><p>为得到最优解，迭代轮数多即收敛速度慢；反之</p><h2 id="4-深度学习的基本思路是靠反向传播，即通过链式法则将梯度回传并更新参数，重点就是参数更新。"><a href="#4-深度学习的基本思路是靠反向传播，即通过链式法则将梯度回传并更新参数，重点就是参数更新。" class="headerlink" title="4. 深度学习的基本思路是靠反向传播，即通过链式法则将梯度回传并更新参数，重点就是参数更新。"></a>4. 深度学习的基本思路是靠反向传播，即通过链式法则将梯度回传并更新参数，重点就是参数更新。</h2><p>此处为公式，后期补充</p><h2 id="5-通过链式法则证明梯度在反向传播算法，在某次反向传播中，对于所有的输入其梯度均是固定的，即意味着本次更新方向仅与输入值（上一个神经元的输出）有关"><a href="#5-通过链式法则证明梯度在反向传播算法，在某次反向传播中，对于所有的输入其梯度均是固定的，即意味着本次更新方向仅与输入值（上一个神经元的输出）有关" class="headerlink" title="5. 通过链式法则证明梯度在反向传播算法，在某次反向传播中，对于所有的输入其梯度均是固定的，即意味着本次更新方向仅与输入值（上一个神经元的输出）有关"></a>5. 通过链式法则证明梯度在反向传播算法，在某次反向传播中，对于所有的输入其梯度均是固定的，即意味着本次更新方向仅与输入值（上一个神经元的输出）有关</h2><h2 id="6-以零为中心的实际影响"><a href="#6-以零为中心的实际影响" class="headerlink" title="6. 以零为中心的实际影响"></a>6. 以零为中心的实际影响</h2><p>如果输入值像sigmoid一样为正数，那么某次反向传播中整体只能向某个方向变化，现在假设：</p><p>即我们希望 $ w_1 $ 适当增大， $ w_2 $ 适当减小，这时就出现一个问题，像上述一样，在某个神经元中梯度实际上是确定的，整体上数值的方向仅取决于输入值的方向，一旦输入值方向都相同（因为输入值是上个神经元的输出，而这个输出的最后一步通过了激活函数）——sigmoid，那么此次更新只能整体朝一个方向更新，那么就无法做到增大 $ w_1 $ 的同时减小 $ w_2 $ ,因为这样需要输入值可正可负（但sigmoid只大于零，这里引出一个问题，下节说明）<br>使用sigmoid这样不以零为中心的激活函数（只有正值或负值），神经网络在某次更新中无法同时满足所有的权重向最优解移动（即方向不是直指最优解），而是在最优解那个方向上左右摇动，这样导致收敛速度缓慢。</p><h2 id="7-当输入值确定为sigmoid输出，即为正数，那么全都向正向了，还怎么保证收敛？"><a href="#7-当输入值确定为sigmoid输出，即为正数，那么全都向正向了，还怎么保证收敛？" class="headerlink" title="7. 当输入值确定为sigmoid输出，即为正数，那么全都向正向了，还怎么保证收敛？"></a>7. 当输入值确定为sigmoid输出，即为正数，那么全都向正向了，还怎么保证收敛？</h2><p>所谓的方向全由输入 $ X_i $ 决定，前提是将其定义在某个神经元单元中考虑输入 $ X_i $ 对方向影响的问题来说，因为本文就是说明激活函数以零为中心的意义，刚好神经元的输入就是上层神经元输出，最重要的是该输出的最后一步是通过了激活函数，我们要用的就是经过激活函数的输出。</p><p>但是脱离了这个限制，实则某次反向传播的最终方向是由下方公式共同决定的，这说明了其中$\frac{\partial L}{\partial f}\frac{\partial f}{\partial z}$是可正可负的，它在整个更新的过程中是起作用的。<br>$$\left{\begin{array}{l}<br>\boldsymbol{x}<em>{i} \cdot \frac{\partial L}{\partial f} \frac{\partial f}{\partial z} \<br>\boldsymbol{x}</em>{j} \cdot \frac{\partial L}{\partial f} \frac{\partial f}{\partial z}<br>\end{array}\right.$$</p><h2 id="8-在sigmoid前提中对于梯度更新方向的进一步解析"><a href="#8-在sigmoid前提中对于梯度更新方向的进一步解析" class="headerlink" title="8. 在sigmoid前提中对于梯度更新方向的进一步解析"></a>8. 在sigmoid前提中对于梯度更新方向的进一步解析</h2><p>上一节中说明，方向是由下方公式共同决定:</p><p>$$x_i\cdot \frac{\partial L}{\partial f}\frac{\partial f}{\partial z}$$</p><p>而在sigmoid函数中,该函数的导数实际上是大于零：</p><p>$$\frac{\partial f}{\partial z}$$</p><p>那么此时更新方向只与输入和loss的导数相关，此时将问题再次限制到某个神经元单元中，loss导数固定，只与输入有关，对于ReLU这样的激活函数也存在同时只更新一个方向的问题，由此便可说明其变种leakyReLU、PReLU等出现的原因——它们的出现让输入可正可负。</p><p>本文实际上已经说明问题，公式补充请参考<a href="https://liam.page/2018/04/17/zero-centered-active-function/">博客</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>心累</title>
+      <link href="/2022/04/18/life/%E7%8A%AF%E6%9C%80%E6%84%9A%E8%A0%A2%E7%9A%84%E9%94%99%E8%AF%AF%EF%BC%8C%E5%93%81%E4%B8%80%E5%A6%82%E6%97%A2%E5%BE%80%E7%9A%84%E5%BF%83%E7%B4%AF/"/>
+      <url>/2022/04/18/life/%E7%8A%AF%E6%9C%80%E6%84%9A%E8%A0%A2%E7%9A%84%E9%94%99%E8%AF%AF%EF%BC%8C%E5%93%81%E4%B8%80%E5%A6%82%E6%97%A2%E5%BE%80%E7%9A%84%E5%BF%83%E7%B4%AF/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="a72e971753ffe09e9919f440d6efbafb5f7df4d2f9d8db6dcec075954f932315">556f064327254578d4f5db008d23104a723911764892c06eb641010e272d20c4769f539efe1b1ba283d209c7ef1f8915e678596f418475c686cb249b78694ff887608c5e4bb77a759c0fb2c2c27dd8a217770879e419299122c5debc336b851b1b795155cf4762452f3620174b7ae8a146a86dc774184be5c9ef67af8e14691c832741b27f91dd5bbf1f85982083e9d0155c94fa767b1a86dc055fce100737ad262629a42ca3f51670575a55e7d7fb8146ae0307b4627f8fab073effdb671f90bad8e67e36a6af3881953ff8a0242db5c35aa7299df560431fd809aac760d20f2a36263c98eab2564fccb987c29e9da71a42172c05890eec8e4ffeb6d8f5dd572f4b6db17ceacedd8f2f9f2a421f498add01ade417a36f5e4c4022d7d9bbf6f26d01fbae3947448f6a61585960a439f2d51a6f7c05d3e8e8e7c1e9136bbb1b452af2681537482f87c67a15fd5d3b2d7546ac4f14eeb68590c40cb00a5cc65bb7986fd4b21fa24e94c54456e88d1001e954c8b89a6ecfc75db42e69c87d89dcd48c270f8c5f9636ff4a1d4c756b6502dac1ece7eef18b2aaf7def504d443f8505f1919eb501a05ba4860ba3579c127192f91614a7da79c324ee5941d646d1f2c6145ac2f17f2f01560bbfbed8d6bf61308d2ed998a149e41c55f580296640b6fd7255a72704df3fec026a874de05bd480cd2bb3ca0598ae64b7b81c951eceef425f8e2dbedd58410bee6e0ffce8feb1fae4b0c3f855306a770b9a5f2d840ed65646a826541b06a907701f46369de62c84ebd32515a552d33a51b2b71c7c16509aa6e1921dba695b1e1c3bfc99a4dcdd230dd30e782ec8cf7516118f9e5a8b9a6e98f6d9e34fea532f614973096d2f0f4a0ae733d0c9a094482465ea4ed06ab0e57afed0a1b00b8b2180a2a3fbc64eae3c8794545fbb3b599dc7169d3e88efc503c4ead50b4e7330ddf2a450020a3181834bfc45e8c774e9b9d4de30e5a9acab15ddf2400ff7b1ed68e4200c931b3e5f9463453d9acf6a942138117d91f6524b4929e35fe8cb5f821ade622869ea69303f2475367e23908fbcdc69e78c25ae634595351d0fc112fbdb198a80ef9a16d332c76f2aad032830ba528c3c84d5ee11b4a20c8cc9ece8017126ecc2c9da1650c7a73b5eab2c86ddc88e24504e7a7b9f3b85d07dad7fb7a155d843017fcc7fa63a40a6a88512fa5a1d5e7084b47c96e7088ecb725bb68dfd7018cdd5504b304a65db867fa896ae051f9425a247cf28eeeabc8fb988696ad34fbf8620da388d8eb93d3256249d2635a5421b2813285dbdcb877b2d593de5c274839bffed8ac7b68f30f871068624b003d212d2d192f0dbfef6c85d1187e8ea74e890afc1dc31c734ec6c95fba2415c02c658f6fb604a1dc938639525861d26f6344370abb33204e76699912f4b0465b6d3954d280d2f2574057471d4fd6b1346bbad9018866dfab64e5a85017e1fb5aa615f728705e972b84bb890c54189e923cdc943f6c44c03bf8d4ccc7047ce7bbd7a1814ce823118425a6393cf7377fb36183d7a7989ebc8ec7da00e30c680c67c0cef09d1e171b38b25566785d2c6ac22254643e518f91f0aabf78b4ad6f1ce0a212250acb72fdf2df3efcd11f91adcf88a00350590cd640788a8d1ab3a6d6dd90f21fee13a63944808b26018fb6aa70493b156947efbcf837cbad54389a7ab470523ddd699c3318617ec44c0aed7423dc1d6e27b19ebe8499d0ddb4f95f196eb360651d02456172d7f60cc26219b60b6b88e45191ec9d21cbcaeebfc8c5299e66a3da9d634944a3b19cdc418fc2f73d0bbe2db406ee152c7a4d5d5f410e2eba376f9d900d790d4b74fff0c8fcae0aaa25f56c763e5bd3eea5d479976394657afea0d6bd66c375279c3cb33e8230a1a3fa54d15219264728c3652855a3882155ffc4120ca3fb5a97db25e0be388b17c896a24264dd6b4ca3e19bd1f7fe862eb803a35a75657e511bbe1b83ea2004b0bf00dacdf03b0ec0d460bf27001f668140936c7b89679bc583d5bc2cef2c788933f1d542bbe1d2ce1c3ccda59bf961369bf67aea8d864d949948906fd2f96893fa5fd1535ef6f81afca9b1486f3d8d8983695e72a812dc3a63c350cb05e844a45e168907d198c680d1586f2fa7684eb828383187e6ae745b6044225365b634a837d4ae0e4817c93556cef239206ee6e01c7c4097247240029af4fd167466713740ec6c3aa1a459e6c80036a2e9835aa51e0ea4abe4358c47fda415a7536e9914b6227954327fcf9deaf6dfdfaee9cf30a125edd16505a146816c442a697009739c90bf6162831c2504272d7eaeca325e38fd3d4e928e1ddc43399976c38fdc5d52aa43c69b406e272f078eda241c742206514db5dfc654b70d72c2fb6bca4c4ef7448aaf2167b872e6ed16a767906d7253535c0ea2c7f59514a48770b71cfc605b2471b1b8b2f69fbb7c2d3f0e9bc812518b23a6485f84641b2fd39ac5d2e9fed7b635a196c2413a8224722e8e2a5ad2af34cde162136dd2265d9b66100267f6fd679ffe3d130eaf678d63f81dad997b589fdc48d331c376a3bc052574773c8e74b1550287d79e23a6aeb4a72de1237d5f7ca415176ab3936e7d3ab0ae6ce957ec6725c92c45654b956df927d75b41696969654dc14ce819d98c8481b35333326cfb5485c1381ff2608f318eb09bcdab9d499381ea3489ab339174669dfe101e6f0de4b4cf7833bda6328eee1d42e9356474c17f3e4c6fadca6d8d70325c6841d2a795c01be7caf29138c2ae6b432c5f276b570398481da8dfcdc1280b5a176082ea47195bb2f2cef817140f63d0f2cd53b2384ed7759104da277e790e515e152c7472e5c7426c6348858f6a209fec411ec7ac066ae57d606aec5f9566baf3565f20bf9f3e765e65ecb76557c2f42c111cbe7df9028a7f4efc45183e9cc6a3ead67516188bfba37a5b0e2ee93060c7c1f427f3e99317013710a49a74d9e10cb0b84e58a298076a4ad8c8da3b6906704b8af6a342f95df74fd9eaf2c9588bdf85f36328255079848d4813bd432bed0854f45ce0cfd9c9ecd5a3957fcbed15b566a64dc2090d31b281e875107b23d0664edcc392d89a674fd0d14daabfd042da8323c99a6dbab434667c1ae96b05f5bacd23d0e2cad748f7c1bda290e523246171287933f2f10cb5866856aeeec912bec4943dcd036c992bf0b2c37671812a47f606dde6fb9d0f8f4c79ba37c40fb861786fcc3c8a8f100c32e70826975474ffb7a05b5b2584f36fd65278a7be49385e1f9bead70e6c0df943a25a41119f51e8994631aec9c395a198045453d8d4138e88b56064a2a97d45594fa997fe4a4797b5a495ed9bfac3ab28c5f5032c16556d5aef1c882aca9a5848b774dfdb67a875190a39a092d371fc66331c9f1922b68ee3ab99f078a53130e823e5e351db71b307a1bf7f3fb11107a4f7396fc56a906ce6d8bed83324075a04c35653cf0e46fc7ac1b2d6fcd6c18931a7c68dbae08b9f631c5c911057018ecc45528d86dab50d9190cc717c11ef5a804c680e30c6ddf9451dd0a9ae437ca21842f3c90a276c0c0eebe89e23477d0bc639d7c4576ada8c24a85dfe3797d7ebad2e134315efff2f98ddb876834800c32a30fdb1c2a5b6be3a832220dae96a8aa3d8947ece63393b125781fc816c7d5a5d82b5f236c4dcc900b86d54a1d0090f9070dd980ff026bdd3f2ca375149dd1fbc7eb29e2141fc209f16a64ba1c154fa716f5bcb10b6a09256daf2e22c64fc3109fc7c8725d81c20eadaa746d4ba27c01e2e9f89cb5ff5386c06818ef640c245bd201d20ad162dcdb057081cda16e79bc865a8a66596bb5995ff283fdc8791374fd22d0976e46809f50fbec7fb79767d1fe8612e80e3cf1a4da808854823a32e51c8e4803dac9ef274a12d60929459be2b4c7d466ba8ba247c93ee5440fd7f9c5681230b873f7a8ed495770288e364660c298fb99626c5e8f5101df8376ea81ce374ac3bffd31015c662f06a7252b2b906672dc6ba17694a782922e456fb76dddb72180a9357c42ff776c97a3a1fa878551b1fea79748434e42565df096123469f0518eff8ac3caf718f3d69db60dc368ca5cbad063c3e98dedaeaadb60642154596074b70503e41868c4216230ccf4cb2212d79ba1c7346c7ad29a1387f663c20261c4ca91b42d93bbf8b84c3c055d0473126208b4f59668b289715ed00f8f8c2a2099e75275e717e5c4faa04864b8c7593403fedeb70fcd3d450b224e458c09454e364bb462cb3b52d6d0317dd13efed6a9</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> life </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Me </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Visdom教程</title>
+      <link href="/2022/04/17/work/Visdom%E6%95%99%E7%A8%8B/"/>
+      <url>/2022/04/17/work/Visdom%E6%95%99%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">pip install visdom</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开端口</span></span><br><span class="line">python -m visdom.server</span><br></pre></td></tr></table></figure><h1 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h1><h2 id="vis-test-vis-image"><a href="#vis-test-vis-image" class="headerlink" title="vis.test(),vis.image()"></a>vis.test(),vis.image()</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> visdom   <span class="comment"># 添加visdom库</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np   <span class="comment"># 添加numpy库</span></span><br><span class="line">vis = visdom.Visdom(env= <span class="string">&#x27;test&#x27;</span>)   <span class="comment"># 设置环境窗口的名称,如果不设置名称就默认为main</span></span><br><span class="line">vis.text( <span class="keyword">class</span>=<span class="string">&#x27;test&#x27;</span>, win=<span class="string">&#x27;main&#x27;</span>)   <span class="comment"># 使用文本输出</span></span><br><span class="line">vis.image(np.ones(( <span class="number">3</span>,  <span class="number">100</span>,  <span class="number">100</span>)))   <span class="comment"># 绘制一幅尺寸为3 * 100 * 100的图片，图片的像素值全部为1</span></span><br></pre></td></tr></table></figure><h2 id="vis-images"><a href="#vis-images" class="headerlink" title="vis.images()"></a>vis.images()</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> visdom</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="comment"># 新建一个连接客户端</span></span><br><span class="line"><span class="comment"># 指定env = &#x27;test1&#x27;，默认是&#x27;main&#x27;,注意在浏览器界面做环境的切换</span></span><br><span class="line">vis = visdom.Visdom(env=<span class="string">&#x27;test1&#x27;</span>)</span><br><span class="line"><span class="comment"># 绘制正弦函数</span></span><br><span class="line">x = torch.arange(<span class="number">1</span>, <span class="number">100</span>, <span class="number">0.01</span>)</span><br><span class="line">y = torch.sin(x)</span><br><span class="line">vis.line(X=x,Y=y, win=<span class="string">&#x27;sinx&#x27;</span>,opts=&#123;<span class="string">&#x27;title&#x27;</span>:<span class="string">&#x27;y=sin(x)&#x27;</span>&#125;)</span><br><span class="line"><span class="comment"># 绘制36张图片随机的彩色图片</span></span><br><span class="line">vis.images(torch.randn(<span class="number">36</span>,<span class="number">3</span>,<span class="number">64</span>,<span class="number">64</span>).numpy(),nrow=<span class="number">6</span>, win=<span class="string">&#x27;imgs&#x27;</span>,opts=&#123;<span class="string">&#x27;title&#x27;</span>:<span class="string">&#x27;imgs&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure><h2 id="绘制loss函数"><a href="#绘制loss函数" class="headerlink" title="绘制loss函数"></a>绘制loss函数</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#绘制loss变化趋势，参数一为Y轴的值，参数二为X轴的值，参数三为窗体名称，参数四为表格名称，参数五为更新选项，从第二个点开始可以更新</span></span><br><span class="line">vis.line(Y=np.array([totalloss.item()]), X=np.array([traintime]),</span><br><span class="line">                win=(<span class="string">&#x27;train_loss&#x27;</span>),</span><br><span class="line">                opts=<span class="built_in">dict</span>(title=<span class="string">&#x27;train_loss&#x27;</span>),</span><br><span class="line">                update=<span class="literal">None</span> <span class="keyword">if</span> traintime == <span class="number">0</span> <span class="keyword">else</span> <span class="string">&#x27;append&#x27;</span></span><br><span class="line">                )</span><br></pre></td></tr></table></figure><h2 id="在一张图上绘制多条loss曲线"><a href="#在一张图上绘制多条loss曲线" class="headerlink" title="在一张图上绘制多条loss曲线"></a>在一张图上绘制多条loss曲线</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实例化窗口</span></span><br><span class="line">wind = Visdom()</span><br><span class="line"><span class="comment"># 初始化窗口参数</span></span><br><span class="line">wind.line([&#123;<span class="number">0.</span>,<span class="number">0.</span>]],[<span class="number">0.</span>],win = <span class="string">&#x27;train&#x27;</span>,opts = <span class="built_in">dict</span>(title = <span class="string">&#x27;loss&amp;acc&#x27;</span>,legend = [<span class="string">&#x27;loss&#x27;</span>,<span class="string">&#x27;acc&#x27;</span>]))</span><br><span class="line"><span class="comment"># 更新窗口数据</span></span><br><span class="line"><span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">loss = <span class="number">0.2</span> * np.random.randn() + <span class="number">1</span></span><br><span class="line">acc = <span class="number">0.1</span> * np.random.randn() + <span class="number">0.5</span></span><br><span class="line">wind.line([[loss, acc]],[step],win = <span class="string">&#x27;train&#x27;</span>,update = <span class="string">&#x27;append&#x27;</span>)</span><br><span class="line">time.sleep(<span class="number">0.5</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="实际代码"><a href="#实际代码" class="headerlink" title="实际代码"></a>实际代码</h2><blockquote><p>类定义：</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 记录训练日志，显示生成图，画loss曲线 的类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Logger</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, n_epochs, batches_epoch</span>):</span><br><span class="line">        <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        :param n_epochs:  跑多少个epochs</span></span><br><span class="line"><span class="string">        :param batches_epoch:  一个epoch有几个batches</span></span><br><span class="line"><span class="string">        &#x27;&#x27;&#x27;</span></span><br><span class="line">        self.viz = Visdom() <span class="comment"># 默认env是main函数</span></span><br><span class="line">        self.n_epochs = n_epochs</span><br><span class="line">        self.batches_epoch = batches_epoch</span><br><span class="line">        self.epoch = <span class="number">1</span> <span class="comment"># 当前epoch数</span></span><br><span class="line">        self.batch = <span class="number">1</span> <span class="comment"># 当前batch数</span></span><br><span class="line">        self.prev_time = time.time()</span><br><span class="line">        self.mean_period = <span class="number">0</span></span><br><span class="line">        self.losses = &#123;&#125;</span><br><span class="line">        self.loss_windows = &#123;&#125; <span class="comment"># 保存loss图的字典集合</span></span><br><span class="line">        self.image_windows = &#123;&#125; <span class="comment"># 保存生成图的字典集合</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">log</span>(<span class="params">self, losses=<span class="literal">None</span>, images=<span class="literal">None</span></span>):</span><br><span class="line">        self.mean_period += (time.time() - self.prev_time)</span><br><span class="line">        self.prev_time = time.time()</span><br><span class="line"></span><br><span class="line">        sys.stdout.write(<span class="string">&#x27;Epoch %03d/%03d [%04d/%04d] -- &#x27;</span> % (self.epoch, self.n_epochs, self.batch, self.batches_epoch))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i, loss_name <span class="keyword">in</span> <span class="built_in">enumerate</span>(losses.keys()):</span><br><span class="line">            <span class="keyword">if</span> loss_name <span class="keyword">not</span> <span class="keyword">in</span> self.losses:</span><br><span class="line">                self.losses[loss_name] = losses[loss_name].data.item() <span class="comment">#这里losses[loss_name].data是个tensor（包在值外面的数据结构），要用item方法取值</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.losses[loss_name] = losses[loss_name].data.item()</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (i + <span class="number">1</span>) == <span class="built_in">len</span>(losses.keys()):</span><br><span class="line">                sys.stdout.write(<span class="string">&#x27;%s: %.4f -- &#x27;</span> % (loss_name, self.losses[loss_name]/self.batch))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                sys.stdout.write(<span class="string">&#x27;%s: %.4f | &#x27;</span> % (loss_name, self.losses[loss_name]/self.batch))</span><br><span class="line"></span><br><span class="line">        batches_done = self.batches_epoch * (self.epoch - <span class="number">1</span>) + self.batch</span><br><span class="line">        batches_left = self.batches_epoch * (self.n_epochs - self.epoch) + self.batches_epoch - self.batch</span><br><span class="line">        sys.stdout.write(<span class="string">&#x27;ETA: %s&#x27;</span> % (datetime.timedelta(seconds=batches_left*self.mean_period/batches_done)))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 显示生成图</span></span><br><span class="line">        <span class="keyword">for</span> image_name, tensor <span class="keyword">in</span> images.items(): <span class="comment"># 字典.items()是以list形式返回键值对</span></span><br><span class="line">            <span class="keyword">if</span> image_name <span class="keyword">not</span> <span class="keyword">in</span> self.image_windows:</span><br><span class="line">                self.image_windows[image_name] = self.viz.image(tensor2image(tensor.data), opts=&#123;<span class="string">&#x27;title&#x27;</span>:image_name&#125;)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.viz.image(tensor2image(tensor.data), win=self.image_windows[image_name], opts=&#123;<span class="string">&#x27;title&#x27;</span>:image_name&#125;)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># End of each epoch</span></span><br><span class="line">        <span class="keyword">if</span> (self.batch % self.batches_epoch) == <span class="number">0</span>: <span class="comment"># 一个epoch结束时</span></span><br><span class="line">            <span class="comment"># 绘制loss曲线图</span></span><br><span class="line">            <span class="keyword">for</span> loss_name, loss <span class="keyword">in</span> self.losses.items():</span><br><span class="line">                <span class="keyword">if</span> loss_name <span class="keyword">not</span> <span class="keyword">in</span> self.loss_windows:</span><br><span class="line">                    self.loss_windows[loss_name] = self.viz.line(X=np.array([self.epoch]), Y=np.array([loss/self.batch]),</span><br><span class="line">                                                                 opts=&#123;<span class="string">&#x27;xlabel&#x27;</span>:<span class="string">&#x27;epochs&#x27;</span>, <span class="string">&#x27;ylabel&#x27;</span>:loss_name, <span class="string">&#x27;title&#x27;</span>:loss_name&#125;)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    self.viz.line(X=np.array([self.epoch]), Y=np.array([loss/self.batch]), win=self.loss_windows[loss_name], update=<span class="string">&#x27;append&#x27;</span>) <span class="comment">#update=&#x27;append&#x27;可以使loss图不断更新</span></span><br><span class="line">                <span class="comment"># 每个epoch重置一次loss</span></span><br><span class="line">                self.losses[loss_name] = <span class="number">0.0</span></span><br><span class="line">            <span class="comment"># 跑完一个epoch，更新一下下面参数</span></span><br><span class="line">            self.epoch += <span class="number">1</span></span><br><span class="line">            self.batch = <span class="number">1</span></span><br><span class="line">            sys.stdout.write(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.batch += <span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure><blockquote><p>调用代码</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">logger = Logger(opt.n_epochs, <span class="built_in">len</span>(dataloader))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(opt.epoch, opt.n_epochs):</span><br><span class="line">    <span class="keyword">for</span> i, batch <span class="keyword">in</span> <span class="built_in">enumerate</span>(dataloader):</span><br><span class="line">    </span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line"><span class="comment"># 记录训练日志</span></span><br><span class="line">            <span class="comment"># Progress report (http://localhost:8097) 显示visdom画图的网址</span></span><br><span class="line">            logger.log(&#123;<span class="string">&#x27;loss_G&#x27;</span>: loss_G, <span class="string">&#x27;loss_G_identity&#x27;</span>: (loss_identity_A + loss_identity_B),</span><br><span class="line">                        <span class="string">&#x27;loss_G_GAN&#x27;</span>: (loss_GAN_A2B + loss_GAN_B2A),</span><br><span class="line">                        <span class="string">&#x27;loss_G_cycle&#x27;</span>: (loss_cycle_ABA + loss_cycle_BAB), <span class="string">&#x27;loss_D&#x27;</span>: (loss_D_A + loss_D_B)&#125;,</span><br><span class="line">                       images=&#123;<span class="string">&#x27;real_A&#x27;</span>: real_A, <span class="string">&#x27;real_B&#x27;</span>: real_B, <span class="string">&#x27;fake_A&#x27;</span>: fake_A, <span class="string">&#x27;fake_B&#x27;</span>: fake_B&#125;)</span><br></pre></td></tr></table></figure><h1 id="使用注意："><a href="#使用注意：" class="headerlink" title="使用注意："></a>使用注意：</h1><ul><li>画loss曲线时，输入的X和y因为是整数或者tensor，需要将其包裹在[]中</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数值稳定性引出模型初始化</title>
+      <link href="/2022/04/16/work/%E6%95%B0%E5%80%BC%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BC%95%E5%87%BA%E6%A8%A1%E5%9E%8B%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+      <url>/2022/04/16/work/%E6%95%B0%E5%80%BC%E7%A8%B3%E5%AE%9A%E6%80%A7%E5%BC%95%E5%87%BA%E6%A8%A1%E5%9E%8B%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
+      
+        <content type="html"><![CDATA[<p>当数值过大或过小时都会导致数值问题（这里的数值指的是梯度数值）</p><h1 id="梯度爆炸的问题："><a href="#梯度爆炸的问题：" class="headerlink" title="梯度爆炸的问题："></a>梯度爆炸的问题：</h1><ol><li><p>值超出值域</p><ul><li>对于16位浮点数尤为严重</li></ul></li><li><p>对学习率敏感</p><ul><li>如果学习率太大-&gt;大参数值-&gt;更大的梯度</li><li>如果学习率太小-&gt;训练无进展</li><li>导致在训练过程中不断调整学习率</li></ul></li></ol><h1 id="梯度消失的问题："><a href="#梯度消失的问题：" class="headerlink" title="梯度消失的问题："></a>梯度消失的问题：</h1><ol><li><p>梯度值变为0</p><ul><li>对16位浮点数尤为严重</li></ul></li><li><p>训练没有进展</p><ul><li>不管如何选择学习率——因为梯度太小，学习率已经起不到作用了</li></ul></li><li><p>对于低层尤为严重</p><ul><li>仅仅顶部层训练的好——因为梯度是反向传播，从顶层开始。这意味着接近输入数据的层梯度太小，前几层没有起到作用，那么这样再深的神经网络本质上和浅层神经网络差不多</li><li>无法让神经网络更深</li></ul></li></ol><h1 id="如何让训练更稳定"><a href="#如何让训练更稳定" class="headerlink" title="如何让训练更稳定"></a>如何让训练更稳定</h1><ul><li>让梯度值在合理的范围内<ol><li>将乘法变成加法——如ResNet，LSTM就使用了加法（因为加法相对乘法，其数值变化不会太大）</li><li>归一化</li></ol><ul><li>梯度归一化，梯度裁剪</li></ul><ol start="3"><li>合理的权重初始和激活函数</li></ol></li></ul><h1 id="权重初始化"><a href="#权重初始化" class="headerlink" title="权重初始化"></a>权重初始化</h1><p>所谓的权重初始化，目的是希望将权重在初始化时就尽量将其取值在最优解的附近（将其在合理值区间里进行随机初始化），这样网络就能更快收敛</p><p>对于权重可使用Xviar进行初始化（根据每层的尺寸来变化，不是简单的满足均值和方差为(0,0.01)），对于激活函数可使用tanh和relu，但是sigmoid可调整为<code>4*sigmoid - 2</code></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Pytorch的Hook机制</title>
+      <link href="/2022/04/16/work/Pytorch%E7%9A%84Hook%E6%9C%BA%E5%88%B6/"/>
+      <url>/2022/04/16/work/Pytorch%E7%9A%84Hook%E6%9C%BA%E5%88%B6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="简单例子说明前向与反向传播过程"><a href="#简单例子说明前向与反向传播过程" class="headerlink" title="简单例子说明前向与反向传播过程"></a>简单例子说明前向与反向传播过程</h1><blockquote><p>例1：创建一个简单的计算图</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">a = torch.tensor(<span class="number">2.0</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line">b = torch.tensor(<span class="number">3.0</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">c = a * b</span><br><span class="line"></span><br><span class="line">c.backward()</span><br></pre></td></tr></table></figure><ol><li>使用默认值创建一个张量，其requires_grad默认为False；设置为True时，梯度初始化为1</li><li>当使用mul创建得到一个张量c时，同时会创建一个对应c的backward结点图（用于表明梯度会传递到哪些叶子），其由a和b共两个梯度图构成（该梯度图记录对应叶子的梯度值）。<ul><li>计算梯度流向：c-&gt;a,b</li></ul></li></ol><blockquote><p>例2：在1的基础上增加</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">a = torch.tensor(<span class="number">2.0</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line">b = torch.tensor(<span class="number">3.0</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">c = a * b</span><br><span class="line"></span><br><span class="line">d = torch.tensor(<span class="number">4.0</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">e = c * d</span><br><span class="line">e.backward()</span><br></pre></td></tr></table></figure><ol><li>在1的基础上创建d，计算e：通过mul得到e，创建对应e反向节点图，其由两个方向：d和c</li><li><mark> 由计算得到的数值对应的反向计算图为节点图（其内表明该操作所包含哪些叶子），自定义创建的变量，其对应的反向计算图为梯度图（用于存储反向传播的grad值）</mark></li></ol><blockquote><p>例3：在2的基础上使用HOOK技术</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">a = torch.tensor(<span class="number">2.0</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line">b = torch.tensor(<span class="number">3.0</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">c_hook</span>(<span class="params">grad</span>):</span><br><span class="line">    <span class="built_in">print</span>(grad)</span><br><span class="line">    <span class="keyword">return</span> grad + <span class="number">2</span></span><br><span class="line"></span><br><span class="line">c = a * b</span><br><span class="line">c.register_hook(c_hook)</span><br><span class="line">c.register_hook(<span class="keyword">lambda</span> grad: <span class="built_in">print</span>(grad))</span><br><span class="line">c.retain_grad()</span><br><span class="line"></span><br><span class="line">d = torch.tensor(<span class="number">4.0</span>, requires_grad=<span class="literal">True</span>)</span><br><span class="line">d.register_hook(<span class="keyword">lambda</span> grad: grad + <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">e = c * d</span><br><span class="line"></span><br><span class="line">e.retain_grad()</span><br><span class="line">e.register_hook(<span class="keyword">lambda</span> grad: grad * <span class="number">2</span>)</span><br><span class="line">e.retain_grad() <span class="comment"># 添加这个会因为上面已经存在而无效，但多添加对没有任何影响</span></span><br><span class="line"></span><br><span class="line">e.backward()</span><br><span class="line"></span><br></pre></td></tr></table></figure><ol><li>在中间节点添加hook需要注意添加hook的顺序，在反向传播中会首先执行最先添加的hook。</li><li>在中间节点和叶节点添加hook有所不同<ol><li>在中间节点添加hook，同时其对应的反向计算图节点也会添加一个backword_hooks，这个hook是pre_hooks的（意味着是在该节点反向传播之前先进行hook操作）</li><li>在叶节点添加的hook不会关联到反向计算图的叶节点图中</li><li>在反向传播过程中，中间节点计算图只需要查看自己的hook即可；但叶节点由于并没有关联，需要先查看叶节点是由注册有hook机制并执行。</li></ol></li></ol><h1 id="为什么要使用HOOK？"><a href="#为什么要使用HOOK？" class="headerlink" title="为什么要使用HOOK？"></a>为什么要使用HOOK？</h1><ul><li>由上述可发现，可使创建变量或使用操作得到节点来更改&#x2F;变动前向传播，但是反向传播在整个过程中只是一行代码loss.backward()，这意味着我们只能查看反向传播结束后叶子节点上的梯度，无法查看甚至修改中间梯度，此时就需要使用HOOK机制，这能让我们访问甚至修改反向传播中的任何梯度</li></ul><h1 id="HOOK的使用注意"><a href="#HOOK的使用注意" class="headerlink" title="HOOK的使用注意"></a>HOOK的使用注意</h1><ul><li>不要使用inplace操作，即不要将梯度覆盖，仅仅运算即可；否则这种操作不仅会影响当前分支，还会导致当前分支上所有子节点梯度有所变化。（除非确定其不会对子节点有任何影响）<blockquote><p>例：在上述代码上展示</p></blockquote></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 原代码</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">c_hook</span>(<span class="params">grad</span>):</span><br><span class="line">    <span class="built_in">print</span>(grad)</span><br><span class="line">    <span class="keyword">return</span> grad + <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># inplace代码</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">c_hook</span>(<span class="params">grad</span>):</span><br><span class="line">    <span class="built_in">print</span>(grad)</span><br><span class="line">    <span class="keyword">return</span> grad += <span class="number">2</span></span><br></pre></td></tr></table></figure><h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><h2 id="匿名函数lambda"><a href="#匿名函数lambda" class="headerlink" title="匿名函数lambda"></a>匿名函数lambda</h2><ul><li>匿名函数lambda如何使用？其又是在sort中的key里实现作用的？<blockquote><ol><li>匿名函数实际上是将简单的函数简化的一种写法，只用一行就能实现原本函数三行（首先是def，再是功能，最后是return）才能完成的事。</li><li>sort中的key和dict中的key不是同一个意思，sort中的key表示一种自定义的规则（即在函数中使用什么样的规则实现排序）</li><li>需要注意的是lambda函数可直接在声明之后立刻赋值：<code> list = [lambda x：x**2(i) for i range(0,10)]</code>，在该式中可看到直接将i复制到了lambda中。</li></ol></blockquote></li></ul><h2 id="反向传播中存在的问题"><a href="#反向传播中存在的问题" class="headerlink" title="反向传播中存在的问题"></a>反向传播中存在的问题</h2><h3 id="混淆概念"><a href="#混淆概念" class="headerlink" title="混淆概念"></a>混淆概念</h3><ol><li>反向传播后释放的是计算图的缓冲区，但是梯度并没有释放，故才需要在代码中进行梯度清零。</li><li>反向传播后，只有叶子节点的梯度值保留，中间变量的梯度值默认不保留，除非使用retain_grad()的方法</li></ol><ul><li>反向传播在更新什么，更新的是权重还是输入值？（即在本文的代码中对a，b在backward后有变化么，如果没有变化，在本文中所谓的权重又是什么？）</li></ul><ol><li>反向传播中更新的是权重，并不会改变输入值的大小。</li></ol><h1 id="遗留"><a href="#遗留" class="headerlink" title="遗留"></a>遗留</h1><p>由于HOOK对于当前阶段并不适用，关于<a href="https://www.bilibili.com/video/BV1MV411t7td?spm_id_from=333.999.0.0">视频</a>中后面在pycharm中的讲解那部分没有学习</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2022-4-12</title>
+      <link href="/2022/04/12/life/2022-4-12/"/>
+      <url>/2022/04/12/life/2022-4-12/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="01518544ca6add0616e307616dee4d65e988996498208f5bdf3206651fe5d9dd">b3cf69ad95289fed13e724d57178b1a51fb4439f19aa62b82935113c005d7df75cbaaf50c19978e36a2e6b09ccd7ded776f8679f2354c924be14aab5439f6f567334ab6d711219a82bb6e69bb388f12e4866a7232ed819eb22f557edd84a36434584d49fe81597180f03e5000df7ff3206d26463b588773ac7b6b8bf6a176672056493ca080183a6422e208a2d11d8e2b27eb45ae6002b261ac31a91bcc2b17816d0e61e5153da90372b61aabbe0f7286be5fae26d33298554e4522b5daaeeb6595962bb02905c4601d19be8f41b595fd0c54b274cb2adf7254262ebd02d0218f80d702c713ada2fb317c8253efe3fa49a0a3914361e1395bd96b9774e789ed5f14f413228c899a70be205819126a58c2a64d4616024a447ef17ed05134440233e635039df0c5da3ad11acecebae0a4265cafdfa5ae473d98c258f8b7b638435d621c650e16897650bd39e6435075069ff25eafcad69cb7e2600e2b70d7c5c23cfda01d27aed7abe0a3be68a3e91261dbd631be31911bac030b60e57f8b81b72db5cd1a8b47479bff34ce50dc93622567a2c2746dd2672bf7ed672746ca363ac969e6b143c678ac13a24225096370ae403e5cbd0a10baa9d25d4c23c43df0a872c0082314371a00bc434c193988d2f624301f1296c22bf5b057a89874ebd6d22e9f3aa1bf02842a273c0fc97e5cd89c89f6254f9c8c1d82c31e42accb50cb7fd355db346b42b0a17f3b3bdca5fc5dbe34f73cb18e6bb0900ab47f9ae3a95cac944df8896211fbbd917802a3aad511f51caa1f99bbd653e4a12381819fc5a7a5ac76366a754a6e8cc05d7863a50b34e8fa1a402609d39432b5d2ed9333e06c2581c09cac5d47d5019b10382aeb1b891fc3fc2ddeca3320ca28d2b9a4e57c5890418b5a29f689c0484029a5ff0ac9888ffc0e16863dee83b003cdd09b6097e095aa25d26fcc4763021f352a8a94b4c06672cd5b8d13f4c7e3fdb8430cc48fe43094f8f0b0875b854eed3eaccee678f42397c994865ab5bcd63645c39089c0e1f413aa8da34529a181a832c6fb8cf67997ef01e54ce5650086e699bbfb20bdc895c7242b743b351bb46987f4b0eba7325fe8ab50d99b65bc2eb80a2949b1c7e92848bdcf0bb30aa35efce2e635eeb72a5fab2ebb2a319bfadabe2203b638410662fada75b07a9595d22bd3e9c5abe714f87342774a424a9ceaee6b453333e31e23a</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> life </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Me </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>邪恶</title>
+      <link href="/2022/04/12/life/%E8%87%AA%E7%A7%81%E7%9A%84%E6%95%91%E8%B5%8E/"/>
+      <url>/2022/04/12/life/%E8%87%AA%E7%A7%81%E7%9A%84%E6%95%91%E8%B5%8E/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="530805f297517d48ec28992eedde9233284db6ba0b6bec2e0eb6bb04052767eb">365f6828a6d9432dd36f78bf1ae632b0d3d14b9bca3110ec97aee6034e8ebaf640c1d3cf2e3457a7480ec63857b578391ef0a9a8a4b194702c107265b0aeee8b3bed3a38137295bb2fa736a76dae1f50a3f3026e34abe9b4a8be79b622e6d40072a8c48ab1d60dcebe716b4dd603421570332435cef19678c5440fa1bf434d222b8a59f8048d4db4f69dcb51d0bc603fcef0e0f2dc04fca44d022c93ad9ef6dc4659d33d56687dc6b4cb38f5770435ac6b63d7fbbf29066ba9b98c0395d96110d361b463d8ec9660de5e13354fb53e17cfcbd6868389302e3d2b277195e39149fcd6a9009a67df6ea4aa362db672dbe80a82bd7780a2d9c6f9debfece114456e5aa045b16c77b75b510f226ea1784da9</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> life </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Me </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ArtFlow：Unbiased Image Style Transfer via Reversible Neural Flows</title>
+      <link href="/2022/04/11/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB2/"/>
+      <url>/2022/04/11/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB2/</url>
+      
+        <content type="html"><![CDATA[<h2 id="文章概述"><a href="#文章概述" class="headerlink" title="文章概述"></a>文章概述</h2><ul><li>图像迁移过程中出现内容泄露，主要原因是decoder不是无损重建，故文中提出projection-reversion结构，该模块核心思想是projection和reversion是对称的，其各小模块共享，reversion在结构上完全是反过来的projection，这样的结构有效解决了内容泄露</li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>StyTr2:Image Style Transfer with Transformers</title>
       <link href="/2022/04/10/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB1/"/>
       <url>/2022/04/10/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB1/</url>
       
-        <content type="html"><![CDATA[<h2 id="文章生成思路"><a href="#文章生成思路" class="headerlink" title="文章生成思路"></a>文章生成思路</h2><h3 id="目的："><a href="#目的：" class="headerlink" title="目的："></a>目的：</h3><ul><li>在传统的风格迁移网络中加入transformer模块，让效果更好</li></ul><h3 id="思路概述："><a href="#思路概述：" class="headerlink" title="思路概述："></a>思路概述：</h3><ol><li>加入transformer模块</li><li>引入内容感知位置编码</li></ol><h2 id="文章提到的关键点以及需要注意的文献"><a href="#文章提到的关键点以及需要注意的文献" class="headerlink" title="文章提到的关键点以及需要注意的文献"></a>文章提到的关键点以及需要注意的文献</h2><h3 id="信息点"><a href="#信息点" class="headerlink" title="信息点"></a>信息点</h3><ol><li>风格转换的思路是将内容图像的二姐统计信息与风格图像对齐来进行优化——[6]-[14]</li><li>可以使用transformer提取不同层但提取相似的结构信息——[24]</li><li>identity loss——[15]</li></ol><h3 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3><ol><li>内容损失：计算某特征层与输入层的L2Loss</li><li>风格损失：一般与某特征层的均值、方差有关</li></ol><h3 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h3><ol><li>对图片不再使用物理意义上的位置编码，根据内容来自适应编码</li></ol>]]></content>
+        <content type="html"><![CDATA[<center> StyTr2:Image Style Transfer with Transformers </center><h2 id="文章生成思路"><a href="#文章生成思路" class="headerlink" title="文章生成思路"></a>文章生成思路</h2><h3 id="目的："><a href="#目的：" class="headerlink" title="目的："></a>目的：</h3><ul><li>在传统的风格迁移网络中加入transformer模块，让效果更好</li></ul><h3 id="思路概述："><a href="#思路概述：" class="headerlink" title="思路概述："></a>思路概述：</h3><ol><li>加入transformer模块</li><li>引入内容感知位置编码</li></ol><h2 id="文章提到的关键点以及需要注意的文献"><a href="#文章提到的关键点以及需要注意的文献" class="headerlink" title="文章提到的关键点以及需要注意的文献"></a>文章提到的关键点以及需要注意的文献</h2><h3 id="信息点"><a href="#信息点" class="headerlink" title="信息点"></a>信息点</h3><ol><li>风格转换的思路是将内容图像的二姐统计信息与风格图像对齐来进行优化——[6]-[14]</li><li>可以使用transformer提取不同层但提取相似的结构信息——[24]</li><li>identity loss——[15]</li></ol><h3 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3><ol><li>内容损失：计算某特征层与输入层的L2Loss</li><li>风格损失：一般与某特征层的均值、方差有关</li></ol><h3 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h3><h4 id="内容感知的位置编码"><a href="#内容感知的位置编码" class="headerlink" title="内容感知的位置编码"></a>内容感知的位置编码</h4><blockquote><p>对图片不再使用物理意义上的位置编码，根据内容来自适应编码，代码操作如下</p></blockquote><ol><li>首先对原图进行AdaptiveAvgPool2d自适应平均池化<ul><li>注意直接使用原图的像素数据</li><li>指定固定大小的输出（AdaptiveAvgPool2d(18)是将原图池化层成[b,c,18,18]大小）</li></ul></li><li>进行1*1的一个卷积，不进行尺寸与通道的上的变化，用于提取特征信息</li><li>将该特征信息的尺寸采样到与风格图像相同尺寸<br>最终的使用跟transformer一样，直接与图片的patch_embedding相加</li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>文章是为了加入transformer而引入内容感知的位置编码，在解释上是一种知道答案硬扯问题的感觉，编码思路值得借鉴，技术内容没有新意</p>]]></content>
       
       
       <categories>
@@ -371,7 +772,7 @@
       <link href="/2022/03/28/Review/"/>
       <url>/2022/03/28/Review/</url>
       
-        <content type="html"><![CDATA[<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 索引关键词说明：</span></span><br><span class="line">今日计划：</span><br><span class="line">今日完成：</span><br><span class="line">今日遗留：</span><br><span class="line"></span><br><span class="line">明日计划：</span><br><span class="line"></span><br><span class="line">文献检索：检索到一篇文章且有查阅价值</span><br><span class="line"></span><br><span class="line">说明：明天任务中需要的文件</span><br><span class="line">预计：短期工作任务</span><br><span class="line">记录：某些信息检索的关键</span><br><span class="line">标记：记录值得注意的点</span><br><span class="line"></span><br><span class="line">Stack：该问题短时间难以解决</span><br><span class="line"></span><br></pre></td></tr></table></figure><h1 id="Retrospective"><a href="#Retrospective" class="headerlink" title=" Retrospective "></a><center> Retrospective </center></h1><h2 id="2022"><a href="#2022" class="headerlink" title="2022"></a>2022</h2><h3 id="4-10"><a href="#4-10" class="headerlink" title="4.10"></a>4.10</h3><ul><li><input disabled="" type="checkbox"> <strong>明日计划</strong><ul><li><input disabled="" type="checkbox"> 完成style-transfer的代码阅读，关注其中内容上的位置编码如何实现</li><li><input disabled="" type="checkbox"> 查阅新的style-transfer文献</li></ul></li></ul><hr><h3 id="4-9"><a href="#4-9" class="headerlink" title="4.9"></a>4.9</h3><ul><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong></p><ul><li><input checked="" disabled="" type="checkbox"> 阅读一篇文献、源码，撰写总结博客</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>今日遗留</strong></p><ul><li><input disabled="" type="checkbox"> 关于文献中颜色重构那块需要仔细阅读</li></ul></li></ul><hr><h3 id="4-8"><a href="#4-8" class="headerlink" title="4.8"></a>4.8</h3><ul><li><p><input disabled="" type="checkbox"> <strong>今日计划</strong></p><ul><li><input disabled="" type="checkbox"> 在GAN中0和1的硬标签有什么内层原理，如何跟D训练的loss公式对应</li><li><input disabled="" type="checkbox"> 完成昨天文献中的细节理解，解决昨天提出的问题</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>文献检索</strong></p><ul><li><input disabled="" type="checkbox"> 关于style transfor的文献</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>标记</strong></p><ul><li><input disabled="" type="checkbox"> 文献中标记一篇关于GAN inversion的文献</li></ul></li></ul><hr><h3 id="4-7"><a href="#4-7" class="headerlink" title="4.7"></a>4.7</h3><ul><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong></p><ul><li><input checked="" disabled="" type="checkbox"> <ol><li>阅读一篇基于GAN的高保真图片编辑文献、学习其代码、相关博客，完成进度80%</li></ol></li></ul></li><li><p><input disabled="" type="checkbox"> <strong>今日遗留</strong></p><ul><li><input disabled="" type="checkbox"> ADA模块的实现原理，为什么这样的结构能做到对齐</li><li><input disabled="" type="checkbox"> consulation原理，为什么这样的结构能调整权重，且为何如此设计</li></ul></li></ul><hr><h3 id="4-6"><a href="#4-6" class="headerlink" title="4.6"></a>4.6</h3><ul><li><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong><ul><li><input checked="" disabled="" type="checkbox"> <ol><li>学习感知损失，并完成相关博客</li></ol></li></ul></li></ul><hr><h3 id="4-4"><a href="#4-4" class="headerlink" title="4.4"></a>4.4</h3><ul><li><input disabled="" type="checkbox"> <strong>Stack</strong><ul><li><input disabled="" type="checkbox"> 无法理解作者的解释，关于[Generative Image Inpainting with Contextual Attention]一文中的input[x,ones_like(x),masked]为何concat全一矩阵：加入该层是为了指出图像的边界<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Issues:</span><br><span class="line">during earlier development of this work, we use mirror</span><br><span class="line">padding. However, we find this <span class="keyword">is</span> almost equivalent to</span><br><span class="line">concatenate ones (indicating the boundaries of images) <span class="keyword">as</span> <span class="built_in">input</span></span><br><span class="line"></span><br><span class="line">convolution automatically pad zeros <span class="keyword">as</span> <span class="keyword">in</span> <span class="string">&#x27;SAME&#x27;</span> mode.</span><br></pre></td></tr></table></figure></li></ul></li></ul><hr><h3 id="4-2"><a href="#4-2" class="headerlink" title="4.2"></a>4.2</h3><ul><li><input disabled="" type="checkbox"> <strong>记录</strong><ul><li><input disabled="" type="checkbox"> 关键词：纹理合成、纹理缝合、纹理生成</li></ul></li></ul><hr><h3 id="4-1"><a href="#4-1" class="headerlink" title="4.1"></a>4.1</h3><ul><li><p><input disabled="" type="checkbox"> <strong>今日计划</strong></p><ul><li><input disabled="" type="checkbox"> 写一篇关于GPU信息含义如何理解的博客</li></ul></li><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong></p><ul><li><input checked="" disabled="" type="checkbox"> 阅读SSIM源码，理解SSIM公式，同时在SSIM博客中提出问题</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>明日计划</strong></p><ul><li><input disabled="" type="checkbox"> 完成图像梯度原理理解</li></ul></li><li><p><input disabled="" type="checkbox"> <mark><strong>idea</strong></mark></p><ul><li><p>发现了一篇关于local attention为何起作用的<a href="https://arxiv.org/abs/2106.04263">论文</a>，其中有网络设计准则，值得参考，其推荐博客已经存储在网络结构设计中</p></li><li><p>depth-wise conv有些忘记，需要回顾</p></li></ul></li></ul><hr><h3 id="3-31"><a href="#3-31" class="headerlink" title="3.31"></a>3.31</h3><ul><li><p><input disabled="" type="checkbox"> <strong>今日计划</strong></p><ul><li><input disabled="" type="checkbox"> 训练DIDfuse代码，观察训练时间，必要时可视化模型</li><li><input disabled="" type="checkbox"> 学习异常检测代码</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>遇到问题</strong></p><ul><li><input checked="" disabled="" type="checkbox"> SSIM原理</li><li><input checked="" disabled="" type="checkbox"> 什么是一维向量</li></ul></li><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong></p><ul><li><input checked="" disabled="" type="checkbox"> 如何提取图像梯度</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>说明</strong></p><ul><li><input disabled="" type="checkbox"> 需要使用的代码在Image-Fusion-Transformer、FusionGAN-pytorch-master代码中</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>今日遗留</strong></p><ul><li><input disabled="" type="checkbox"> 几篇关于SSIM的博客</li><li><input disabled="" type="checkbox"> 写一篇关于SSIM的博客</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>预计</strong></p><ul><li><input disabled="" type="checkbox"> 修改代码中关于梯度的loss函数</li></ul></li></ul><hr><h3 id="3-30"><a href="#3-30" class="headerlink" title="3.30"></a>3.30</h3><ul><li><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong><ul><li><input checked="" disabled="" type="checkbox"> 完成DCGAN生成MNIST数据集，分析DCGAN训练不work的原因 </li><li><input checked="" disabled="" type="checkbox"> 阅读清单中遗留文章已查阅</li><li><input checked="" disabled="" type="checkbox"> 搭建完成全卷积siam网络模型，正在训练</li></ul></li><li><input disabled="" type="checkbox"> <strong>明日计划</strong><ul><li><input disabled="" type="checkbox"> 由于训练较慢，初步判断为预测特征图导致，故训练他人的模型进行对比</li></ul></li></ul><hr><h3 id="3-29"><a href="#3-29" class="headerlink" title="3.29"></a>3.29</h3><ul><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong>:</p><ul><li><input checked="" disabled="" type="checkbox"> 进行了DCGAN对MNIST数据集的训练，效果极差，查找发现他人训练好后证明效果还行的源码直接拿来训练也效果极差，初步估计为GAN模型极易崩塌</li><li><input checked="" disabled="" type="checkbox"> 进行了WGAN对MNIST数据集的训练，效果人眼可分辨</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>预计</strong>:</p><ul><li><input disabled="" type="checkbox"> 1.完成遗留任务</li><li><input disabled="" type="checkbox"> 2.进行FGAN或者其他融合网络的训练，主要进行可视化操作（loss、image、特征图、卷积核）</li></ul></li></ul><hr><h3 id="3-28"><a href="#3-28" class="headerlink" title="3.28"></a>3.28</h3><ul><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong>:</p><ul><li><input checked="" disabled="" type="checkbox"> 1.完成loss、image、histogram可视化代码</li><li><input checked="" disabled="" type="checkbox"> 2.完成风格损失1000-1-50-100的训练</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>今日遗留</strong>:</p><ul><li><input disabled="" type="checkbox"> 1.阅读清单中几篇文章</li><li><input disabled="" type="checkbox"> 2.阅读清单中有两个博主的其他博客需要查看</li><li><input disabled="" type="checkbox"> 3.缓存了几个网页需要查阅</li><li><input disabled="" type="checkbox"> 4.完成风格损失1000-1-50-100的可视化理解</li><li><input disabled="" type="checkbox"> 5.完成内容损失1000-1-50-100的理解</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>预计</strong>:</p><ul><li><input disabled="" type="checkbox"> 1.卷积核的可视化</li><li><input disabled="" type="checkbox"> 2.特征层的可视化</li></ul></li></ul>]]></content>
+        <content type="html"><![CDATA[<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 索引关键词说明：</span></span><br><span class="line">今日计划：</span><br><span class="line">今日完成：</span><br><span class="line">今日遗留：</span><br><span class="line"></span><br><span class="line">明日计划：</span><br><span class="line"></span><br><span class="line">文献检索：检索到一篇文章且有查阅价值</span><br><span class="line"></span><br><span class="line">说明：明天任务中需要的文件</span><br><span class="line">预计：短期工作任务</span><br><span class="line">记录：某些信息检索的关键</span><br><span class="line">标记：记录值得注意的点</span><br><span class="line"></span><br><span class="line">Stack：该问题短时间难以解决</span><br><span class="line"></span><br></pre></td></tr></table></figure><h1 id="Retrospective"><a href="#Retrospective" class="headerlink" title=" Retrospective "></a><center> Retrospective </center></h1><h2 id="2022"><a href="#2022" class="headerlink" title="2022"></a>2022</h2><h3 id="4-17"><a href="#4-17" class="headerlink" title="4.17"></a>4.17</h3><ul><li><input disabled="" type="checkbox"> <strong>今日计划</strong><ul><li><input disabled="" type="checkbox"> 完成代码中的初始化部分、每层的权重可视化部分</li><li><input disabled="" type="checkbox"> 完成visdom实时可视化部分，学习远程可视化</li><li><input disabled="" type="checkbox"> 根据初始化后的训练结果观察昨天的训练结果是否需要分析</li><li><input disabled="" type="checkbox"> 增加网络层数</li></ul></li></ul><hr><h3 id="4-10"><a href="#4-10" class="headerlink" title="4.10"></a>4.10</h3><ul><li><input disabled="" type="checkbox"> <strong>明日计划</strong><ul><li><input disabled="" type="checkbox"> 完成style-transfer的代码阅读，关注其中内容上的位置编码如何实现</li><li><input disabled="" type="checkbox"> 查阅新的style-transfer文献</li></ul></li></ul><hr><h3 id="4-9"><a href="#4-9" class="headerlink" title="4.9"></a>4.9</h3><ul><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong></p><ul><li><input checked="" disabled="" type="checkbox"> 阅读一篇文献、源码，撰写总结博客</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>今日遗留</strong></p><ul><li><input disabled="" type="checkbox"> 关于文献中颜色重构那块需要仔细阅读</li></ul></li></ul><hr><h3 id="4-8"><a href="#4-8" class="headerlink" title="4.8"></a>4.8</h3><ul><li><p><input disabled="" type="checkbox"> <strong>今日计划</strong></p><ul><li><input disabled="" type="checkbox"> 在GAN中0和1的硬标签有什么内层原理，如何跟D训练的loss公式对应</li><li><input disabled="" type="checkbox"> 完成昨天文献中的细节理解，解决昨天提出的问题</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>文献检索</strong></p><ul><li><input disabled="" type="checkbox"> 关于style transfor的文献</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>标记</strong></p><ul><li><input disabled="" type="checkbox"> 文献中标记一篇关于GAN inversion的文献</li></ul></li></ul><hr><h3 id="4-7"><a href="#4-7" class="headerlink" title="4.7"></a>4.7</h3><ul><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong></p><ul><li><input checked="" disabled="" type="checkbox"> <ol><li>阅读一篇基于GAN的高保真图片编辑文献、学习其代码、相关博客，完成进度80%</li></ol></li></ul></li><li><p><input disabled="" type="checkbox"> <strong>今日遗留</strong></p><ul><li><input disabled="" type="checkbox"> ADA模块的实现原理，为什么这样的结构能做到对齐</li><li><input disabled="" type="checkbox"> consulation原理，为什么这样的结构能调整权重，且为何如此设计</li></ul></li></ul><hr><h3 id="4-6"><a href="#4-6" class="headerlink" title="4.6"></a>4.6</h3><ul><li><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong><ul><li><input checked="" disabled="" type="checkbox"> <ol><li>学习感知损失，并完成相关博客</li></ol></li></ul></li></ul><hr><h3 id="4-4"><a href="#4-4" class="headerlink" title="4.4"></a>4.4</h3><ul><li><input disabled="" type="checkbox"> <strong>Stack</strong><ul><li><input disabled="" type="checkbox"> 无法理解作者的解释，关于[Generative Image Inpainting with Contextual Attention]一文中的input[x,ones_like(x),masked]为何concat全一矩阵：加入该层是为了指出图像的边界<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Issues:</span><br><span class="line">during earlier development of this work, we use mirror</span><br><span class="line">padding. However, we find this <span class="keyword">is</span> almost equivalent to</span><br><span class="line">concatenate ones (indicating the boundaries of images) <span class="keyword">as</span> <span class="built_in">input</span></span><br><span class="line"></span><br><span class="line">convolution automatically pad zeros <span class="keyword">as</span> <span class="keyword">in</span> <span class="string">&#x27;SAME&#x27;</span> mode.</span><br></pre></td></tr></table></figure></li></ul></li></ul><hr><h3 id="4-2"><a href="#4-2" class="headerlink" title="4.2"></a>4.2</h3><ul><li><input disabled="" type="checkbox"> <strong>记录</strong><ul><li><input disabled="" type="checkbox"> 关键词：纹理合成、纹理缝合、纹理生成</li></ul></li></ul><hr><h3 id="4-1"><a href="#4-1" class="headerlink" title="4.1"></a>4.1</h3><ul><li><p><input disabled="" type="checkbox"> <strong>今日计划</strong></p><ul><li><input disabled="" type="checkbox"> 写一篇关于GPU信息含义如何理解的博客</li></ul></li><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong></p><ul><li><input checked="" disabled="" type="checkbox"> 阅读SSIM源码，理解SSIM公式，同时在SSIM博客中提出问题</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>明日计划</strong></p><ul><li><input disabled="" type="checkbox"> 完成图像梯度原理理解</li></ul></li><li><p><input disabled="" type="checkbox"> <mark><strong>idea</strong></mark></p><ul><li><p>发现了一篇关于local attention为何起作用的<a href="https://arxiv.org/abs/2106.04263">论文</a>，其中有网络设计准则，值得参考，其推荐博客已经存储在网络结构设计中</p></li><li><p>depth-wise conv有些忘记，需要回顾</p></li></ul></li></ul><hr><h3 id="3-31"><a href="#3-31" class="headerlink" title="3.31"></a>3.31</h3><ul><li><p><input disabled="" type="checkbox"> <strong>今日计划</strong></p><ul><li><input disabled="" type="checkbox"> 训练DIDfuse代码，观察训练时间，必要时可视化模型</li><li><input disabled="" type="checkbox"> 学习异常检测代码</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>遇到问题</strong></p><ul><li><input checked="" disabled="" type="checkbox"> SSIM原理</li><li><input checked="" disabled="" type="checkbox"> 什么是一维向量</li></ul></li><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong></p><ul><li><input checked="" disabled="" type="checkbox"> 如何提取图像梯度</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>说明</strong></p><ul><li><input disabled="" type="checkbox"> 需要使用的代码在Image-Fusion-Transformer、FusionGAN-pytorch-master代码中</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>今日遗留</strong></p><ul><li><input disabled="" type="checkbox"> 几篇关于SSIM的博客</li><li><input disabled="" type="checkbox"> 写一篇关于SSIM的博客</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>预计</strong></p><ul><li><input disabled="" type="checkbox"> 修改代码中关于梯度的loss函数</li></ul></li></ul><hr><h3 id="3-30"><a href="#3-30" class="headerlink" title="3.30"></a>3.30</h3><ul><li><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong><ul><li><input checked="" disabled="" type="checkbox"> 完成DCGAN生成MNIST数据集，分析DCGAN训练不work的原因 </li><li><input checked="" disabled="" type="checkbox"> 阅读清单中遗留文章已查阅</li><li><input checked="" disabled="" type="checkbox"> 搭建完成全卷积siam网络模型，正在训练</li></ul></li><li><input disabled="" type="checkbox"> <strong>明日计划</strong><ul><li><input disabled="" type="checkbox"> 由于训练较慢，初步判断为预测特征图导致，故训练他人的模型进行对比</li></ul></li></ul><hr><h3 id="3-29"><a href="#3-29" class="headerlink" title="3.29"></a>3.29</h3><ul><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong>:</p><ul><li><input checked="" disabled="" type="checkbox"> 进行了DCGAN对MNIST数据集的训练，效果极差，查找发现他人训练好后证明效果还行的源码直接拿来训练也效果极差，初步估计为GAN模型极易崩塌</li><li><input checked="" disabled="" type="checkbox"> 进行了WGAN对MNIST数据集的训练，效果人眼可分辨</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>预计</strong>:</p><ul><li><input disabled="" type="checkbox"> 1.完成遗留任务</li><li><input disabled="" type="checkbox"> 2.进行FGAN或者其他融合网络的训练，主要进行可视化操作（loss、image、特征图、卷积核）</li></ul></li></ul><hr><h3 id="3-28"><a href="#3-28" class="headerlink" title="3.28"></a>3.28</h3><ul><li><p><input checked="" disabled="" type="checkbox"> <strong>今日完成</strong>:</p><ul><li><input checked="" disabled="" type="checkbox"> 1.完成loss、image、histogram可视化代码</li><li><input checked="" disabled="" type="checkbox"> 2.完成风格损失1000-1-50-100的训练</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>今日遗留</strong>:</p><ul><li><input disabled="" type="checkbox"> 1.阅读清单中几篇文章</li><li><input disabled="" type="checkbox"> 2.阅读清单中有两个博主的其他博客需要查看</li><li><input disabled="" type="checkbox"> 3.缓存了几个网页需要查阅</li><li><input disabled="" type="checkbox"> 4.完成风格损失1000-1-50-100的可视化理解</li><li><input disabled="" type="checkbox"> 5.完成内容损失1000-1-50-100的理解</li></ul></li><li><p><input disabled="" type="checkbox"> <strong>预计</strong>:</p><ul><li><input disabled="" type="checkbox"> 1.卷积核的可视化</li><li><input disabled="" type="checkbox"> 2.特征层的可视化</li></ul></li></ul>]]></content>
       
       
       <categories>
@@ -440,7 +841,7 @@
       <link href="/2022/03/25/Paper/"/>
       <url>/2022/03/25/Paper/</url>
       
-        <content type="html"><![CDATA[<h1 id="文献总览"><a href="#文献总览" class="headerlink" title="文献总览"></a>文献总览</h1><h2 id="图像修复"><a href="#图像修复" class="headerlink" title="图像修复"></a>图像修复</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="">Generative Image Inpainting with Contextual Attention</a></td><td align="center">使用背景信息填补前景遮盖，做相似度计算</td><td align="center">None</td></tr><tr><td align="center"><a href="/2022/04/07/paper/%E5%9B%BE%E5%83%8F%E4%BF%AE%E5%A4%8D1/" title="[gan]High-Fidelity GAN Inversion for Image Attribute Editing">[gan]High-Fidelity GAN Inversion for Image Attribute Editing</a></td><td align="center">使用失真图▽的特征图加入到decoder的low space中，还提到有差异的两张图如何对齐</td><td align="center">None</td></tr><tr><td align="center"><a href="/2022/04/09/paper/%E5%9B%BE%E5%83%8F%E4%BF%AE%E5%A4%8D2/" title="Image Inpainting with External-internal Learning and Monochromic Bottleneck">Image Inpainting with External-internal Learning and Monochromic Bottleneck</a></td><td align="center">优化缺失区域来间接引导非缺失区域着色</td><td align="center">None</td></tr></tbody></table><h2 id="GAN"><a href="#GAN" class="headerlink" title="GAN"></a>GAN</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="">Training Generative Adversarial Networks in One Stage</a></td><td align="center">将GAN的双阶段训练改为单阶段训练，但无法多次训练D，只训练一次G</td><td align="center">训练源码，没有任何效果</td></tr></tbody></table><h2 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="">Axial attention in multidimesional transformers</a></td><td align="center">将整幅图片进行patch转换成仅关注轴向信息，有效降低transformer计算量</td><td align="center">None</td></tr></tbody></table>]]></content>
+        <content type="html"><![CDATA[<h1 id="文献总览"><a href="#文献总览" class="headerlink" title="文献总览"></a>文献总览</h1><h2 id="图像修复"><a href="#图像修复" class="headerlink" title="图像修复"></a>图像修复</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="">Generative Image Inpainting with Contextual Attention</a></td><td align="center">使用背景信息填补前景遮盖，做相似度计算</td><td align="center">None</td></tr><tr><td align="center"><a href="/2022/04/07/paper/%E5%9B%BE%E5%83%8F%E4%BF%AE%E5%A4%8D1/" title="[gan]High-Fidelity GAN Inversion for Image Attribute Editing">[gan]High-Fidelity GAN Inversion for Image Attribute Editing</a></td><td align="center">使用失真图▽的特征图加入到decoder的low space中，还提到有差异的两张图如何对齐</td><td align="center">None</td></tr><tr><td align="center"><a href="/2022/04/09/paper/%E5%9B%BE%E5%83%8F%E4%BF%AE%E5%A4%8D2/" title="Image Inpainting with External-internal Learning and Monochromic Bottleneck">Image Inpainting with External-internal Learning and Monochromic Bottleneck</a></td><td align="center">优化缺失区域来间接引导非缺失区域着色</td><td align="center">None</td></tr></tbody></table><h2 id="风格迁移"><a href="#风格迁移" class="headerlink" title="风格迁移"></a>风格迁移</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="/2022/04/10/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB1/" title="StyTr2:Image Style Transfer with Transformers">StyTr2:Image Style Transfer with Transformers</a></td><td align="center">根据输入图片学习一个位置标签（硬编码-&gt;软编码）</td><td align="center">仅值得参考</td></tr><tr><td align="center"><a href="/2022/04/11/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB2/" title="ArtFlow：Unbiased Image Style Transfer via Reversible Neural Flows">ArtFlow：Unbiased Image Style Transfer via Reversible Neural Flows</a></td><td align="center">特征提取与图像重建结构完全对称</td><td align="center">None</td></tr></tbody></table><h2 id="GAN"><a href="#GAN" class="headerlink" title="GAN"></a>GAN</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="">Training Generative Adversarial Networks in One Stage</a></td><td align="center">将GAN的双阶段训练改为单阶段训练，但无法多次训练D，只训练一次G</td><td align="center">训练源码，没有任何效果</td></tr></tbody></table><h2 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="">Axial attention in multidimesional transformers</a></td><td align="center">将整幅图片进行patch转换成仅关注轴向信息，有效降低transformer计算量</td><td align="center">None</td></tr></tbody></table>]]></content>
       
       
       <categories>
