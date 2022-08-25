@@ -4,11 +4,426 @@
   
     
     <entry>
-      <title>DETR深度理解</title>
-      <link href="/2022/04/28/paper/DETR%E6%B7%B1%E5%BA%A6%E7%90%86%E8%A7%A3/"/>
-      <url>/2022/04/28/paper/DETR%E6%B7%B1%E5%BA%A6%E7%90%86%E8%A7%A3/</url>
+      <title>openmmlab框架</title>
+      <link href="/2022/08/23/openmmlab%E6%A1%86%E6%9E%B6/"/>
+      <url>/2022/08/23/openmmlab%E6%A1%86%E6%9E%B6/</url>
       
-        <content type="html"><![CDATA[<center> End-to-End Object Detection with Transformers </center><blockquote><ol><li>因为预测是模型预测，而标记是人为标记，得到的预测第一个不一定就直接与认为标记好的目标直接对应，如何将预测到的[class, box]和GT对应？</li></ol></blockquote><p>首先用二分图的方法进行信息匹配，匹配预测和标记之间相似程度，每一个预测目标只能与一个GT对应。对应好后进行损失计算</p><blockquote><ol start="2"><li>decoder输入的object queries如何理解？</li></ol></blockquote><ol><li>可理解成起控制decoder输出各式的作用，因为其本来就是随机初始化，自学习的token</li><li>本文经过可视化后，可以理解为每个token以不同的角度去分析encoder编码后的token信息</li></ol>]]></content>
+        <content type="html"><![CDATA[<h1 id="配置文件读取"><a href="#配置文件读取" class="headerlink" title="配置文件读取"></a>配置文件读取</h1><blockquote><p>设置一个临时文件，将源文件内容加载到临时文件中，提取出临时文件的内容，删除临时文件，将所有信息保留在一个类对象中<br>1.得到一个字典类型的返回值<br>2.得到一个带有源文件及其内容的字符串<br>将上述两个参数解析，保留在config类对象中</p></blockquote><p>【其中涉及到类的操作】</p><ol><li>可先调用类的静态函数进行参数的收集（之前没有将该类进行实例化）</li><li>根据类的方法得到的参数再进行类的实例化</li></ol><p>【文件结构】</p><ol><li>选择基类配置文件</li><li>在基类配置文件的基础上进行修改<ul><li>因为存在覆盖的效果，直接设置基类key的修改值value，就能实现修改，但如果该值在基类中在其它处也被调用的话，需要一一修改，否则不能达到修改的效果</li></ul></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Work </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>概率论与数理统计</title>
+      <link href="/2022/08/20/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"/>
+      <url>/2022/08/20/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1-连续型随机变量和离散型随机变量有什么区别？"><a href="#1-连续型随机变量和离散型随机变量有什么区别？" class="headerlink" title="1. 连续型随机变量和离散型随机变量有什么区别？"></a>1. 连续型随机变量和离散型随机变量有什么区别？</h1><p>离散型随机变量x：只可能出现有限个或可列个值<br>连续型随机变量x：不可列，通常不研究它去某个特定值得概率，而研究它在某个区间上的概率</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>markdown书写规则</title>
+      <link href="/2022/08/18/markdown%E4%B9%A6%E5%86%99%E8%A7%84%E5%88%99/"/>
+      <url>/2022/08/18/markdown%E4%B9%A6%E5%86%99%E8%A7%84%E5%88%99/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">markdown书写规范</span><br></pre></td></tr></table></figure><h1 id="公式编写"><a href="#公式编写" class="headerlink" title="公式编写"></a>公式编写</h1><h2 id="多行公式"><a href="#多行公式" class="headerlink" title="多行公式"></a>多行公式</h2><blockquote><p>格式如下：</p><ol><li>首先对齐声明<code>\begin&#123;aligned&#125;;\end&#123;aligned&#125;</code></li><li>在对齐的&#x3D;号前使用<code>&amp;</code>标记</li><li>换行符&#96;&#96;\\&#96;</li></ol><p>使用align会对多行公式编号，而aligned只编一个号</p></blockquote><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;equation&#125;</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">x_1 &amp;= x_2 + x_3 \\</span><br><span class="line">    &amp;= .....   </span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">\end&#123;equation&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure><h2 id="符号代码"><a href="#符号代码" class="headerlink" title="符号代码"></a>符号代码</h2><ol><li>公式省略号——<code>\cdots</code></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Rules </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>卡尔曼滤波</title>
+      <link href="/2022/08/18/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/"/>
+      <url>/2022/08/18/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1-如何预测下一步数据？（如何分析测量值和估计值之间的额关系）"><a href="#1-如何预测下一步数据？（如何分析测量值和估计值之间的额关系）" class="headerlink" title="1. 如何预测下一步数据？（如何分析测量值和估计值之间的额关系）"></a>1. 如何预测下一步数据？（如何分析测量值和估计值之间的额关系）</h1><blockquote><p>当存在k个时序数据，如何估计下一个数据的变化？很自然想到使用已有数据的平均值来估计下一个数据,&#x3D;&#x3D;从平均数下手，分析平均数、当前值测试值、以往估计值之间的关系&#x3D;&#x3D;（假设其中估计值用之前的平均值）</p></blockquote><p>$$<br>\begin{align}<br>\hat{x}<em>{k} &amp;&#x3D;\frac{1}{k}\left(z</em>{1}+z_{2}+\cdots+z_{k}\right) \<br>&amp;&#x3D;\frac{1}{k}\left(z_{1}+z_{2}+\cdots+z_{k-1}\right)+\frac{1}{k} z_{k}\<br>&amp;&#x3D;\frac{1}{k} \frac{k-1}{(k-1)}\left(z_{1}+z_{2}+\cdots+z_{k-1}\right)+\frac{1}{k} z_{k} \<br>&amp;&#x3D;\frac{k-1}{k} \hat{x}<em>{k-1}+\frac{1}{k} z</em>{k} \<br>&amp;&#x3D;\hat{x}<em>{k-1}-\frac{1}{k} \hat{x}</em>{k-1}+\frac{1}{k} z_{k} \<br>\hat x_k &amp;&#x3D; \hat x_{k-1}+ \frac{1}{k}(z_k - \hat x_{k-1})<br>\end{align}<br>$$<br><strong>简式2</strong>：将当前测试值提出，用于分析当前测试值与之前数据值的关系<br><strong>简式3，4</strong>：将以往值化简为估计值<br><strong>简式5，6</strong>：合并化简</p><h1 id="2-Kalman增益"><a href="#2-Kalman增益" class="headerlink" title="2. Kalman增益"></a>2. Kalman增益</h1><p>可以从平均数的分析中发现，式（6）中k较小时（测试初期数据较少），估计值极大依赖当前测试值，但是&#x3D;&#x3D;随着k变大（测试数据增大），测量结果不再重要&#x3D;&#x3D;，因为当前估计值基本与上次估计值相等（后面一项公式接近于0），这和实际情况也符合（当对一件事掌握的信息越多，对其下次变化的估计也就越准确，越稳定），可理解为下式：</p><p>$$<br>\begin{equation}<br>当前估计值 &#x3D; 上一次估计值 + 系数 × （当前测量值-上一次估计值）<br>\end{equation}<br>$$<br>该式中的系数被称为Kerman增益，实际上其计算公式：<br>$$<br>\begin{equation}<br>K_k &#x3D; \frac{e_{est}}{e_{est}+e_{mea}}<br>\end{equation}<br>$$<br>其中est表示估计值，mea表示测量值</p><ul><li>当$e_{est}&gt;&gt;e_{mea}$时，表示估计值误差太大，只能信任测量值；将$K_k&#x3D;1$带入式（6）得$\hat x_k&#x3D;z_k$，即第k次估计值应等于测量值</li><li>反之，测量值误差太大，只能信任估计值，将$K_k&#x3D;0$带入式（6），第k次估计值等于估计值</li></ul><h1 id="Kalman计算步骤"><a href="#Kalman计算步骤" class="headerlink" title="Kalman计算步骤"></a>Kalman计算步骤</h1><p>$$<br>\begin{align}<br>K_k &#x3D; \frac{e_{est}}{e_{est} + e_{mea}} \<br>\hat x_k &#x3D; \hat x_{k-1} + K_k(Z_k - \hat x_{k-1}) \<br>e_{est} &#x3D; (1-K_k)e_{est_{k-1}}<br>\end{align}<br>$$</p><ol><li>式9计算卡尔曼增益$K_k$</li><li>式10根据以往数据计算下一步估计值</li><li>式11更新估计误差</li></ol><h1 id="数据融合"><a href="#数据融合" class="headerlink" title="数据融合"></a>数据融合</h1><blockquote><p>例1：两个称称量同一个物体，两个称存在已知偏差σ，如何通过两个称合理地计算出一个更准确地数值？<br>使用式（10），题目的问法可以理解为：通过两个已知数据的分布，找到一个更为准确、误差更小的数据分布——即计算公式两边的方差，找一个k让期望数值的方差最小</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Work </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>计算机网络</title>
+      <link href="/2022/08/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+      <url>/2022/08/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">学习背景：两个电脑使用不同的鼠标导致频繁换鼠标，寻求两个电脑公用一个鼠标的方法</span><br></pre></td></tr></table></figure><h1 id="1-局域网内使用软件可实现"><a href="#1-局域网内使用软件可实现" class="headerlink" title="1. 局域网内使用软件可实现"></a>1. 局域网内使用软件可实现</h1><blockquote><p>经过搜索发现，该类软件较多，不过要求设备在同一个局域网内，针对局域网等计算机网络名词开始学习</p></blockquote><table><thead><tr><th align="center">名词</th><th align="center">解释</th><th align="center">说明</th></tr></thead><tbody><tr><td align="center">网络</td><td align="center">多台电脑可以互相交互数据，就可以简单的称为网络</td><td align="center"></td></tr><tr><td align="center">局域网</td><td align="center">多个网络构成</td><td align="center"></td></tr><tr><td align="center">城域网</td><td align="center">多个局域网构成</td><td align="center">局域网&#x2F;广域网的范围按情况而定，例如家——楼——小区，或学校——城市——国家</td></tr><tr><td align="center">广域网</td><td align="center">多个城域网构成</td><td align="center"></td></tr><tr><td align="center">内网</td><td align="center">局域网</td><td align="center"></td></tr><tr><td align="center">外网</td><td align="center">广域网</td><td align="center">当局域网关闭向广域网的数据传输通道，此时局域网可理解为内网，广域网理解为外网</td></tr><tr><td align="center">因特网&#x2F;internet&#x2F;互联网</td><td align="center">特殊的广域网，最大的计算机网络</td><td align="center"></td></tr><tr><td align="center">以太网</td><td align="center">一种技术，一种实现设备共享的数据传输技术</td><td align="center"></td></tr></tbody></table><h1 id="2-非局域网内如何实现？"><a href="#2-非局域网内如何实现？" class="headerlink" title="2. 非局域网内如何实现？"></a>2. 非局域网内如何实现？</h1><blockquote><p>可使用内网穿透，对于这类名词开始学习</p></blockquote><table><thead><tr><th align="center">名词</th><th align="center">解释</th><th align="center">说明</th></tr></thead><tbody><tr><td align="center">IPv4和IPv6</td><td align="center">都用来标识连接到internet的设别的地址，只不过分别是IP协议的第四个版本与第六个版本</td><td align="center"></td></tr><tr><td align="center">公网IP</td><td align="center">唯一地址（如某省某市某小区）</td><td align="center"></td></tr><tr><td align="center">保留地址</td><td align="center">可重复的（可理解为不同小区的第某栋第某号，虽然栋号相同，但小区不同）</td><td align="center">通常在接入路由器&#x2F;交换机后，由其自动分配私有地址（DHCP协议实现，关闭该协议可实现手动设置地址）</td></tr><tr><td align="center">端口</td><td align="center">相当于房子的门，端口对应到某个具体的进程，指明是计算机xx进程需要数据</td><td align="center">地址由IP:端口组成，相同的两个IP传输数据，但是端口不同，这也被认为是新的连接</td></tr><tr><td align="center">NAT技术</td><td align="center">IP转换技术，当私有IP发送数据后，交换机将私有地址改为公有IP+端口，即以自己的名义将数据发送（类似于卧底，只有交换机才知道上下层）</td><td align="center"></td></tr><tr><td align="center">端口映射</td><td align="center">由于交换机存在IP转换，导致端口也被重新随机分配，当私有地址关闭连接时，目标就无法主动发送数据过来，因为关闭连接时交换机将之前的IP及端口释放了，这种情况下，就需要端口映射将端口固定，实现对方也可以主动发数据过来</td><td align="center">理想情况下为端口直连，这样速度直接为两端各自的速度，但是端口绑定只能实现在自己私有地址的上层路由器，实际情况下自己的IP是由多个路由器分配下来，由于无法控制上上层、上上上层路由器进行端口绑定，即它们又开始随机分配</td></tr><tr><td align="center">内网穿透</td><td align="center">一旦两个主机都是存在NAT下，即无法主动向对方发送数据（被交换机丢掉），次数需要中间服务器实现两个主机的连接</td><td align="center">但是数据传输速度由中间服务器控制，导致速度下降</td></tr></tbody></table>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>论文排版</title>
+      <link href="/2022/08/14/%E8%AE%BA%E6%96%87%E6%8E%92%E7%89%88/"/>
+      <url>/2022/08/14/%E8%AE%BA%E6%96%87%E6%8E%92%E7%89%88/</url>
+      
+        <content type="html"><![CDATA[<h1 id="双列排版论文"><a href="#双列排版论文" class="headerlink" title="双列排版论文"></a>双列排版论文</h1><blockquote><p>正常单列排版的文章,某些图片过大，需要文字双列、图片单列。</p></blockquote><ol><li>选中正文包括图片，布局——栏——两栏</li><li>光标定位到单列排版的图片之前，分隔符——连续，栏——一栏</li><li>光标定位到图片之后，文字之前，分隔符——连续，栏——两栏</li></ol><h1 id="页脚设置"><a href="#页脚设置" class="headerlink" title="页脚设置"></a>页脚设置</h1><ol><li><p>首页页脚与其他页不同</p><blockquote><p>首页页脚需要标注作者信息，但一设置所有页都存在相同的设置</p></blockquote></li><li><p>设置页脚，填写相关信息</p></li><li><p>在第一页末尾或者第二页起始，分隔符——下一页</p></li><li><p>选择第二页的页脚，取消链接到前一节选项，页脚——删除页脚</p></li></ol><h1 id="参考文献排版"><a href="#参考文献排版" class="headerlink" title="参考文献排版"></a>参考文献排版</h1><ol><li>出现间距过大情况，多出现于英文</li></ol><ul><li>一般来说参考文献要求的字体更小，相对于正文字体会消除很多间距过大的问题</li><li>整体调整好后，仅仅只有个位数的参考文献需要调整，此时手动调整即可——英文可断开换行，手动添加单词换行连接符</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Office </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>剑指offer</title>
+      <link href="/2022/08/03/%E5%89%91%E6%8C%87offer/"/>
+      <url>/2022/08/03/%E5%89%91%E6%8C%87offer/</url>
+      
+        <content type="html"><![CDATA[<h1 id="03-数组中重复的数字"><a href="#03-数组中重复的数字" class="headerlink" title="03.数组中重复的数字"></a>03.数组中重复的数字</h1><blockquote><p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p></blockquote><ul><li><p>【题点】</p><ul><li>长度为n</li><li>元素取值范围[0,n-1]</li><li>元素存在重复</li></ul></li><li><p>【思路】</p><ol><li>排序——将下标与元素对齐</li><li>对比</li></ol></li><li><p>【思考】</p><ol><li>直接对比会使用多个for嵌套，造成复杂度上升</li><li>最终的列前一部分为排序好的列表，后面为重复元素（随机排序）</li></ol></li><li><p>【bug】</p><ol><li>进行排序交换的两个元素有可能相同，此时可直接返回该元素</li></ol></li></ul><hr><h1 id="04-二维数组中的查找"><a href="#04-二维数组中的查找" class="headerlink" title="04.二维数组中的查找"></a>04.二维数组中的查找</h1><blockquote><p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p></blockquote><ul><li>【题点】<ol><li>二维数组</li><li>递增</li><li>边界</li></ol></li><li>【思路】<ol><li>考虑从一个定向开始移动，左上和右下角的数字两侧均是增大&#x2F;减小——无法定向；左下和右上一侧增大，一侧减小——可以选择一个作为定向</li><li>无论是小还是大，可以从行或列进行推动，然后再推动列或行，达到定位的目的</li></ol></li><li>【思考】<ul><li>一维数组可直接使用二分法——要么大要么小，已经定向</li><li>二维数组需要考虑定向问题，如果目标小，而数据各方向都为小，此时不知向哪个方向移动——直接二分从中间开始就会出现左上两侧均大或者右下两侧均小，此时无法定向</li><li>选择四个边界为基准，此时靠墙，那么只有两个方向，问题回到一维</li></ul></li><li>【bug】<ol><li>&#x3D;&#x3D;注意使用for循环列表时，注意列表长度为0的情况，此时for会直接报错，可使用while首先就确定边界问题</li><li>注意起始点非原点开始时，首先确定坐标，而不是上来直接使用for<br>##&#x3D;&#x3D;for与while存在什么区别？&#x3D;&#x3D;</li></ol></li></ul><ol><li>while强调条件判断，每次循环都需要判断条件是否满足——猜数游戏中由于while每次都判断，故此时不需要像for语句一样从某侧循环过去</li><li>for在已知循环次数（容器）的情况下，不需要再判断边界——针对已知边界情况（不需要关注边界问题）时，for语句更高效</li></ol><hr><h1 id="05-替换空格"><a href="#05-替换空格" class="headerlink" title="05. 替换空格"></a>05. 替换空格</h1><blockquote><p>请实现一个函数，把字符串 s 中的每个空格替换成”%20”。——本题需要使用C++完成，python中的字符串类型无法被修改</p></blockquote><ul><li>【思路】<ul><li>首先一个空格对应三个位，先增加字符串长度</li><li>设置两个指针，前面的判断是不是空格，后面的起复制加添加字符串的功能</li></ul></li><li>【bug】<ul><li>for语句后面是()不是{}</li><li>多个字符串使用<code>&quot;&quot;</code>而不是<code> &#39;&#39;</code></li><li>C++中考虑到字符串之类的要考虑到位的概念</li></ul></li></ul><hr><h1 id="06-从尾到头打印链表"><a href="#06-从尾到头打印链表" class="headerlink" title="06. 从尾到头打印链表"></a>06. 从尾到头打印链表</h1><blockquote><p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。</p></blockquote><ul><li>【补充】<ul><li>在python中的链表，ListNode存有两个值，ListNode.val为当前阶段结点的数值，ListNode.next指向下一个结点</li><li>链表作为输入，输入的是某个结点</li></ul></li><li>【思路】<ul><li>可以顺序取出在反转</li><li>可以使用insert永远插在第一个位置</li></ul></li><li>【bug】<ul><li>实际场景下使用的是链表某节点的值，不要把阶段传入使用</li></ul></li></ul><hr><h1 id="07-重建二叉树"><a href="#07-重建二叉树" class="headerlink" title="07. 重建二叉树"></a>07. 重建二叉树</h1><blockquote><p>输入某二叉树的前序遍历和中序遍历的结果，请构建该二叉树并返回其根节点。<br>假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p></blockquote><ul><li>【补充】<ul><li>树<ol><li>深度优先——先确定根节点的顺序，接下来都是先左后右<ol><li>先序遍历——【根，左，右】从根节点开始输出，再输出所有左侧结点，最后输出右侧（右左，右右）结点</li><li>中序遍历——【左下叶子树，结点，右子树】所有结点放在中间，找到最左下的叶节点开始输出，最后输出右侧结点</li><li>后序遍历——【左下叶子树，右子树，结点】</li></ol></li><li>广度优先</li></ol></li></ul></li><li>【思路】</li><li>【思考】</li><li>【bug】</li></ul><hr><h1 id=""><a href="#" class="headerlink" title=""></a></h1><blockquote></blockquote><ul><li>【题点】</li><li>【思路】</li><li>【思考】</li><li>【bug】</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> interview </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>矩的概念</title>
+      <link href="/2022/08/02/%E7%9F%A9%E7%9A%84%E6%A6%82%E5%BF%B5/"/>
+      <url>/2022/08/02/%E7%9F%A9%E7%9A%84%E6%A6%82%E5%BF%B5/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">问题：不规则图形的中心、重心、质点如何求取？</span><br><span class="line">牵扯概念：</span><br><span class="line">矩</span><br><span class="line">    1. 物理上的矩——力矩</span><br><span class="line">    2. 数学上的矩——期望、方差、原点矩、中心矩</span><br></pre></td></tr></table></figure><h1 id="矩（Moment）"><a href="#矩（Moment）" class="headerlink" title="矩（Moment）"></a>矩（Moment）</h1><p>什么是矩？<br>矩是观察与描述随机变量的工具，不同矩就是不同的维度，即从不同的角度（维度）去观察随机变量分布情况。</p><ol><li>是计算在第k个维度，移动到原点&#x2F;中心的问题，也可以理解为偏离原点&#x2F;中心</li><li>偏离某一值的惩罚</li></ol><hr><h1 id="1-物理上的矩"><a href="#1-物理上的矩" class="headerlink" title="1. 物理上的矩"></a>1. 物理上的矩</h1><h2 id="1-1力矩"><a href="#1-1力矩" class="headerlink" title="1.1力矩"></a>1.1力矩</h2><p>输入变量（自变量）：力矩<br>力矩 &#x3D; 力臂 X 力</p><blockquote><p>例1：一个船舵，3个船员同向转动船舵，如何每个船员用了多少能量？<br>例2：一个船舵，3个船员中有一个反方向转动船舵，如何计算每个船员平均使用多少能量？</p></blockquote><p> $a_1 &#x3D; \frac{F_1L_1 + F_2L_2+F_3L_3}{3}$  &lt;1&gt;<br> $a_2 &#x3D; \frac{(F_1L_1)^2 + (-F_2L_2)^2+(F_3L_3)^2}{3}$  &lt;2&gt;</p><p>计算公式是没问题的，都是平均力矩，但是为什么第二个式子却需要加平方？——如果直接计算平均力矩，例2中会出现力矩被抵消，最终计算比实际小。</p><ul><li>例1可看为计算一阶原点矩——衡量力矩的平均水平</li><li>例2可看为计算二阶原点矩——衡量力矩的总能量</li></ul><h2 id="1-2中心矩和原点矩"><a href="#1-2中心矩和原点矩" class="headerlink" title="1.2中心矩和原点矩"></a>1.2中心矩和原点矩</h2><p>船舵问题中，力矩均指向船舵原点，上述问题计算的就是原点矩；当指向其他位置，可理解为“中心矩”。<br>但是中心是一个定点，针对中心的具体位置，在如下中解释说明。</p><table><thead><tr><th align="center">名称</th><th align="center">含义</th></tr></thead><tbody><tr><td align="center">一阶原点矩</td><td align="center">数据的平均水平&#x2F;程度</td></tr><tr><td align="center">二阶原点矩</td><td align="center">数据移动到平均位置的平均能量</td></tr><tr><td align="center">一阶中心矩</td><td align="center">0</td></tr><tr><td align="center">二阶中心矩</td><td align="center">数据离散&#x2F;集中程度，或数据偏离平均水平的程度</td></tr><tr><td align="center">三阶中心矩</td><td align="center">偏度——数据偏离平均位置的平均水平</td></tr><tr><td align="center">四阶中心矩</td><td align="center">峭度——数据偏离中心的密集程度</td></tr></tbody></table><hr><h1 id="2-数学上的矩——概率论中"><a href="#2-数学上的矩——概率论中" class="headerlink" title="2. 数学上的矩——概率论中"></a>2. 数学上的矩——概率论中</h1><h2 id="2-1矩的概念"><a href="#2-1矩的概念" class="headerlink" title="2.1矩的概念"></a>2.1矩的概念</h2><p>输入变量（自变量）：离散随机变量——离散数值</p><blockquote><p>定义：设X和Y是离散随机变量，c为常数，k为正整数，如果$E(|X-c|^k)$存在，则称$E(|X-c|^k)$为X关于点c的k阶矩。</p><ul><li>c&#x3D;0时，称为k阶原点矩；</li><li>c&#x3D;$E(x)$时，称为k阶中心距</li></ul></blockquote><table><thead><tr><th align="center">名称</th><th align="center">公式</th><th align="center"></th><th align="center"></th><th align="center">常用</th><th align="center">名称</th></tr></thead><tbody><tr><td align="center">k阶原点矩</td><td align="center">$E(X^k)$</td><td align="center"></td><td align="center"></td><td align="center">1阶原点矩</td><td align="center">期望$E(X)$</td></tr><tr><td align="center">k阶中心矩</td><td align="center">$E[(X-E(X))^k]$</td><td align="center"></td><td align="center"></td><td align="center">2阶中心矩</td><td align="center">方差$D(X)$</td></tr><tr><td align="center">k+l阶混合矩</td><td align="center">$E(X^kY^l)$</td><td align="center"></td><td align="center"></td><td align="center"></td><td align="center"></td></tr><tr><td align="center">k+l阶混合中心矩</td><td align="center">$E[(X-E(X))^k(X-E(X))^l]$</td><td align="center"></td><td align="center"></td><td align="center">2阶混合中心矩</td><td align="center">协方差$Conv(X,Y)$</td></tr></tbody></table><h2 id="2-2期望"><a href="#2-2期望" class="headerlink" title="2.2期望"></a>2.2期望</h2><ul><li>期望，又称均值，是对将来某种情况发生的估计值</li><li>平均值，已经发生&#x2F;存在的事件&#x2F;数据的平均<h2 id="2-3理解说明"><a href="#2-3理解说明" class="headerlink" title="2.3理解说明"></a>2.3理解说明</h2></li><li>原点矩指向0</li><li>中心指向离散随机变量的期望</li></ul><hr><h1 id="图像矩"><a href="#图像矩" class="headerlink" title="图像矩"></a>图像矩</h1><p>在求取图像的矩时，通常对图像进行二值化，其前景为1，背景为0</p><table><thead><tr><th align="center">名称</th><th align="center">公式</th><th align="left">意义</th></tr></thead><tbody><tr><td align="center">零阶矩</td><td align="center">$\mathrm{M}<em>{00}&#x3D;\sum</em>{\mathrm{I}} \sum_{\mathrm{J}} \mathrm{V}(\mathrm{i}, \mathrm{j})$</td><td align="left">面积</td></tr><tr><td align="center">一阶矩</td><td align="center">$\mathrm{M}<em>{10}&#x3D;\sum</em>{\mathrm{I}} \sum_{\mathrm{J}} \mathrm{i} \cdot \mathrm{V}(\mathrm{i}, \mathrm{j})$</td><td align="left">横坐标和对应像素值的乘积</td></tr><tr><td align="center">一阶矩</td><td align="center">$\mathrm{M}<em>{01}&#x3D;\sum</em>{\mathrm{I}} \sum_{\mathrm{J}} \mathrm{j} \cdot \mathrm{V}(\mathrm{i}, \mathrm{j})$</td><td align="left">纵坐标和对应像素值的乘积</td></tr><tr><td align="center">一阶矩</td><td align="center">$\mathrm{x}<em>{\mathrm{c}}&#x3D;\frac{\mathrm{M}</em>{10}}{\mathrm{M}<em>{00}}, \mathrm{y}</em>{\mathrm{c}}&#x3D;\frac{\mathrm{M}<em>{01}}{\mathrm{M}</em>{00}}$</td><td align="left">随机图形的质心</td></tr></tbody></table>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图像金字塔1</title>
+      <link href="/2022/06/24/paper/%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%941/"/>
+      <url>/2022/06/24/paper/%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%941/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Feature-Pyramid-Transformer"><a href="#Feature-Pyramid-Transformer" class="headerlink" title=" Feature Pyramid Transformer "></a><center> Feature Pyramid Transformer </center></h1><blockquote><p>图像在空间和尺度上存在丰富的视觉语义信息，融合不同尺度的特征，有助于获取全局信息，特别是目标检测任务中小目标检测性能差，本文任务江不同尺度的信息进行结合，可解决此问题</p></blockquote><ol><li>self-trans:进行自注意力特征提取，使用Mixture of Softmaxes代替原来的softmax函数</li><li>Grounding Transformer (GT)：<br>原文描述：将高层的语义概念与低层特征图的像素特征联系起来，注意此处只是连接起来<br>目的在于使用high-level的语义信息，增强低层特征<ul><li>代码具体操作：Q为低层特征，KV是高层特征，利用transformer建立两者的关系</li></ul></li><li>Rending Transformer (RT)：<br>原文描述：使用low-level像素特征来渲染higher-level的内容特征。<br>目的在于使用low-level的细粒度信息，增强高层的粗粒度语义信息<ul><li>代码中的具体操作：使用低层进行低维嵌入提取低层的信息直接应用在高层特征上，同时将低层下采样卷积成高层尺寸，两个相加</li></ul></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>深入理解数据维度</title>
+      <link href="/2022/06/08/work/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E7%BB%B4%E5%BA%A6/"/>
+      <url>/2022/06/08/work/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E7%BB%B4%E5%BA%A6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="高维数据理解"><a href="#高维数据理解" class="headerlink" title="高维数据理解"></a>高维数据理解</h1><p>初级理解：数据维度的上升，遵循简单三维的排列</p><blockquote><ol><li>单个数据理解为点</li><li>一维数据理解为向量，或者直线</li><li>二维数据理解为平面，一副图像</li><li>三维数据理解为空间，从二维向垂直方向延申数据</li><li>四维数据理解：将三维数据沿水平方向延申</li><li>五维数据理解：将四维数据沿竖直方向延申</li><li>六维数据理解：将五维数据沿垂直方向延申</li></ol></blockquote><h1 id="高维数据维度交换"><a href="#高维数据维度交换" class="headerlink" title="高维数据维度交换"></a>高维数据维度交换</h1><p>数据维度：<code>[C, H, W]</code></p><blockquote><ol><li>将H维度提前<code>[H, C, W]</code>：数据上的直观反应为在原数据上提取图像的行重新排列</li><li>将C维度交换到最后<code>[H, W, C]</code>：可理解为两步操作（将H、W提前，即将C后退两次），第一次提取图像的行重新排列，第二次有两种理解（第一种理解以通道为基准，再提取列数据——由行列定位到单个像素数据，即提取同一位置的所有通道上的像素特征。第二种理解为C与W的转置，第一步提取了行数据，转置之后为某位置上的通道特征），但是需要注意的是每个二维矩阵代表的是每个通道上某行的排列，也就是说最终的结果第一个二维矩阵中的数据是原数据中所有通道的单个像素按照行进行排列</li></ol></blockquote><h1 id="维度交换的理解"><a href="#维度交换的理解" class="headerlink" title="维度交换的理解"></a>维度交换的理解</h1><ol><li>首先确定最后一个维度代表的是通道还是排列的像素值</li><li>三个维度之间的交换理解为提取行和提取列</li><li>确定第一个数据矩阵代表什么特征</li></ol><h1 id="计算时的维度理解"><a href="#计算时的维度理解" class="headerlink" title="计算时的维度理解"></a>计算时的维度理解</h1><ul><li><p>生成一个[m,n]的矩阵，如何理解？</p><ol><li>这个矩阵有m行，n列数据</li><li>这个矩阵m维，每维n个数据</li></ol></li><li><p>torch.max(x, dim&#x3D;0)如何理解这个维度？</p><ol><li>沿着第0维计算最大值</li><li>沿着行的方向计算最大值——行的方向即使列，行的方向；每个维度、对象、目标，而不是直接在行中计算</li></ol></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CNN与transformer</title>
+      <link href="/2022/05/13/work/CNN%E4%B8%8Etransformer/"/>
+      <url>/2022/05/13/work/CNN%E4%B8%8Etransformer/</url>
+      
+        <content type="html"><![CDATA[<h1 id="直观理解CNN与Transformer"><a href="#直观理解CNN与Transformer" class="headerlink" title="直观理解CNN与Transformer"></a>直观理解CNN与Transformer</h1><ul><li>CNN：从局部开始，扩散获得全局视野（或理解为CNN逐个像素地识别图像，在这个过程中通过从局部到全局的方式识别角&#x2F;线等特征）</li><li>Transformer:从开始就能直接建立距离较远像素之间的关系<blockquote><p>CNN相当于从单个像素开始，用变焦镜头缩小远处物体的像的放大倍数<br>Transformer相当于将整个模糊图像聚焦</p></blockquote></li></ul><h1 id="blog"><a href="#blog" class="headerlink" title="blog"></a>blog</h1><p>想象一下你走进一家本地的五金店，在货架上看到一种新型的锤子。你听说过这种锤子：它比其他锤子敲得更快、更准确，而且在过去的几年里，在大多数用途中，它已经淘汰了许多其他锤子。</p><p>此外，通过一些调整，比如这里加一个附件，那里拧一个螺丝，这种锤子还能变成一把锯，其切割速度能媲美其他任何替代品。一些处于工具开发前沿的专家表示，这把锤子可能预示着所有工具将融合到一个设备中。</p><p>类似的故事正在人工智能领域上演。这种多功能的新锤子是一种人工神经网络——一种在现有数据上进行训练以「学习」如何完成某些任务的节点网络——称为 Transformer。它最初用于处理语言任务，但最近已经开始影响其他 AI 领域。</p><p>Transformer 最初出现在 2017 年的一篇论文中：《Attention Is All You Need》。在其他人工智能方法中，系统会首先关注输入数据的局部 patch，然后构建整体。例如，在语言模型中，邻近的单词首先会被组合在一起。相比之下，Transformer 运行程序以便输入数据中的每个元素都连接或关注其他元素。研究人员将此称为「自注意力」。这意味着一旦开始训练，Transformer 就可以看到整个数据集的迹。</p><p>在 Transformer 出现之前，人工智能在语言任务上的进展一直落后于其他领域的发展。「在过去 10 年发生的这场深度学习革命中，自然语言处理在某种程度上是后来者，」马萨诸塞大学洛厄尔分校的计算机科学家 Anna Rumshisky 说，「从某种意义上说，NLP 曾落后于计算机视觉，而 Transformer 改变了这一点。」</p><p>Transformer 很快成为专注于分析和预测文本的单词识别等应用程序的引领者。它引发了一波工具浪潮，比如 OpenAI 的 GPT-3 可以在数千亿个单词上进行训练并生成连贯的新文本。</p><p>Transformer 的成功促使人工智能领域的研究者思考：这个模型还能做些什么？</p><p>答卷正在徐徐展开——Transformer 被证明具有惊人的丰富功能。在某些视觉任务中，例如图像分类，使用 Transformer 的神经网络比不使用 Transformer 的神经网络更快、更准确。对于其他人工智能领域的新兴研究，例如一次处理多种输入或完成规划任务，Transformer 也可以处理得更多、更好。</p><p>「Transformer 似乎在机器学习领域的许多问题上具有相当大的变革性，包括计算机视觉，」在慕尼黑宝马公司从事与自动驾驶汽车计算机视觉工作的 Vladimir Haltakov 说。</p><p>就在十年前，AI 的不同子领域之间还几乎是互不相通的，但 Transformer 的到来表明了融合的可能性。「我认为 Transformer 之所以如此受欢迎，是因为它展示出了通用的潜力，」德克萨斯大学奥斯汀分校的计算机科学家 Atlas Wang 说：「我们有充分的理由尝试在整个 AI 任务范围内尝试使用 Transformer。」</p><p>Dosovitskiy 正在研究该领域最大的挑战之一，即在不增加处理时间的前提下，将 CNN 放大：在更大的数据集上训练，表示更高分辨率的图像。但随后他看到，Transformer 已经取代了以前几乎所有与语言相关的 AI 任务的首选工具。「我们显然从正在发生的事情中受到了启发，」他说，「我们想知道，是否可以在视觉上做类似的事情？」 这个想法某种程度上说得通——毕竟，如果 Transformer 可以处理大数据集的单词，为什么不能处理图片呢？</p><p>最终的结果是：在 2021 年 5 月的一次会议上，一个名为 Vision Transformer（ViT）的网络出现了。该模型的架构与 2017 年提出的第一个 Transformer 的架构几乎相同，只有微小的变化，这让它能够做到分析图像，而不只是文字。「语言往往是离散的，」Rumshisky 说：「所以必须使图像离散化。」</p><p>ViT 团队知道，语言的方法无法完全模仿，因为每个像素的自注意力在计算时间上会非常昂贵。所以，他们将较大的图像划分为正方形单元或 token。大小是任意的，因为 token 可以根据原始图像的分辨率变大或变小（默认为一条边 16 像素），但通过分组处理像素，并对每个像素应用自注意力，ViT 可以快速处理大型训练数据集，从而产生越来越准确的分类。</p><p>Transformer 能够以超过 90% 的准确率对图像进行分类，这比 Dosovitskiy 预期的结果要好得多，并在 ImageNet 图像数据集上实现了新的 SOTA Top-1 准确率。ViT 的成功表明，卷积可能不像研究人员认为的那样对计算机视觉至关重要。</p><p>与 Dosovitskiy 合作开发 ViT 的谷歌大脑苏黎世办公室的 Neil Houlsby 说：「我认为 CNN 很可能在中期被视觉 Transformer 或其衍生品所取代。」他认为，未来的模型可能是纯粹的 Transformer，或者是为现有模型增加自注意力的方法。</p><p>一些其他结果验证了这些预测。研究人员定期在 ImageNet 数据库上测试他们的图像分类模型，在 2022 年初，ViT 的更新版本仅次于将 CNN 与 Transformer 相结合的新方法。而此前长期的冠军——没有 Transformer 的 CNN，目前只能勉强进入前 10 名。</p><ol><li>Transformer的工作原理<br>Transformer 的力量来自于它处理图像编码数据的方式。「在 CNN 中，你是从非常局部的地方开始，然后慢慢获得全局视野，」Raghu 说。CNN 逐个像素地识别图像，通过从局部到全局的方式来识别角或线等特征。但是在带有自注意力的 Transformer 中，即使是信息处理的第一层也会在相距很远的图像位置之间建立联系（就像语言一样）。如果说 CNN 的方法就像从单个像素开始并用变焦镜头缩小远处物体的像的放大倍数，那么 Transformer 就是慢慢地将整个模糊图像聚焦。</li></ol><p>这种差异在 Transformer 最初专注的语言领域更容易理解，思考一下这些句子：「猫头鹰发现了一只松鼠。它试图用爪子抓住它，但只抓住了尾巴的末端。」第二句的结构令人困惑：「它」指的是什么？只关注「它」邻近的单词的 CNN 会遇到困难，但是将每个单词与其他单词连接起来的 Transformer 可以识别出猫头鹰在抓松鼠，而松鼠失去了部分尾巴。</p><p>显然，Transformer 处理图像的方式与卷积网络有着本质上的不同，研究人员变得更加兴奋。Transformer 在将数据从一维字符串（如句子）转换为二维数组（如图像）方面的多功能性表明，这样的模型可以处理许多其他类型的数据。例如，Wang 认为，Transformer 可能是朝着实现神经网络架构的融合迈出的一大步，从而产生了一种通用的计算机视觉方法——也许也适用于其他 AI 任务。「当然，要让它真正发生是有局限性的，但如果有一种可以通用的模型，让你可以将各种数据放在一台机器上，那肯定是非常棒的。」</p><ol start="2"><li>VIT展望<br>现在研究人员希望将 Transformer 应用于一项更艰巨的任务：创造新图像。GPT-3 等语言工具可以根据其训练数据生成新文本。在去年发表的一篇论文《TransGAN: Two Pure Transformers Can Make One Strong GAN, and That Can Scale Up》中，Wang 组合了两个 Transformer 模型，试图对图像做同样的事情，但这是一个困难得多的问题。当双 Transformer 网络在超过 200000 个名人的人脸上进行训练时，它以中等分辨率合成了新的人脸图像。根据初始分数（一种评估神经网络生成的图像的标准方法），生成的名人面孔令人印象深刻，并且至少与 CNN 创建的名人一样令人信以为真。</li></ol><p>Wang 认为，Transformer 在生成图像方面的成功比 ViT 在图像分类方面的能力更令人惊讶。「生成模型需要综合能力，需要能够添加信息以使其看起来合理，」他说。与分类领域一样，Transformer 方法正在生成领域取代卷积网络。</p><p>Raghu 和 Wang 还看到了 Transformer 在多模态处理中的新用途。「以前做起来比较棘手，」Raghu 说，因为每种类型的数据都有自己的专门模型，方法之间是孤立的。但是 Transformer 提出了一种组合多个输入源的方法。</p><p>「有很多有趣的应用程序可以结合其中一些不同类型的数据和图像。」例如，多模态网络可能会为一个系统提供支持，让系统除了听一个人的声音外，还可以读取一个人的唇语。「你可以拥有丰富的语言和图像信息表征，」Raghu 说，「而且比以前更深入。」</p><p>新的一系列研究表明了 Transformer 在其他人工智能领域的一系列新用途，包括教机器人识别人体运动、训练机器识别语音中的情绪以及检测心电图中的压力水平。另一个带有 Transformer 组件的程序是 AlphaFold，它以快速预测蛋白质结构的能力，解决了五十年来蛋白质分子折叠问题，成为了名噪一时的头条新闻。</p><ol start="3"><li>transformer同时也不一定必须<br>即使 Transformer 有助于整合和改进 AI 工具，但和其他新兴技术一样，Transformer 也存在代价高昂的特点。一个 Transformer 模型需要在预训练阶段消耗大量的计算能力，才能击败之前的竞争对手。</li></ol><p>这可能是个问题。「人们对高分辨率的图像越来越感兴趣，」Wang 表示。训练费用可能是阻碍 Transformer 推广开来的一个不利因素。然而，Raghu 认为，训练障碍可以借助复杂的滤波器和其他工具来克服。</p><p>Wang 还指出，尽管视觉 transformer 已经在推动 AI 领域的进步，但许多新模型仍然包含了卷积的最佳部分。他说，这意味着未来的模型更有可能同时使用这两种模式，而不是完全放弃 CNN。</p><p>同时，这也表明，一些混合架构拥有诱人的前景，它们以一种当前研究者无法预测的方式利用 transformer 的优势。「也许我们不应该急于得出结论，认为 transformer 就是最完美的那个模型，」Wang 说。但越来越明显的是，transformer 至少会是 AI shop 里所有新型超级工具的一部分。</p><p><a href="https://www.quantamagazine.org/will-transformers-take-over-artificial-intelligence-20220310/">原文</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Instance Enhancement Batch Normalization:An Adaptive Regulator of Batch Noise</title>
+      <link href="/2022/05/12/paper/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B62/"/>
+      <url>/2022/05/12/paper/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B62/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Instance-Enhancement-Batch-Normalization-An-Adaptive-Regulator-of-Batch-Noise"><a href="#Instance-Enhancement-Batch-Normalization-An-Adaptive-Regulator-of-Batch-Noise" class="headerlink" title=" Instance Enhancement Batch Normalization: An Adaptive Regulator of Batch Noise "></a><center> Instance Enhancement Batch Normalization: An Adaptive Regulator of Batch Noise </center></h1><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><ul><li><p>BN层可通过输入的batch对数据进行归一化，但同时也引入了噪声，适当的噪声有益于模型的优化和泛化，但是BN层对于风格迁移这种任务会引入过多噪声</p></li><li><p>IEBN通过简单的线性变换重新校准通道间的信息，对数据起到了正则化并加固的网络的训练过程</p></li></ul><h1 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h1><ul><li>对于SE-Block，是对特征层[H,W,C]进行最大池化或者平均池化，得到[1,1,C]，再通过FC进行线性变化处理</li><li>IEBN也是是对特征层[H,W,C]进行最大池化或者平均池化得到[1,1,C]，但对每个channel只设置两个系数做线性变换，参数量大大减少，同时性能良好</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Perceiver:General Perception with Iterative Attention</title>
+      <link href="/2022/05/11/paper/transformer1/"/>
+      <url>/2022/05/11/paper/transformer1/</url>
+      
+        <content type="html"><![CDATA[<center> Perceiver: General Perception with Iterative Attention </center><h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><ul><li>傅里叶位置编码<ol><li>每个像素拥有一个轴向和纵向的傅里叶位置编码向量——其中向量维度为13，两个为26，加上输入通道则为29，即image上的一个像素点使用一个29维度的向量表示</li></ol></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>EdgeFormer</title>
+      <link href="/2022/05/10/paper/Former/"/>
+      <url>/2022/05/10/paper/Former/</url>
+      
+        <content type="html"><![CDATA[<center> EDGEFORMER: IMPROVING LIGHT-WEIGHT CONVNETS BY LEARNING FROM VISION TRANSFORMERS </center><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><ul><li><p>存在问题：</p><ol><li>VIT优于大型卷积模型，提取全局信息，但存在计算复杂</li><li>卷积网络建立模型局部关系，存在硬件支持，小模型训练相对容易</li></ol></li><li><p>改进：</p><ul><li>将VIT柔和到卷积网络中</li></ul></li><li><p>模型结构，使用新提出全局循环卷积代替self-attention，再使用一个简单的channel wise attention实现通道注意力——使用空间、通道注意力代替ViT中的注意力结构</p></li></ul><h1 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h1><ul><li>从图像的行与列来构造空间注意力相关模块<ol><li>GCC-V——位置编码pe[CxBx1]通过双线性插值后[CxHx1],再将其沿水平方向复制得到[CxHxW],加和到输入X上，将X沿V垂直方向堆叠（得到两块），使用一个[CxBx1]通过双线性插值后[CxHx1]的向量作为卷积核，卷积后得到[CxHxW]</li><li>GCC-H——位置编码pe[Cx1xB]通过双线性插值后[Cx1xW],再将其沿垂直方向复制得到[CxHxW]，加和到输入上，将X沿H水平方向堆叠（得到两块），使用一个[Cx1xB]通过双线性插值后[Cx1xW]的向量作为卷积核，卷积后得到[CxHxW]<blockquote><p>其中垂直方向则按照垂直方向堆叠，且卷积核也构造为垂直向量;水平方向按照水平方向堆叠，且卷积核构造为水平方向</p></blockquote></li></ol></li></ul><h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul><li>位置编码对于目标检测以及分割这种对位置敏感的任务十分重要</li><li>当前层的全局核覆盖的像素实际上只有一半来自源输入，其他均为零，因为卷积会改变特征尺寸（否则使用padding，常用padding就是0，这就是其他为零的原因）</li><li>token mixer用于在不同空间位置的令牌之间交换信息，channel mixer用于在不同通道之间混合信息。</li></ul><h1 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a>Idea</h1><p>动态改变位置编码、kernel来应对不同尺寸的输入</p><h1 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h1><p>换汤不换药，使用新的空间、通道注意力结构对transformer进行重建，结合卷积和VIT的优点，提高了模型的实现能力</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Beyond Self-attention:External Attention using Two Linear Layers for Visual Tasks</title>
+      <link href="/2022/05/09/paper/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B61/"/>
+      <url>/2022/05/09/paper/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B61/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Beyond-Self-attention-External-Attention-using"><a href="#Beyond-Self-attention-External-Attention-using" class="headerlink" title=" Beyond Self-attention: External Attention using"></a><center> Beyond Self-attention: External Attention using</h1><p>Two Linear Layers for Visual Tasks </center></p><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>自注意力通过计算所有位置上成对亲和力进行特征加权来更新每个位置上的特征——这个特征能够捕捉单个样本中的远距离依赖关系，但其计算都复杂且忽略了不同样本之间的潜在关系。<br>本文设计了两个外部的、小的、可学习的、存储共享的结构，仅由两个级联线性层以及两个归一化层——只是线性复杂度，且考虑了的所有数据样本之间的相关性。</p><h1 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h1><ul><li>使用可学习矩阵作为整个数据集的先验知识memory<ol><li>使用可学习矩阵$ M_k $作为整个训练中的key</li><li>使用可学习矩阵$ M_v $作为整个训练中的value</li></ol></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JOJO</title>
+      <link href="/2022/05/08/life/JOJO/"/>
+      <url>/2022/05/08/life/JOJO/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="46620823b00ff4d2d273340504405608e4955a57827d0d78802c75c8d5b09f64">d6183a03306b1dea4b48207219cc7eefef1b01d79e8c1be979c192e16a1e9484cb883b8478251a8586ec5d9548e2765f1648484d7e3f1d7a34895fc0900ecd797c9a2726c349ef68d51c8f7bb5901975e3ea14d8d0198cbe2509715950a6eee5afcc9552cdb45178a05735a06ee11069c53df22075c3638d8db1c55b56e28eb7ed559ee18aaf28da840673f05bab0470f7444bfc9363eebe570b49a7a85e2e7cc3c49df36128ffe2bd9b8244fb713ad74f8c5bb7fa22aacbcca6e9051e3e861527d5e7cad2d18e3d82298f350e24ba2aff69d4b36de18cb050132b6cb924ff14c8627d07d492f5160aa1bc5daf5993b2e7427e9163c7cdc89b7682ef34557cbb65c230aa54ff7c2ef40159f5579dd980ac8f87f2a2d692a7602c007534c34c73c8d1ab4324481df6ceceb1cde647effbcd1eb6224e7c587929d9184de84d8cf4ba5e96e62cec38a1fa8c19ee1c590d66612059a7ff7456c7405245edfc2f00fb609eb5d517d4a3d984f393e7a65d4ed8aca632423e2ecf45e7a3217a35670389ada48935e6b681ee33943aa7bb31eb649dccfc5809ad9086f4aecc54c41d8d3a1a63cb1cbc190ebdec80d95062801ceabd45a8b455dac371d22bd0947dfe9488d9b3996b870a67a2cf952dd523df22941bc7d22a99991a42949f2eb42a71491c54eb20b915922d99aef2bed22974aa0eef0181bb7ecaa6d2f1bb9297536141364f0eeeac727514081b66aee384573da31c82453e59d565ae27c1f4e1360719f8b686832691fa262d3d85e6fac530a36209ac2c96b587b96b2797e6dbb2147761</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> life </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Me </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>DeepFusion:Lidar-Camera Deep Fusion for Multi-Modal 3D Object Detection</title>
+      <link href="/2022/05/06/paper/%E5%A4%9A%E6%A8%A1%E6%80%811/"/>
+      <url>/2022/05/06/paper/%E5%A4%9A%E6%A8%A1%E6%80%811/</url>
+      
+        <content type="html"><![CDATA[<h1 id="DeepFusion-Lidar-Camera-Deep-Fusion-for-Multi-Modal-3D-Object-Detection"><a href="#DeepFusion-Lidar-Camera-Deep-Fusion-for-Multi-Modal-3D-Object-Detection" class="headerlink" title=" DeepFusion: Lidar-Camera Deep Fusion for Multi-Modal 3D Object Detection "></a><center> DeepFusion: Lidar-Camera Deep Fusion for Multi-Modal 3D Object Detection </center></h1><h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><p>多模态融合问题中的关键挑战是如何有效对齐不同模态的深度特征</p><ol><li>InverseAug（逆几何相关增强）——进行精确的几何对齐</li><li>LearnableAlign——使用交叉注意力动态捕捉图像和激光雷达的相关性</li></ol><h1 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h1><blockquote><p>previous work</p><ol><li>将相机图像通过分割网络per-pixel分割得到相机特征</li><li>将相机特征与原始激光雷达点cat进行特征提取</li><li>进行目标检测</li></ol><p>ours</p><ol><li>不直接将相机特征与激光雷达cat在一起，将其从透视图转换为鸟瞰图</li><li>使用端到端训练，不再先分割再检测</li></ol><p>思路<br>提取各自特征-&gt;融合-&gt;backbone-&gt;head</p></blockquote><h1 id="涉及问题"><a href="#涉及问题" class="headerlink" title="涉及问题"></a>涉及问题</h1><ol><li>不同模态融合问题<br>相机图像是2D信息，激光雷达是3D信息，如使直接使用点云作为3D检测架构，就需要将相机特征与原始点云一起进行cat处理，但是相机特征与点云明显不是一类特征</li></ol><h1 id="InverseAug"><a href="#InverseAug" class="headerlink" title="InverseAug"></a>InverseAug</h1><p>使用逆几何对齐原因，数据增强中会使用翻转、旋转，原本3D和2D是对齐的，但增强后就无法对齐，为了保持3D与2D的对齐,使用参数将增强后的数据反转会原始坐标，这样就可一找到对应2D坐标</p><h1 id="LearnableAlign"><a href="#LearnableAlign" class="headerlink" title="LearnableAlign"></a>LearnableAlign</h1><p>将input直接作为特征进行融合那么多模态是一对一映射，但是激光雷达中层特征与多个摄像头的中层特征形成了一对多映射，简单方法是均值，但是均值会导致信息损失</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>网络模型架构</title>
+      <link href="/2022/05/05/work/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84/"/>
+      <url>/2022/05/05/work/%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Stage重复次数"><a href="#Stage重复次数" class="headerlink" title="Stage重复次数"></a>Stage重复次数</h1><blockquote><p>重复比例大概保持[1:1:2:1]</p></blockquote><ul><li>Resnet50:[3, 4, 6, 3]</li></ul><h1 id="残差结构"><a href="#残差结构" class="headerlink" title="残差结构"></a>残差结构</h1><blockquote><p>在主残差中加入组卷积</p></blockquote><h1 id="MLP结构"><a href="#MLP结构" class="headerlink" title="MLP结构"></a>MLP结构</h1><blockquote><p>在类似于MLP这种结构中将其调整成两头细，中间粗的结构</p></blockquote><ul><li>[96, 384, 96]</li></ul><h1 id="每个Stage设计"><a href="#每个Stage设计" class="headerlink" title="每个Stage设计"></a>每个Stage设计</h1><blockquote><p>每个卷积后面跟随一个1x1卷积，将通道加深再恢复，注意第一个尺寸上的卷积使用depthwise卷积<br>|7 x 7, 96 |<br>|1 x 1, 384|<br>|1 x 1, 96 |</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> AI </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>多传感器融合任务</title>
+      <link href="/2022/05/03/work/%E5%A4%9A%E4%BC%A0%E6%84%9F%E5%99%A8%E8%9E%8D%E5%90%88%E4%BB%BB%E5%8A%A1/"/>
+      <url>/2022/05/03/work/%E5%A4%9A%E4%BC%A0%E6%84%9F%E5%99%A8%E8%9E%8D%E5%90%88%E4%BB%BB%E5%8A%A1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="网络模型一"><a href="#网络模型一" class="headerlink" title="网络模型一"></a>网络模型一</h1><blockquote><p>选择一个backbone，多个head进行训练（其中head预测颜色、纹理等等）</p></blockquote><p>存在问题：</p><ul><li>多个head说明损失计算时会有多个反向传播，但是每个head倾向不同的任务，其更新权重时可能存在不同任务之间参数的互相破坏——即一个任务效果还行，但是多个任务训练的效果就很差</li></ul><h1 id="网络模型二"><a href="#网络模型二" class="headerlink" title="网络模型二"></a>网络模型二</h1><blockquote><p>针对模型一出现的问题：防止不同任务之间参数在更新时相互破坏</p></blockquote><ul><li>使用注意力机制，对backbone特定的层进行软注意掩膜，即学习不同任务的注意力，训练一个特征选择器，选择性的提取backbone某层中的特定的特征。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> img_fusion </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>DETR深度理解</title>
+      <link href="/2022/04/28/paper/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
+      <url>/2022/04/28/paper/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="End-to-End-Object-Detection-with-Transformers"><a href="#End-to-End-Object-Detection-with-Transformers" class="headerlink" title=" End-to-End Object Detection with Transformers "></a><center> End-to-End Object Detection with Transformers </center></h1><blockquote><ol><li>因为预测是模型预测，而标记是人为标记，得到的预测第一个不一定就直接与认为标记好的目标直接对应，如何将预测到的[class, box]和GT对应？</li></ol></blockquote><p>首先用二分图的方法进行信息匹配，匹配预测和标记之间相似程度，每一个预测目标只能与一个GT对应。对应好后进行损失计算</p><blockquote><ol start="2"><li>decoder输入的object queries如何理解？</li></ol></blockquote><ol><li>可理解成起控制decoder输出各式的作用，因为其本来就是随机初始化，自学习的token</li><li>本文经过可视化后，可以理解为每个token以不同的角度去分析encoder编码后的token信息</li></ol>]]></content>
       
       
       <categories>
@@ -33,7 +448,7 @@
       <link href="/2022/04/28/paper/%E5%9B%BE%E5%83%8F%E4%BF%AE%E6%94%B9%E6%A3%80%E6%B5%8B/"/>
       <url>/2022/04/28/paper/%E5%9B%BE%E5%83%8F%E4%BF%AE%E6%94%B9%E6%A3%80%E6%B5%8B/</url>
       
-        <content type="html"><![CDATA[<h1 id="ObjectFormer-for-Image-Manipulation-Detection-and-Localization"><a href="#ObjectFormer-for-Image-Manipulation-Detection-and-Localization" class="headerlink" title=" ObjectFormer for Image Manipulation Detection and Localization "></a><center> ObjectFormer for Image Manipulation Detection and Localization </center></h1><h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><p>现有的图像篡改检测方法通常使用CNN (卷积神经网络) 提取图像内的篡改信息，它们往往关注图像层面（高层）或者像素层面（底层）的视觉一致信息，而没有明确地对物体层面（中层）的表示进行建模。相比之下，我们认为，图像操纵检测不仅要检查某些像素是否具有异常，还要考虑物体之间是否一致。</p><h1 id="技术基础"><a href="#技术基础" class="headerlink" title="技术基础"></a>技术基础</h1><ol><li>transformer能探索不同patch之间的相关性——用于明确地建模物体层面地视觉一致性信息。</li><li>使用可学习的参数作为query，用于发现对象一致性作为中层表征，这能够表征两个特征中特定区域地一致性，通过这种一致性来改进patch-level的一致性重建</li></ol>]]></content>
+        <content type="html"><![CDATA[<h1 id="ObjectFormer-for-Image-Manipulation-Detection-and-Localization"><a href="#ObjectFormer-for-Image-Manipulation-Detection-and-Localization" class="headerlink" title=" ObjectFormer for Image Manipulation Detection and Localization "></a><center> ObjectFormer for Image Manipulation Detection and Localization </center></h1><h1 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h1><p>现有的图像篡改检测方法通常使用CNN (卷积神经网络) 提取图像内的篡改信息，它们往往关注图像层面（高层）或者像素层面（底层）的视觉一致信息，而没有明确地对物体层面（中层）的表示进行建模。相比之下，我们认为，图像操纵检测不仅要检查某些像素是否具有异常，还要考虑物体之间是否一致。</p><h1 id="技术基础"><a href="#技术基础" class="headerlink" title="技术基础"></a>技术基础</h1><ol><li>transformer能探索不同patch之间的相关性——用于明确地建模物体层面地视觉一致性信息。</li><li>使用可学习的参数作为query，用于发现对象一致性作为中层表征，这能够表征两个特征中特定区域地一致性，通过这种一致性来改进patch-level的一致性重建。——使用transformer应用在目标检测中的方法，使用object query学习并控制输出格式，以这种对象层面的信息辅助发现图像修改</li><li>BCIM模块考虑到全局检测是粗粒度的，当引入对象层面的检测后，再进行对象层面的细粒度建模，使用一个窗口控制局部区域的大小，计算这个区域中token的相似度，保持每个位置和周围区域的一致性。</li><li>交叉注意力，将混合token分别作为query或者kv计算注意力矩阵进行权重加和，这样能在本文任务中保证被篡改的物体层面的一致性信息。</li></ol><h1 id="问题解决思路"><a href="#问题解决思路" class="headerlink" title="问题解决思路"></a>问题解决思路</h1><blockquote><p>目标：判断一张图片是否被修改，并指出修改目标<br>本文思路：表征出图像中信息的一致性特征</p></blockquote><ol><li>Object Encoder：使用一个learnbale的query学习修改图片与其高频图像的一致性特征——将其作为<mark>中层一致性特征</mark>。（学习多模态向量得到一个相似性矩阵，可理解为关于信息一致性的中层特征，也可以理解为对原图和其高频图像之间的依赖关系建模，这个Q只是为了约束输出的格式）</li><li>Patch Decoder：中层一致性信息还不够，再使用较差注意力加强一致性信息</li><li>仅从一致性上创新度不够，考虑到修改存在尺寸上、颜色像素等层面的差异（不是类似于直接平移再粘贴，因为直接粘贴那么向量不变），此时再加入局部窗口内的特征信息相似性——也就是所谓的细粒度。</li></ol><h1 id="个人总结"><a href="#个人总结" class="headerlink" title="个人总结"></a>个人总结</h1><p>从计算图像中的一致性信息入手来区分图片是否被修改，然而transformer正好用来计算图像的一致性信息</p>]]></content>
       
       
       <categories>
@@ -83,7 +498,7 @@
       <link href="/2022/04/27/work/self-attention%E6%84%8F%E4%B9%89%E5%88%86%E6%9E%90/"/>
       <url>/2022/04/27/work/self-attention%E6%84%8F%E4%B9%89%E5%88%86%E6%9E%90/</url>
       
-        <content type="html"><![CDATA[<p>Attention Function函数如下：<br>$$ \operatorname{Attention}(Q, K, V)&#x3D;\operatorname{softmax}\left(\frac{Q K^{T}}{\sqrt{d_{k}}}\right) V$$</p><ol><li>$ QK^{T} $是计算相似度没错，但是为什么这样相乘能计算相似度？由此引出以下问题：</li></ol><blockquote><ul><li>向量的内积是什么？如何计算，几何意义是什么？</li></ul></blockquote><p>向量内积表征两个向量的夹角，表征一个向量在另一个向量上的投影，而这个投影值大，意味着两个向量的相关度高；如果两个向量的夹角是90°，那么这两个向量线性无关。</p><blockquote><ul><li>矩阵与自身转置相乘$ XX^{T} $，代表什么意义？</li></ul></blockquote><p>计算上理解：第一行与其它行内积、第二行与其它行内积…<br>意义上理解：计算每行与其他行的相似度，相当于遍历每行与其他行的相似度，得到的是一个相似度矩阵，其第一行第i个元素对应着原矩阵第一行与第i行相似度。<br>应用上理解：当图片切成patch后，矩阵中的每一行代表每个patch中的所有像素值，计算时相当于计算每个patch与其他patch之间的相似度</p><blockquote><ul><li>相似度矩阵再乘以原矩阵如何理解？</li></ul></blockquote><p>计算上理解：相似度矩阵第一行是原矩阵第一行与其它行的相似度，原矩阵第一列是每行的第一个数值，全部乘积完后的第一行，相当于以第一行为基准，用第一行和其它行相似度对应着调整其它行的占比。<br>应用上理解：用第一个patch与其他patch的相似度调整原矩阵中的第一行（第一个patch），而调整后的第一行是以相似度为基准，对所有patch的加权。</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="Transformer-中的-Attention机制"><a href="#Transformer-中的-Attention机制" class="headerlink" title=" Transformer 中的 Attention机制 "></a><center> Transformer 中的 Attention机制 </center></h1><p>Attention Function函数如下：<br>$$ \operatorname{Attention}(Q, K, V)&#x3D;\operatorname{softmax}\left(\frac{Q K^{T}}{\sqrt{d_{k}}}\right) V$$</p><h1 id="分母上scale的原因"><a href="#分母上scale的原因" class="headerlink" title="分母上scale的原因"></a>分母上scale的原因</h1><p>对于较大的$ d_k $来说在完成$ QK^k $后将会得到很大的值，而这将导致在经过sofrmax操作后产生非常小的梯度，不利于网络的训练</p><h1 id="使用softmax的原因"><a href="#使用softmax的原因" class="headerlink" title="使用softmax的原因"></a>使用softmax的原因</h1><ol><li>首先以softmax函数本身来说，它能将输出的值按照数值的大小占总数值的比率计算，最后表示成概率</li><li>在计算相似度时，会得到负数——这说明两个向量反向，使用softmax后，把原数值中的负数按照概率显示，这样做消除了方向的影响。即如果不做softmax，方向也会成为一个影响因素，原值为负数时，乘需要调整的矩阵会出现额外的问题</li><li>使用softmax还有归一化的作用，</li></ol><h1 id="使用多头的原因"><a href="#使用多头的原因" class="headerlink" title="使用多头的原因"></a>使用多头的原因</h1><p>每次计算完attention-map之后，map上对角线上的分数相对较高——相同的向量相似度肯定高，即过度的将注意力集中于自身的位置。<br>分成多头之后可理解为映射到不同的子空间，使用多个视角去关注像素之间的关系（在单头中对角线上的分数高，但是到了子空间中，其每个头关注的map就不是沿着对角线分数较高了）</p><h1 id="self-attention后面加上MLP的原因？"><a href="#self-attention后面加上MLP的原因？" class="headerlink" title="self-attention后面加上MLP的原因？"></a>self-attention后面加上MLP的原因？</h1><p>经过计算注意力图之后，还并不能称为注意力机制，因为得到的图是相对于单个channel来说的，只有经过MLP之后才能进行通道上的信息交互，同时某些时候通道会存在像素，位置信息，经过注意力图之后像素和位置信息并没有进行交互。</p><h1 id="attention机制中使用add-amp-Norm的原因"><a href="#attention机制中使用add-amp-Norm的原因" class="headerlink" title="attention机制中使用add &amp; Norm的原因"></a>attention机制中使用add &amp; Norm的原因</h1><ol><li>在使用softmax之前需要注意，要进行layernorm缩小数值之间的差距，因为假设k1和k2为两个向量且比较相关，但是由于k1和k2数值上比较大，计算相似度出出来的向量模长也很大，最后的相似度也很大，但相似度很大说明不相关，此时就需要提前进行归一化。</li><li>由于计算的核心思想是使用QK的相似度调整V，那么会不会出现一种问题：网络随便训练QK，而着重于V（答案）的优化？当然不会，因为有一个add的加入，即使用skip connect将Q加入到最后的输出进行统一。</li></ol><h1 id="1-QK-T-是计算相似度没错，但是为什么这样相乘能计算相似度？由此引出以下问题："><a href="#1-QK-T-是计算相似度没错，但是为什么这样相乘能计算相似度？由此引出以下问题：" class="headerlink" title="1. $ QK^{T} $是计算相似度没错，但是为什么这样相乘能计算相似度？由此引出以下问题："></a>1. $ QK^{T} $是计算相似度没错，但是为什么这样相乘能计算相似度？由此引出以下问题：</h1><blockquote><ul><li>向量的内积是什么？如何计算，几何意义是什么？</li></ul></blockquote><p>向量内积表征两个向量的夹角，表征一个向量在另一个向量上的投影，而这个投影值大，意味着两个向量的相关度高；如果两个向量的夹角是90°，那么这两个向量线性无关。</p><blockquote><ul><li>矩阵与自身转置相乘$ XX^{T} $，代表什么意义？</li></ul></blockquote><p><strong>计算上理解</strong>：第一行与其它行内积、第二行与其它行内积…<br><strong>意义上理解</strong>：计算每行与其他行的相似度，相当于遍历每行与其他行的相似度，得到的是一个相似度矩阵，其第一行第i个元素对应着原矩阵第一行与第i行相似度。<br><strong>应用上理解</strong>：当图片切成patch后，矩阵中的每一行代表每个patch中的所有像素值，计算时相当于计算每个patch与其他patch之间的相似度</p><blockquote><ul><li>相似度矩阵再乘以原矩阵如何理解？</li></ul></blockquote><p><strong>计算上理解</strong>：相似度矩阵第一行是原矩阵第一行与其它行的相似度，原矩阵第一列是每行的第一个数值，全部乘积完后的第一行，相当于以第一行为基准，用第一行和其它行相似度对应着调整其它行的占比。<br><strong>应用上理解</strong>：用第一个patch与其他patch的相似度调整原矩阵中的第一行（第一个patch），而调整后的第一行是以相似度为基准，对所有patch的加权。</p><h1 id="2-关于Q、K、V维度上的理解"><a href="#2-关于Q、K、V维度上的理解" class="headerlink" title="2.关于Q、K、V维度上的理解"></a>2.关于Q、K、V维度上的理解</h1><p>为了保证矩阵维度上的正确，前提条件：</p><ol><li><p>Q和K中向量的dim&#x2F;深度相同</p></li><li><p>K和V中向量的个数&#x2F;行相同</p><blockquote><ul><li>当Q、K、V自定义为可学习参数时：</li></ul></blockquote></li><li><p>可以将Q理解为输入（n个苹果），K可以理解为模板（m种水果），经过QK相乘之后得到的是一个n行m列的score注意力分数矩阵，作为被调整的矩阵V，V的行必须与K的个数（可理解为行，或m的个数）保持一致。</p></li></ol><blockquote><ul><li>当Q、K、V全都来自输入X时：</li></ul></blockquote><ol><li>例如计算图像的注意力机制相当于计算当前像素与所有像素的相似度并对原图像进行调整。调整时可理解为以K（水果模板）种类作为参考，重新审视或分类Q（苹果）</li></ol>]]></content>
       
       
       <categories>
@@ -183,7 +598,7 @@
       <link href="/2022/04/21/work/transformer%E7%9A%84%E6%84%8F%E4%B9%89%E5%9C%A8%E5%93%AA%E9%87%8C/"/>
       <url>/2022/04/21/work/transformer%E7%9A%84%E6%84%8F%E4%B9%89%E5%9C%A8%E5%93%AA%E9%87%8C/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>1.transformer是如何出现的<br>2.transformer如何使用？</p></blockquote><h1 id="transformer的背景"><a href="#transformer的背景" class="headerlink" title="transformer的背景"></a>transformer的背景</h1><ul><li>transformer基于self-attention<ul><li>self-attention比CNN看的更宽更远(感受野大，同时是全局远距离关联)</li><li>self-attention比lstm训练更快</li></ul></li></ul>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>1.transformer是如何出现的<br>2.transformer如何使用？</p></blockquote><h1 id="transformer的背景"><a href="#transformer的背景" class="headerlink" title="transformer的背景"></a>transformer的背景</h1><ul><li>transformer基于self-attention<ul><li>self-attention比CNN看的更宽更远(感受野大，同时是全局远距离关联)</li><li>self-attention比lstm训练更快</li></ul></li></ul><ol><li>卷积具有位移不变性和局部性，卷积核是针对某个像素及其周围8个像素块之间的关系，它的归纳偏置可带来更好的可迁移性和泛化能力。</li></ol>]]></content>
       
       
       
@@ -396,20 +811,7 @@
       <link href="/2022/04/11/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB2/"/>
       <url>/2022/04/11/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB2/</url>
       
-        <content type="html"><![CDATA[<h2 id="文章概述"><a href="#文章概述" class="headerlink" title="文章概述"></a>文章概述</h2><ul><li>图像迁移过程中出现内容泄露，主要原因是decoder不是无损重建，故文中提出projection-reversion结构，该模块核心思想是projection和reversion是对称的，其各小模块共享，reversion在结构上完全是反过来的projection，这样的结构有效解决了内容泄露</li></ul>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>StyTr2:Image Style Transfer with Transformers</title>
-      <link href="/2022/04/10/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB1/"/>
-      <url>/2022/04/10/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB1/</url>
-      
-        <content type="html"><![CDATA[<center> StyTr2:Image Style Transfer with Transformers </center><h2 id="文章生成思路"><a href="#文章生成思路" class="headerlink" title="文章生成思路"></a>文章生成思路</h2><h3 id="目的："><a href="#目的：" class="headerlink" title="目的："></a>目的：</h3><ul><li>在传统的风格迁移网络中加入transformer模块，让效果更好</li></ul><h3 id="思路概述："><a href="#思路概述：" class="headerlink" title="思路概述："></a>思路概述：</h3><ol><li>加入transformer模块</li><li>引入内容感知位置编码</li></ol><h2 id="文章提到的关键点以及需要注意的文献"><a href="#文章提到的关键点以及需要注意的文献" class="headerlink" title="文章提到的关键点以及需要注意的文献"></a>文章提到的关键点以及需要注意的文献</h2><h3 id="信息点"><a href="#信息点" class="headerlink" title="信息点"></a>信息点</h3><ol><li>风格转换的思路是将内容图像的二姐统计信息与风格图像对齐来进行优化——[6]-[14]</li><li>可以使用transformer提取不同层但提取相似的结构信息——[24]</li><li>identity loss——[15]</li></ol><h3 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3><ol><li>内容损失：计算某特征层与输入层的L2Loss</li><li>风格损失：一般与某特征层的均值、方差有关</li></ol><h3 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h3><h4 id="内容感知的位置编码"><a href="#内容感知的位置编码" class="headerlink" title="内容感知的位置编码"></a>内容感知的位置编码</h4><blockquote><p>对图片不再使用物理意义上的位置编码，根据内容来自适应编码，代码操作如下</p></blockquote><ol><li>首先对原图进行AdaptiveAvgPool2d自适应平均池化<ul><li>注意直接使用原图的像素数据</li><li>指定固定大小的输出（AdaptiveAvgPool2d(18)是将原图池化层成[b,c,18,18]大小）</li></ul></li><li>进行1*1的一个卷积，不进行尺寸与通道的上的变化，用于提取特征信息</li><li>将该特征信息的尺寸采样到与风格图像相同尺寸<br>最终的使用跟transformer一样，直接与图片的patch_embedding相加</li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>文章是为了加入transformer而引入内容感知的位置编码，在解释上是一种知道答案硬扯问题的感觉，编码思路值得借鉴，技术内容没有新意</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="ArtFlow：Unbiased-Image-Style-Transfer-via-Reversible-Neural-Flows"><a href="#ArtFlow：Unbiased-Image-Style-Transfer-via-Reversible-Neural-Flows" class="headerlink" title=" ArtFlow：Unbiased Image Style Transfer via Reversible Neural Flows "></a><center> ArtFlow：Unbiased Image Style Transfer via Reversible Neural Flows </center></h1><h2 id="文章概述"><a href="#文章概述" class="headerlink" title="文章概述"></a>文章概述</h2><ul><li>图像迁移过程中出现内容泄露，主要原因是decoder不是无损重建，故文中提出projection-reversion结构，该模块核心思想是projection和reversion是对称的，其各小模块共享，reversion在结构上完全是反过来的projection，这样的结构有效解决了内容泄露</li></ul>]]></content>
       
       
       <categories>
@@ -421,7 +823,32 @@
       
         <tags>
             
-            <tag> paper </tag>
+            <tag> Paper </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>StyTr2:Image Style Transfer with Transformers</title>
+      <link href="/2022/04/10/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB1/"/>
+      <url>/2022/04/10/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="StyTr2-Image-Style-Transfer-with-Transformers"><a href="#StyTr2-Image-Style-Transfer-with-Transformers" class="headerlink" title=" StyTr2:Image Style Transfer with Transformers "></a><center> StyTr2:Image Style Transfer with Transformers </center></h1><h2 id="文章生成思路"><a href="#文章生成思路" class="headerlink" title="文章生成思路"></a>文章生成思路</h2><h3 id="目的："><a href="#目的：" class="headerlink" title="目的："></a>目的：</h3><ul><li>在传统的风格迁移网络中加入transformer模块，让效果更好</li></ul><h3 id="思路概述："><a href="#思路概述：" class="headerlink" title="思路概述："></a>思路概述：</h3><ol><li>加入transformer模块</li><li>引入内容感知位置编码</li></ol><h2 id="文章提到的关键点以及需要注意的文献"><a href="#文章提到的关键点以及需要注意的文献" class="headerlink" title="文章提到的关键点以及需要注意的文献"></a>文章提到的关键点以及需要注意的文献</h2><h3 id="信息点"><a href="#信息点" class="headerlink" title="信息点"></a>信息点</h3><ol><li>风格转换的思路是将内容图像的二姐统计信息与风格图像对齐来进行优化——[6]-[14]</li><li>可以使用transformer提取不同层但提取相似的结构信息——[24]</li><li>identity loss——[15]</li></ol><h3 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3><ol><li>内容损失：计算某特征层与输入层的L2Loss</li><li>风格损失：一般与某特征层的均值、方差有关</li></ol><h3 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h3><h4 id="内容感知的位置编码"><a href="#内容感知的位置编码" class="headerlink" title="内容感知的位置编码"></a>内容感知的位置编码</h4><blockquote><p>对图片不再使用物理意义上的位置编码，根据内容来自适应编码，代码操作如下</p></blockquote><ol><li>首先对原图进行AdaptiveAvgPool2d自适应平均池化<ul><li>注意直接使用原图的像素数据</li><li>指定固定大小的输出（AdaptiveAvgPool2d(18)是将原图池化层成[b,c,18,18]大小）</li></ul></li><li>进行1*1的一个卷积，不进行尺寸与通道的上的变化，用于提取特征信息</li><li>将该特征信息的尺寸采样到与风格图像相同尺寸<br>最终的使用跟transformer一样，直接与图片的patch_embedding相加</li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>文章是为了加入transformer而引入内容感知的位置编码，在解释上是一种知道答案硬扯问题的感觉，编码思路值得借鉴，技术内容没有新意</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> work </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Paper </tag>
             
         </tags>
       
@@ -728,7 +1155,7 @@
       <link href="/2022/03/29/LIFE%20TOC/"/>
       <url>/2022/03/29/LIFE%20TOC/</url>
       
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="9f639d429c7674ff66fe62ab04d51225ed44b035936b7c00176f32d88f87657a">901015936e2ec1bc2a4d01c822635a06dbabc75c330bdf0d123f64dbd819e43430d0a05c3025834c03c24ebf318f6df515738cb63f9a216b3cae01030f30249b4c39b0efee78df4317fd591b23e5ad8076fd989204ca0663875ca43ddf17ac047e07e2008653afaaedb91f3cc83954156c99bb710833be778b8c37fc25407c487afe0884174bec091d37da6a9571d6638822e59a719bbf7009d1aafcb89e62fa0636349d228b8d37309a51efaa8d941ba56b5b5b8b8d04f755948b76f08b24857e7ca8bca7f693ca0c01fd66b97c554866778b219b84c49f23ae422bd79123958c5e96aaed7f8d3db31f5b724d88a5e14da4e11fd71f7bb32c7bdf6f4492d3dc48d2fce977628e5e03c356eff68efdc995cbc81c6333af03c0893fe0e39ae7caf788a94b2cfca9dd2c44571a77d66a5c8a785c6b1cb2d710af5e45b93e204cf81703c7e55032eca1fbfdb8f8f712ab5178a84f18da30e19b12ba1295c0f9f1c36c750b809a23c4f1f118e869ecf30ca3b29fb704d12bb1c35a1bcb730f8ca040c384420b00c79e58fd34291c6a3185daaf8cca29fbf9458573ec810fb2db39ba8d7002beee20857e50af80fb0b907c31124e5d536b41b92c3dee6c8badda9a10de8225fff757ad2c3f344f37548f1f54c8bbbdd184efb8df7a0ac3a648a9320c91c6118ffbf10f94b72ee03ce513c27aabed13cedd07293dd95e7a825d2269219e037eaafb8ff8bfb3830b76be6534780e68567570ff91f3c162f7586fe946240cebb2f0d3110d3b29f864a8dc9fae349962a8e051db6fc0e68f9042331a1e26e5370dc9e90766d1230d68c4a986e562712bd816e09dd2d9d53330f8f9a9268e1f3b4031d0a0b781976b5516611f4837d7a2c5951d31e23080bd4a9ef80671ddd1cd2a1ee568d9de1b43fdcaf185f486</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="d46d88f3f5914b623715509d7832039254faa82e49f25fe8d62f84da79d6e49e">901015936e2ec1bc2a4d01c822635a06dbabc75c330bdf0d123f64dbd819e43430d0a05c3025834c03c24ebf318f6df515738cb63f9a216b3cae01030f30249b4c39b0efee78df4317fd591b23e5ad8076fd989204ca0663875ca43ddf17ac047e07e2008653afaaedb91f3cc83954156c99bb710833be778b8c37fc25407c487afe0884174bec091d37da6a9571d6638822e59a719bbf7009d1aafcb89e62fa86a2ef73ad1e4584fdb376c7fedd7f639c14477c26f5eb04e7cbc7b3b12b1703d1b08113d72ea2c291fb53a6cd0e7f2e87afb2fd909082b621c3197c0d6b23bf5caa8d0876faeab6a2e299446beec4befa296bec2ab7e55da3f9e0dd6eb6dd4269442bab58c02d7f64168221ee47ccbc3b529c0245cfa8f9368ff4b86f8798dacb0b9b7f59ec6ab0b43f19920248892296383e87f503627811dc4dbd8ad70b91489be916abd58132128660b8f71b01f2f1fdbaea22ac28af0b0a987a80ccd6fb6544a8ca44bc2f1c49a8e8f8adef3cccceb3e2d1415d8bc3afa31fbec33995f0aed8dbfcce5c1ceb0c252fbc261ae3d308b7e60f6c8faa2b00aead7451cc53b32c5948c78196f1d48e991e9b04df40303ecae276b6ee81c4c18a60e639236af5148f34a2c86930ea46034082105e15826cadb587d0734847dd406bedaf99ea8311733cfdf8c12f1ab784284235bc5b3bb7cb18431ef9098b8bfd5fcbd03b333c4c7dfd0876b512cb49704fa97141fb40fb7680cc549d2660d2190e228a729b260adbde430b3f64745ba49fcc57843d8ab13bb880b0a5df4cbb5dd9220d53f9d3d7cc39b5a60d67c5fee3f34ad577aea58e4efb700fa1ff423f8c1aca80a1c1427b5e8cc9e22605d47bead6e1794f6632a3becaa56d2666048df083011f4b571c9b74bfb73b025c2d49c491637f4884da7feb91d2f954d8f3f3dedd9987630df8b492b7acbec9804ce04a216c4c68ba5d6d3dee2b49133bf73bb70daddad98add</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       
       
       <categories>
@@ -916,7 +1343,7 @@
       <link href="/2022/03/17/blog/github%E8%B6%85%E6%97%B6%E7%9B%B8%E5%BA%94%E9%97%AE%E9%A2%98/"/>
       <url>/2022/03/17/blog/github%E8%B6%85%E6%97%B6%E7%9B%B8%E5%BA%94%E9%97%AE%E9%A2%98/</url>
       
-        <content type="html"><![CDATA[<blockquote><p>问题描述：github相应超时，经常无法快速连接</p></blockquote><p>解决：更改本地hosts文件，文件位置如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:/Windows/system32/divers/etc/hosts</span><br></pre></td></tr></table></figure><h1 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h1><p>打开上述hosts文件增加如下内容：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#           140.82.112.4       github.com</span><br></pre></td></tr></table></figure><h1 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h1><ul><li>进入<a href="https://gitee.com/doshengl/GitHub520">相关网址</a>，复制其中的hosts地址粘贴到本地文件即可——该网站会实时更新地址</li></ul>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>问题描述：github相应超时，经常无法快速连接</p></blockquote><p>解决：更改本地hosts文件，文件位置如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Windows\System32\drivers\etc\hosts</span><br></pre></td></tr></table></figure><h1 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h1><p>打开上述hosts文件增加如下内容：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#           140.82.112.4       github.com</span><br></pre></td></tr></table></figure><h1 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h1><ul><li>进入<a href="https://gitee.com/doshengl/GitHub520">相关网址</a>，复制其中的hosts地址粘贴到本地文件即可——该网站会实时更新地址</li></ul>]]></content>
       
       
       <categories>
