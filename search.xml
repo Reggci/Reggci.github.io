@@ -5,8 +5,8 @@
     
     <entry>
       <title>专利撰写说明</title>
-      <link href="/2022/09/06/%E4%B8%93%E5%88%A9%E6%92%B0%E5%86%99%E8%AF%B4%E6%98%8E/"/>
-      <url>/2022/09/06/%E4%B8%93%E5%88%A9%E6%92%B0%E5%86%99%E8%AF%B4%E6%98%8E/</url>
+      <link href="/2022/09/06/work/%E4%B8%93%E5%88%A9%E6%92%B0%E5%86%99%E8%AF%B4%E6%98%8E/"/>
+      <url>/2022/09/06/work/%E4%B8%93%E5%88%A9%E6%92%B0%E5%86%99%E8%AF%B4%E6%98%8E/</url>
       
         <content type="html"><![CDATA[<h1 id="专利文件"><a href="#专利文件" class="headerlink" title="专利文件"></a>专利文件</h1><ol><li>权利要求书；</li><li>说明书；</li><li>说明书附图；</li><li>说明书摘要；</li><li>摘要附图；</li></ol><h1 id="专利要点"><a href="#专利要点" class="headerlink" title="专利要点"></a>专利要点</h1><ol><li>和现有方案的区别点（那个步骤不同）；</li><li>区别点解决的技术问题；</li><li>区别点达到的技术效果；</li></ol><h1 id="1-说明书摘要"><a href="#1-说明书摘要" class="headerlink" title="1.说明书摘要"></a>1.说明书摘要</h1><p>名称+领域+方案+效果</p><h1 id="2-权利要求书"><a href="#2-权利要求书" class="headerlink" title="2. 权利要求书"></a>2. 权利要求书</h1><ol><li><p>权力1有固定的格式，注意描述步骤时不要出现“等、大约、优选、比如。。。”不确定词汇，&#x3D;&#x3D;注意描述自己创新的步骤时可略作详细，非创新直接带过即可，突出自己与其他专利的不同&#x3D;&#x3D;</p><blockquote><p>一种…名称…方法，其特征在于，所述…方法包括&#x2F;包括以下步骤：</p></blockquote></li><li><p>权力2~n，固定格式，详细描述各步骤的细节</p><blockquote><p>根据权利要求n所述的+名称，其特征在于，所述步骤Sn（中的xxx表示为xxx符号）&#x2F;（包括以下步骤）</p></blockquote></li></ol>]]></content>
       
@@ -17,28 +17,9 @@
     
     
     <entry>
-      <title>openmmlab框架</title>
-      <link href="/2022/08/23/openmmlab%E6%A1%86%E6%9E%B6/"/>
-      <url>/2022/08/23/openmmlab%E6%A1%86%E6%9E%B6/</url>
-      
-        <content type="html"><![CDATA[<h1 id="配置文件读取"><a href="#配置文件读取" class="headerlink" title="配置文件读取"></a>配置文件读取</h1><blockquote><p>设置一个临时文件，将源文件内容加载到临时文件中，提取出临时文件的内容，删除临时文件，将所有信息保留在一个类对象中<br>1.得到一个字典类型的返回值<br>2.得到一个带有源文件及其内容的字符串<br>将上述两个参数解析，保留在config类对象中</p></blockquote><p>【其中涉及到类的操作】</p><ol><li>可先调用类的静态函数进行参数的收集（之前没有将该类进行实例化）</li><li>根据类的方法得到的参数再进行类的实例化</li></ol><p>【文件结构】</p><ol><li>选择基类配置文件</li><li>在基类配置文件的基础上进行修改<ul><li>因为存在覆盖的效果，直接设置基类key的修改值value，就能实现修改，但如果该值在基类中在其它处也被调用的话，需要一一修改，否则不能达到修改的效果</li></ul></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> Work </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>概率论与数理统计</title>
-      <link href="/2022/08/20/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"/>
-      <url>/2022/08/20/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</url>
+      <link href="/2022/08/20/work/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"/>
+      <url>/2022/08/20/work/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/</url>
       
         <content type="html"><![CDATA[<h1 id="1-连续型随机变量和离散型随机变量有什么区别？"><a href="#1-连续型随机变量和离散型随机变量有什么区别？" class="headerlink" title="1. 连续型随机变量和离散型随机变量有什么区别？"></a>1. 连续型随机变量和离散型随机变量有什么区别？</h1><p>离散型随机变量x：只可能出现有限个或可列个值<br>连续型随机变量x：不可列，通常不研究它去某个特定值得概率，而研究它在某个区间上的概率</p><h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
       
@@ -49,7 +30,7 @@
     
     
     <entry>
-      <title>markdown书写规则</title>
+      <title>常用markdown书写规则</title>
       <link href="/2022/08/18/markdown%E4%B9%A6%E5%86%99%E8%A7%84%E5%88%99/"/>
       <url>/2022/08/18/markdown%E4%B9%A6%E5%86%99%E8%A7%84%E5%88%99/</url>
       
@@ -69,8 +50,8 @@
     
     <entry>
       <title>卡尔曼滤波</title>
-      <link href="/2022/08/18/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/"/>
-      <url>/2022/08/18/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/</url>
+      <link href="/2022/08/18/work/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/"/>
+      <url>/2022/08/18/work/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/</url>
       
         <content type="html"><![CDATA[<h1 id="1-如何预测下一步数据？（如何分析测量值和估计值之间的额关系）"><a href="#1-如何预测下一步数据？（如何分析测量值和估计值之间的额关系）" class="headerlink" title="1. 如何预测下一步数据？（如何分析测量值和估计值之间的额关系）"></a>1. 如何预测下一步数据？（如何分析测量值和估计值之间的额关系）</h1><blockquote><p>当存在k个时序数据，如何估计下一个数据的变化？很自然想到使用已有数据的平均值来估计下一个数据,&#x3D;&#x3D;从平均数下手，分析平均数、当前值测试值、以往估计值之间的关系&#x3D;&#x3D;（假设其中估计值用之前的平均值）</p></blockquote><p>$$<br>\begin{align}<br>\hat{x}<em>{k} &amp;&#x3D;\frac{1}{k}\left(z</em>{1}+z_{2}+\cdots+z_{k}\right) \<br>&amp;&#x3D;\frac{1}{k}\left(z_{1}+z_{2}+\cdots+z_{k-1}\right)+\frac{1}{k} z_{k}\<br>&amp;&#x3D;\frac{1}{k} \frac{k-1}{(k-1)}\left(z_{1}+z_{2}+\cdots+z_{k-1}\right)+\frac{1}{k} z_{k} \<br>&amp;&#x3D;\frac{k-1}{k} \hat{x}<em>{k-1}+\frac{1}{k} z</em>{k} \<br>&amp;&#x3D;\hat{x}<em>{k-1}-\frac{1}{k} \hat{x}</em>{k-1}+\frac{1}{k} z_{k} \<br>\hat x_k &amp;&#x3D; \hat x_{k-1}+ \frac{1}{k}(z_k - \hat x_{k-1})<br>\end{align}<br>$$<br><strong>简式2</strong>：将当前测试值提出，用于分析当前测试值与之前数据值的关系<br><strong>简式3，4</strong>：将以往值化简为估计值<br><strong>简式5，6</strong>：合并化简</p><h1 id="2-Kalman增益"><a href="#2-Kalman增益" class="headerlink" title="2. Kalman增益"></a>2. Kalman增益</h1><p>可以从平均数的分析中发现，式（6）中k较小时（测试初期数据较少），估计值极大依赖当前测试值，但是&#x3D;&#x3D;随着k变大（测试数据增大），测量结果不再重要&#x3D;&#x3D;，因为当前估计值基本与上次估计值相等（后面一项公式接近于0），这和实际情况也符合（当对一件事掌握的信息越多，对其下次变化的估计也就越准确，越稳定），可理解为下式：</p><p>$$<br>\begin{equation}<br>当前估计值 &#x3D; 上一次估计值 + 系数 × （当前测量值-上一次估计值）<br>\end{equation}<br>$$<br>该式中的系数被称为Kerman增益，实际上其计算公式：<br>$$<br>\begin{equation}<br>K_k &#x3D; \frac{e_{est}}{e_{est}+e_{mea}}<br>\end{equation}<br>$$<br>其中est表示估计值，mea表示测量值</p><ul><li>当$e_{est}&gt;&gt;e_{mea}$时，表示估计值误差太大，只能信任测量值；将$K_k&#x3D;1$带入式（6）得$\hat x_k&#x3D;z_k$，即第k次估计值应等于测量值</li><li>反之，测量值误差太大，只能信任估计值，将$K_k&#x3D;0$带入式（6），第k次估计值等于估计值</li></ul><h1 id="Kalman计算步骤"><a href="#Kalman计算步骤" class="headerlink" title="Kalman计算步骤"></a>Kalman计算步骤</h1><p>$$<br>\begin{align}<br>K_k &#x3D; \frac{e_{est}}{e_{est} + e_{mea}} \<br>\hat x_k &#x3D; \hat x_{k-1} + K_k(Z_k - \hat x_{k-1}) \<br>e_{est} &#x3D; (1-K_k)e_{est_{k-1}}<br>\end{align}<br>$$</p><ol><li>式9计算卡尔曼增益$K_k$</li><li>式10根据以往数据计算下一步估计值</li><li>式11更新估计误差</li></ol><h1 id="数据融合"><a href="#数据融合" class="headerlink" title="数据融合"></a>数据融合</h1><blockquote><p>例1：两个称称量同一个物体，两个称存在已知偏差σ，如何通过两个称合理地计算出一个更准确地数值？<br>使用式（10），题目的问法可以理解为：通过两个已知数据的分布，找到一个更为准确、误差更小的数据分布——即计算公式两边的方差，找一个k让期望数值的方差最小</p></blockquote>]]></content>
       
@@ -88,8 +69,8 @@
     
     <entry>
       <title>计算机网络</title>
-      <link href="/2022/08/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-      <url>/2022/08/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
+      <link href="/2022/08/17/work/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+      <url>/2022/08/17/work/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
       
         <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">学习背景：两个电脑使用不同的鼠标导致频繁换鼠标，寻求两个电脑公用一个鼠标的方法</span><br></pre></td></tr></table></figure><h1 id="1-局域网内使用软件可实现"><a href="#1-局域网内使用软件可实现" class="headerlink" title="1. 局域网内使用软件可实现"></a>1. 局域网内使用软件可实现</h1><blockquote><p>经过搜索发现，该类软件较多，不过要求设备在同一个局域网内，针对局域网等计算机网络名词开始学习</p></blockquote><table><thead><tr><th align="center">名词</th><th align="center">解释</th><th align="center">说明</th></tr></thead><tbody><tr><td align="center">网络</td><td align="center">多台电脑可以互相交互数据，就可以简单的称为网络</td><td align="center"></td></tr><tr><td align="center">局域网</td><td align="center">多个网络构成</td><td align="center"></td></tr><tr><td align="center">城域网</td><td align="center">多个局域网构成</td><td align="center">局域网&#x2F;广域网的范围按情况而定，例如家——楼——小区，或学校——城市——国家</td></tr><tr><td align="center">广域网</td><td align="center">多个城域网构成</td><td align="center"></td></tr><tr><td align="center">内网</td><td align="center">局域网</td><td align="center"></td></tr><tr><td align="center">外网</td><td align="center">广域网</td><td align="center">当局域网关闭向广域网的数据传输通道，此时局域网可理解为内网，广域网理解为外网</td></tr><tr><td align="center">因特网&#x2F;internet&#x2F;互联网</td><td align="center">特殊的广域网，最大的计算机网络</td><td align="center"></td></tr><tr><td align="center">以太网</td><td align="center">一种技术，一种实现设备共享的数据传输技术</td><td align="center"></td></tr></tbody></table><h1 id="2-非局域网内如何实现？"><a href="#2-非局域网内如何实现？" class="headerlink" title="2. 非局域网内如何实现？"></a>2. 非局域网内如何实现？</h1><blockquote><p>可使用内网穿透，对于这类名词开始学习</p></blockquote><table><thead><tr><th align="center">名词</th><th align="center">解释</th><th align="center">说明</th></tr></thead><tbody><tr><td align="center">IPv4和IPv6</td><td align="center">都用来标识连接到internet的设别的地址，只不过分别是IP协议的第四个版本与第六个版本</td><td align="center"></td></tr><tr><td align="center">公网IP</td><td align="center">唯一地址（如某省某市某小区）</td><td align="center"></td></tr><tr><td align="center">保留地址</td><td align="center">可重复的（可理解为不同小区的第某栋第某号，虽然栋号相同，但小区不同）</td><td align="center">通常在接入路由器&#x2F;交换机后，由其自动分配私有地址（DHCP协议实现，关闭该协议可实现手动设置地址）</td></tr><tr><td align="center">端口</td><td align="center">相当于房子的门，端口对应到某个具体的进程，指明是计算机xx进程需要数据</td><td align="center">地址由IP:端口组成，相同的两个IP传输数据，但是端口不同，这也被认为是新的连接</td></tr><tr><td align="center">NAT技术</td><td align="center">IP转换技术，当私有IP发送数据后，交换机将私有地址改为公有IP+端口，即以自己的名义将数据发送（类似于卧底，只有交换机才知道上下层）</td><td align="center"></td></tr><tr><td align="center">端口映射</td><td align="center">由于交换机存在IP转换，导致端口也被重新随机分配，当私有地址关闭连接时，目标就无法主动发送数据过来，因为关闭连接时交换机将之前的IP及端口释放了，这种情况下，就需要端口映射将端口固定，实现对方也可以主动发数据过来</td><td align="center">理想情况下为端口直连，这样速度直接为两端各自的速度，但是端口绑定只能实现在自己私有地址的上层路由器，实际情况下自己的IP是由多个路由器分配下来，由于无法控制上上层、上上上层路由器进行端口绑定，即它们又开始随机分配</td></tr><tr><td align="center">内网穿透</td><td align="center">一旦两个主机都是存在NAT下，即无法主动向对方发送数据（被交换机丢掉），次数需要中间服务器实现两个主机的连接</td><td align="center">但是数据传输速度由中间服务器控制，导致速度下降</td></tr></tbody></table>]]></content>
       
@@ -101,8 +82,8 @@
     
     <entry>
       <title>论文排版</title>
-      <link href="/2022/08/14/%E8%AE%BA%E6%96%87%E6%8E%92%E7%89%88/"/>
-      <url>/2022/08/14/%E8%AE%BA%E6%96%87%E6%8E%92%E7%89%88/</url>
+      <link href="/2022/08/14/work/%E8%AE%BA%E6%96%87%E6%8E%92%E7%89%88/"/>
+      <url>/2022/08/14/work/%E8%AE%BA%E6%96%87%E6%8E%92%E7%89%88/</url>
       
         <content type="html"><![CDATA[<h1 id="双列排版论文"><a href="#双列排版论文" class="headerlink" title="双列排版论文"></a>双列排版论文</h1><blockquote><p>正常单列排版的文章,某些图片过大，需要文字双列、图片单列。</p></blockquote><ol><li>选中正文包括图片，布局——栏——两栏</li><li>光标定位到单列排版的图片之前，分隔符——连续，栏——一栏</li><li>光标定位到图片之后，文字之前，分隔符——连续，栏——两栏</li></ol><h1 id="页脚设置"><a href="#页脚设置" class="headerlink" title="页脚设置"></a>页脚设置</h1><ol><li><p>首页页脚与其他页不同</p><blockquote><p>首页页脚需要标注作者信息，但一设置所有页都存在相同的设置</p></blockquote></li><li><p>设置页脚，填写相关信息</p></li><li><p>在第一页末尾或者第二页起始，分隔符——下一页</p></li><li><p>选择第二页的页脚，取消链接到前一节选项，页脚——删除页脚</p></li></ol><h1 id="参考文献排版"><a href="#参考文献排版" class="headerlink" title="参考文献排版"></a>参考文献排版</h1><ol><li>出现间距过大情况，多出现于英文</li></ol><ul><li>一般来说参考文献要求的字体更小，相对于正文字体会消除很多间距过大的问题</li><li>整体调整好后，仅仅只有个位数的参考文献需要调整，此时手动调整即可——英文可断开换行，手动添加单词换行连接符</li></ul>]]></content>
       
@@ -123,7 +104,7 @@
       <link href="/2022/08/03/%E5%89%91%E6%8C%87offer/"/>
       <url>/2022/08/03/%E5%89%91%E6%8C%87offer/</url>
       
-        <content type="html"><![CDATA[<h1 id="03-数组中重复的数字"><a href="#03-数组中重复的数字" class="headerlink" title="03.数组中重复的数字"></a>03.数组中重复的数字</h1><blockquote><p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p></blockquote><ul><li><p>【题点】</p><ul><li>长度为n</li><li>元素取值范围[0,n-1]</li><li>元素存在重复</li></ul></li><li><p>【思路】</p><ol><li>排序——将下标与元素对齐</li><li>对比</li></ol></li><li><p>【思考】</p><ol><li>直接对比会使用多个for嵌套，造成复杂度上升</li><li>最终的列前一部分为排序好的列表，后面为重复元素（随机排序）</li></ol></li><li><p>【bug】</p><ol><li>进行排序交换的两个元素有可能相同，此时可直接返回该元素</li></ol></li></ul><hr><h1 id="04-二维数组中的查找"><a href="#04-二维数组中的查找" class="headerlink" title="04.二维数组中的查找"></a>04.二维数组中的查找</h1><blockquote><p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p></blockquote><ul><li>【题点】<ol><li>二维数组</li><li>递增</li><li>边界</li></ol></li><li>【思路】<ol><li>考虑从一个定向开始移动，左上和右下角的数字两侧均是增大&#x2F;减小——无法定向；左下和右上一侧增大，一侧减小——可以选择一个作为定向</li><li>无论是小还是大，可以从行或列进行推动，然后再推动列或行，达到定位的目的</li></ol></li><li>【思考】<ul><li>一维数组可直接使用二分法——要么大要么小，已经定向</li><li>二维数组需要考虑定向问题，如果目标小，而数据各方向都为小，此时不知向哪个方向移动——直接二分从中间开始就会出现左上两侧均大或者右下两侧均小，此时无法定向</li><li>选择四个边界为基准，此时靠墙，那么只有两个方向，问题回到一维</li></ul></li><li>【bug】<ol><li>&#x3D;&#x3D;注意使用for循环列表时，注意列表长度为0的情况，此时for会直接报错，可使用while首先就确定边界问题</li><li>注意起始点非原点开始时，首先确定坐标，而不是上来直接使用for<br>##&#x3D;&#x3D;for与while存在什么区别？&#x3D;&#x3D;</li></ol></li></ul><ol><li>while强调条件判断，每次循环都需要判断条件是否满足——猜数游戏中由于while每次都判断，故此时不需要像for语句一样从某侧循环过去</li><li>for在已知循环次数（容器）的情况下，不需要再判断边界——针对已知边界情况（不需要关注边界问题）时，for语句更高效</li></ol><hr><h1 id="05-替换空格"><a href="#05-替换空格" class="headerlink" title="05. 替换空格"></a>05. 替换空格</h1><blockquote><p>请实现一个函数，把字符串 s 中的每个空格替换成”%20”。——本题需要使用C++完成，python中的字符串类型无法被修改</p></blockquote><ul><li>【思路】<ul><li>首先一个空格对应三个位，先增加字符串长度</li><li>设置两个指针，前面的判断是不是空格，后面的起复制加添加字符串的功能</li></ul></li><li>【bug】<ul><li>for语句后面是()不是{}</li><li>多个字符串使用<code>&quot;&quot;</code>而不是<code> &#39;&#39;</code></li><li>C++中考虑到字符串之类的要考虑到位的概念</li></ul></li></ul><hr><h1 id="06-从尾到头打印链表"><a href="#06-从尾到头打印链表" class="headerlink" title="06. 从尾到头打印链表"></a>06. 从尾到头打印链表</h1><blockquote><p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。</p></blockquote><ul><li>【补充】<ul><li>在python中的链表，ListNode存有两个值，ListNode.val为当前阶段结点的数值，ListNode.next指向下一个结点</li><li>链表作为输入，输入的是某个结点</li></ul></li><li>【思路】<ul><li>可以顺序取出在反转</li><li>可以使用insert永远插在第一个位置</li></ul></li><li>【bug】<ul><li>实际场景下使用的是链表某节点的值，不要把阶段传入使用</li></ul></li></ul><hr><h1 id="07-重建二叉树"><a href="#07-重建二叉树" class="headerlink" title="07. 重建二叉树"></a>07. 重建二叉树</h1><blockquote><p>输入某二叉树的前序遍历和中序遍历的结果，请构建该二叉树并返回其根节点。<br>假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p></blockquote><ul><li>【补充】<ul><li>树<ol><li>深度优先——先确定根节点的顺序，接下来都是先左后右<ol><li>先序遍历——【根，左，右】从根节点开始输出，再输出所有左侧结点，最后输出右侧（右左，右右）结点</li><li>中序遍历——【左下叶子树，结点，右子树】所有结点放在中间，找到最左下的叶节点开始输出，最后输出右侧结点</li><li>后序遍历——【左下叶子树，右子树，结点】</li></ol></li><li>广度优先</li></ol></li></ul></li><li>【思路】</li><li>【思考】</li><li>【bug】</li></ul><hr><h1 id="09-用两个栈实现队列"><a href="#09-用两个栈实现队列" class="headerlink" title="09. 用两个栈实现队列"></a>09. 用两个栈实现队列</h1><blockquote><p>用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead 操作返回 -1 )</p></blockquote><ul><li>【题点】<ul><li>栈、队列</li></ul></li><li>【思路】<ul><li>用两个栈模拟队列先进先出，不用考虑实际存储空间是什么样子的，只需要模拟先进先出的特性即可</li></ul></li><li>【思考】<ul><li>注意两个栈模拟队尾和队头</li></ul></li><li>【bug】<ul><li>注意删除函数的判断<ol><li>出栈stack为空——将进栈stack的数据元素弹出并压入</li><li>出栈不为空——弹出并返回；否则，返回-1</li></ol></li></ul></li></ul><hr><h1 id="10-1-斐波那契数列"><a href="#10-1-斐波那契数列" class="headerlink" title="10.1 斐波那契数列"></a>10.1 斐波那契数列</h1><blockquote><p>写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项（即 F(N)）。斐波那契数列的定义如下：<br>F(0) &#x3D; 0,   F(1) &#x3D; 1<br>F(N) &#x3D; F(N - 1) + F(N - 2), 其中 N &gt; 1.<br>斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。<br>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p></blockquote><ul><li>【题点】<ul><li>斐波那契——递归函数</li></ul></li><li>【思路】<ul><li>两种算法<ol><li>简单的正向计算</li><li>递归函数</li><li>直接查表</li></ol></li></ul></li><li>【思考】<ul><li>很多情况下正向计算即可，因为这样的时间复杂度较低</li></ul></li><li>【bug】<ul><li>注意返回值返回的是x，还是y</li></ul></li></ul><hr><h1 id="10-2-青蛙跳台阶问题"><a href="#10-2-青蛙跳台阶问题" class="headerlink" title="10.2 青蛙跳台阶问题"></a>10.2 青蛙跳台阶问题</h1><blockquote><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。<br>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p></blockquote><ul><li><p>【思路】</p><ol><li>如果第一次跳的是1级台阶，那么剩下n-1级台阶，跳法是f(n-1)</li><li>如果第一次跳的是2级台阶，那么剩下n-2级台阶，跳法是f(n-2)</li><li>可以得出总跳法为: f(n) &#x3D; f(n-1) + f(n-2)</li><li>由题意可得：没有台阶的时候f(0) &#x3D; 1，只有一级台阶的时候 f(1) &#x3D; 1</li></ol></li><li><p>【思考】</p><ul><li>注意，为什么需要0级台阶？当x指向0级台阶，那么i级台阶和x就对应起来了</li><li>同时在题目的测试中也提示了f(0)&#x3D;1</li><li>递归问题首先考虑正向解</li></ul></li><li><p>【bug】</p></li></ul><hr><h1 id="11-旋转数组的最小数字"><a href="#11-旋转数组的最小数字" class="headerlink" title="11.旋转数组的最小数字"></a>11.旋转数组的最小数字</h1><blockquote><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。给你一个可能存在 重复 元素值的数组 numbers ，它原来是一个升序排列的数组，并按上述情形进行了一次旋转。请返回旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一次旋转，该数组的最小值为 1。  注意，数组 [a[0], a[1], a[2], …, a[n-1]] 旋转一次 的结果为数组 [a[n-1], a[0], a[1], a[2], …, a[n-2]] 。</p></blockquote><ul><li>【题点】<ul><li>本质上是求取一个数组的最小值，为什么说这么多？——直接遍历整个数组，复杂度较高，本体考验的是二分法</li></ul></li><li>【思路】<ul><li>使用二分法分析左右两侧数值大小来确定最小值位置</li></ul></li><li>【思考】<ul><li>只旋转一次，而且原列表升序（左一定小于右）<ol><li>如果中间大于右侧，说明旋转侧在右边，即最小值也在右侧，但是&#x3D;&#x3D;left&#x3D;mid+1&#x3D;&#x3D;，为什么要加1？因为已经确定mid这个位置必定不是最小值</li><li>如果中间小于右侧，那么旋转侧在左边，那么最小值在左侧，此时&#x3D;&#x3D;right&#x3D;mid&#x3D;&#x3D;，此处没有-1，那是因为mid处的值有可能就是最小值，无法直接排除</li></ol></li></ul></li><li>【bug】<ul><li>如果没有+1，时间复杂度超出程序要求</li></ul></li></ul><hr><h1 id="12-矩阵中的路径——没有做，需要后续知识"><a href="#12-矩阵中的路径——没有做，需要后续知识" class="headerlink" title="12. 矩阵中的路径——没有做，需要后续知识"></a>12. 矩阵中的路径——没有做，需要后续知识</h1><blockquote><p>给定一个 m x n 二维字符网格 board 和一个字符串单词 word 。如果 word 存在于网格中，返回 true ；否则，返回 false 。<br>单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。</p></blockquote><ul><li>【题点】<ul><li>二维矩阵，涉及dfs深度优先搜索算法</li><li>回溯法，递归寻找目标，否则回退</li></ul></li><li>【思路】</li><li>【思考】<ul><li>所谓的回退是将所有路径都列举出来，选择符合条件的那条路，在矩阵中，加入递归首先是向左移动，那么便会一直左移（如果符合条件），相当于一直尝试</li></ul></li><li>【bug】</li></ul><hr><h1 id=""><a href="#" class="headerlink" title=""></a></h1><blockquote></blockquote><ul><li>【题点】</li><li>【思路】</li><li>【思考】</li><li>【bug】</li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="03-数组中重复的数字"><a href="#03-数组中重复的数字" class="headerlink" title="03.数组中重复的数字"></a>03.数组中重复的数字</h1><blockquote><p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p></blockquote><ul><li><p>【题点】</p><ul><li>长度为n</li><li>元素取值范围[0,n-1]</li><li>元素存在重复</li></ul></li><li><p>【思路】</p><ol><li>排序——将下标与元素对齐</li><li>对比</li></ol></li><li><p>【思考】</p><ol><li>直接对比会使用多个for嵌套，造成复杂度上升</li><li>最终的列前一部分为排序好的列表，后面为重复元素（随机排序）</li></ol></li><li><p>【bug】</p><ol><li>进行排序交换的两个元素有可能相同，此时可直接返回该元素</li></ol></li></ul><hr><h1 id="04-二维数组中的查找"><a href="#04-二维数组中的查找" class="headerlink" title="04.二维数组中的查找"></a>04.二维数组中的查找</h1><blockquote><p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p></blockquote><ul><li>【题点】<ol><li>二维数组</li><li>递增</li><li>边界</li></ol></li><li>【思路】<ol><li>考虑从一个定向开始移动，左上和右下角的数字两侧均是增大&#x2F;减小——无法定向；左下和右上一侧增大，一侧减小——可以选择一个作为定向</li><li>无论是小还是大，可以从行或列进行推动，然后再推动列或行，达到定位的目的</li></ol></li><li>【思考】<ul><li>一维数组可直接使用二分法——要么大要么小，已经定向</li><li>二维数组需要考虑定向问题，如果目标小，而数据各方向都为小，此时不知向哪个方向移动——直接二分从中间开始就会出现左上两侧均大或者右下两侧均小，此时无法定向</li><li>选择四个边界为基准，此时靠墙，那么只有两个方向，问题回到一维</li></ul></li><li>【bug】<ol><li>&#x3D;&#x3D;注意使用for循环列表时，注意列表长度为0的情况，此时for会直接报错，可使用while首先就确定边界问题</li><li>注意起始点非原点开始时，首先确定坐标，而不是上来直接使用for<br>##&#x3D;&#x3D;for与while存在什么区别？&#x3D;&#x3D;</li></ol></li></ul><ol><li>while强调条件判断，每次循环都需要判断条件是否满足——猜数游戏中由于while每次都判断，故此时不需要像for语句一样从某侧循环过去</li><li>for在已知循环次数（容器）的情况下，不需要再判断边界——针对已知边界情况（不需要关注边界问题）时，for语句更高效</li></ol><hr><h1 id="05-替换空格"><a href="#05-替换空格" class="headerlink" title="05. 替换空格"></a>05. 替换空格</h1><blockquote><p>请实现一个函数，把字符串 s 中的每个空格替换成”%20”。——本题需要使用C++完成，python中的字符串类型无法被修改</p></blockquote><ul><li>【思路】<ul><li>首先一个空格对应三个位，先增加字符串长度</li><li>设置两个指针，前面的判断是不是空格，后面的起复制加添加字符串的功能</li></ul></li><li>【bug】<ul><li>for语句后面是()不是{}</li><li>多个字符串使用<code>&quot;&quot;</code>而不是<code> &#39;&#39;</code></li><li>C++中考虑到字符串之类的要考虑到位的概念</li></ul></li></ul><hr><h1 id="06-从尾到头打印链表"><a href="#06-从尾到头打印链表" class="headerlink" title="06. 从尾到头打印链表"></a>06. 从尾到头打印链表</h1><blockquote><p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。</p></blockquote><ul><li>【补充】<ul><li>在python中的链表，ListNode存有两个值，ListNode.val为当前阶段结点的数值，ListNode.next指向下一个结点</li><li>链表作为输入，输入的是某个结点</li></ul></li><li>【思路】<ul><li>可以顺序取出在反转</li><li>可以使用insert永远插在第一个位置</li></ul></li><li>【bug】<ul><li>实际场景下使用的是链表某节点的值，不要把阶段传入使用</li></ul></li></ul><hr><h1 id="07-重建二叉树"><a href="#07-重建二叉树" class="headerlink" title="07. 重建二叉树"></a>07. 重建二叉树</h1><blockquote><p>输入某二叉树的前序遍历和中序遍历的结果，请构建该二叉树并返回其根节点。<br>假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p></blockquote><ul><li>【补充】<ul><li>树<ol><li>深度优先——先确定根节点的顺序，接下来都是先左后右<ol><li>先序遍历——【根，左，右】从根节点开始输出，再输出所有左侧结点，最后输出右侧（右左，右右）结点</li><li>中序遍历——【左下叶子树，结点，右子树】所有结点放在中间，找到最左下的叶节点开始输出，最后输出右侧结点</li><li>后序遍历——【左下叶子树，右子树，结点】</li></ol></li><li>广度优先</li></ol></li></ul></li><li>【思路】</li><li>【思考】</li><li>【bug】</li></ul><hr><h1 id="09-用两个栈实现队列"><a href="#09-用两个栈实现队列" class="headerlink" title="09. 用两个栈实现队列"></a>09. 用两个栈实现队列</h1><blockquote><p>用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，deleteHead 操作返回 -1 )</p></blockquote><ul><li>【题点】<ul><li>栈、队列</li></ul></li><li>【思路】<ul><li>用两个栈模拟队列先进先出，不用考虑实际存储空间是什么样子的，只需要模拟先进先出的特性即可</li></ul></li><li>【思考】<ul><li>注意两个栈模拟队尾和队头</li></ul></li><li>【bug】<ul><li>注意删除函数的判断<ol><li>出栈stack为空——将进栈stack的数据元素弹出并压入</li><li>出栈不为空——弹出并返回；否则，返回-1</li></ol></li></ul></li></ul><hr><h1 id="10-1-斐波那契数列"><a href="#10-1-斐波那契数列" class="headerlink" title="10.1 斐波那契数列"></a>10.1 斐波那契数列</h1><blockquote><p>写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项（即 F(N)）。斐波那契数列的定义如下：<br>F(0) &#x3D; 0,   F(1) &#x3D; 1<br>F(N) &#x3D; F(N - 1) + F(N - 2), 其中 N &gt; 1.<br>斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。<br>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p></blockquote><ul><li>【题点】<ul><li>斐波那契——递归函数</li></ul></li><li>【思路】<ul><li>两种算法<ol><li>简单的正向计算</li><li>递归函数</li><li>直接查表</li></ol></li></ul></li><li>【思考】<ul><li>很多情况下正向计算即可，因为这样的时间复杂度较低</li></ul></li><li>【bug】<ul><li>注意返回值返回的是x，还是y</li></ul></li></ul><hr><h1 id="10-2-青蛙跳台阶问题"><a href="#10-2-青蛙跳台阶问题" class="headerlink" title="10.2 青蛙跳台阶问题"></a>10.2 青蛙跳台阶问题</h1><blockquote><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。<br>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p></blockquote><ul><li><p>【思路】</p><ol><li>如果第一次跳的是1级台阶，那么剩下n-1级台阶，跳法是f(n-1)</li><li>如果第一次跳的是2级台阶，那么剩下n-2级台阶，跳法是f(n-2)</li><li>可以得出总跳法为: f(n) &#x3D; f(n-1) + f(n-2)</li><li>由题意可得：没有台阶的时候f(0) &#x3D; 1，只有一级台阶的时候 f(1) &#x3D; 1</li></ol></li><li><p>【思考】</p><ul><li>注意，为什么需要0级台阶？当x指向0级台阶，那么i级台阶和x就对应起来了</li><li>同时在题目的测试中也提示了f(0)&#x3D;1</li><li>递归问题首先考虑正向解</li></ul></li><li><p>【bug】</p></li></ul><hr><h1 id="11-旋转数组的最小数字"><a href="#11-旋转数组的最小数字" class="headerlink" title="11.旋转数组的最小数字"></a>11.旋转数组的最小数字</h1><blockquote><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。给你一个可能存在 重复 元素值的数组 numbers ，它原来是一个升序排列的数组，并按上述情形进行了一次旋转。请返回旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一次旋转，该数组的最小值为 1。  注意，数组 [a[0], a[1], a[2], …, a[n-1]] 旋转一次 的结果为数组 [a[n-1], a[0], a[1], a[2], …, a[n-2]] 。</p></blockquote><ul><li>【题点】<ul><li>本质上是求取一个数组的最小值，为什么说这么多？——直接遍历整个数组，复杂度较高，本体考验的是二分法</li></ul></li><li>【思路】<ul><li>使用二分法分析左右两侧数值大小来确定最小值位置</li></ul></li><li>【思考】<ul><li>只旋转一次，而且原列表升序（左一定小于右）<ol><li>如果中间大于右侧，说明旋转侧在右边，即最小值也在右侧，但是&#x3D;&#x3D;left&#x3D;mid+1&#x3D;&#x3D;，为什么要加1？因为已经确定mid这个位置必定不是最小值</li><li>如果中间小于右侧，那么旋转侧在左边，那么最小值在左侧，此时&#x3D;&#x3D;right&#x3D;mid&#x3D;&#x3D;，此处没有-1，那是因为mid处的值有可能就是最小值，无法直接排除</li></ol></li></ul></li><li>【bug】<ul><li>如果没有+1，时间复杂度超出程序要求</li></ul></li></ul><hr><h1 id="12-矩阵中的路径——没有做，需要后续知识"><a href="#12-矩阵中的路径——没有做，需要后续知识" class="headerlink" title="12. 矩阵中的路径——没有做，需要后续知识"></a>12. 矩阵中的路径——没有做，需要后续知识</h1><blockquote><p>给定一个 m x n 二维字符网格 board 和一个字符串单词 word 。如果 word 存在于网格中，返回 true ；否则，返回 false 。<br>单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。</p></blockquote><ul><li>【题点】<ul><li>二维矩阵，涉及dfs深度优先搜索算法</li><li>回溯法，递归寻找目标，否则回退</li></ul></li><li>【思路】</li><li>【思考】<ul><li>所谓的回退是将所有路径都列举出来，选择符合条件的那条路，在矩阵中，加入递归首先是向左移动，那么便会一直左移（如果符合条件），相当于一直尝试</li></ul></li><li>【bug】</li></ul><hr><h1 id="14-剪绳子-1"><a href="#14-剪绳子-1" class="headerlink" title="14. 剪绳子-1"></a>14. 剪绳子-1</h1><blockquote><p>给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n&gt;1并且m&gt;1），每段绳子的长度记为 k[0],k[1]…k[m-1] 。请问 k[0]<em>k[1]</em>…*k[m-1] 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。2&lt;n&lt;58</p></blockquote><ul><li>【题点】<ul><li>属于动态规划问题</li></ul></li><li>【思路】<ul><li>总体和部分是相关的，故为求目标值，先求其各个子情况，在子情况的基础上计算最终的结果</li><li>注意并没有使用栈，为保存每次计算结果，直接使用数组保存子情况的结果</li></ul></li><li>【思考】<ul><li>在比较中如何保留第i趟中的最大值？<ul><li>在max(A[i],…,…)直接加入当前值即可</li></ul></li></ul></li><li>【bug】</li></ul><hr><h1 id="剪绳子-2"><a href="#剪绳子-2" class="headerlink" title="剪绳子-2"></a>剪绳子-2</h1><blockquote><p>题目与上一个题目相同，不过n的限定范围更大2&lt;n&lt;1000</p></blockquote><ul><li>【题点】<ul><li>n的范围更大</li></ul></li><li>【思路】<ul><li>由于n的范围变大，如果依然使用动态规划，存在超时的情况</li></ul></li><li>【思考】<ul><li>本题存在多种解法，如数学归纳法（最终直接使用if，else进行最终的结果输出），也还有其他算法——看不懂</li></ul></li><li>【bug】</li></ul><hr><h1 id="二进制中1的个数"><a href="#二进制中1的个数" class="headerlink" title="二进制中1的个数"></a>二进制中1的个数</h1><blockquote><p>编写一个函数，输入是一个无符号整数（以二进制串的形式），返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为 汉明重量).）。</p></blockquote><ul><li>【题点】<ul><li>输入为二进制</li></ul></li><li>【思路】<ol><li>直接用1的模板位移32次去找1的个数</li><li>n和n-1进行位与的操作会消除最后一位1，可循环操作，直到n&#x3D;0</li></ol></li><li>【思考】<ul><li>方法1要循环32次，O(n),但是方法二循环次数根据1而定：O(logn)</li></ul></li><li>【bug】</li></ul><hr><h1 id="16-数值的整数次方"><a href="#16-数值的整数次方" class="headerlink" title="16.数值的整数次方"></a>16.数值的整数次方</h1><blockquote><p>实现 pow(x, n) ，即计算 x 的 n 次幂函数（即，xn）。不得使用库函数，同时不需要考虑大数问题。</p></blockquote><ul><li>【题点】<ul><li>n次幂问题</li><li>同时要区分n大于0和小于0的情况</li></ul></li><li>【思路】<ol><li>简单的将x乘积n次会导致超时问题，其时间复杂度为O(n)</li><li>本体考察的是快速幂算法<ol><li>快速幂+递归</li></ol><ul><li>时间复杂度为O(logn)，空间复杂度为(logn)——使用了栈</li></ul><ol start="2"><li>快速幂+迭代</li></ol><ul><li>时间复杂度为O(logn)，空间复杂度为(1)</li></ul></li></ol></li><li>【思考】<ul><li>其中无论是向右位移或者是除以2，都是二进制向右移动</li></ul><ol><li>其中要注意res中存放的是二进制为1的数值，但这并不代表计算过程中二进制为0的位不需要计算——只是没有加入到res而已</li></ol></li><li>【bug】</li></ul><hr><h1 id=""><a href="#" class="headerlink" title=""></a></h1><blockquote></blockquote><ul><li>【题点】</li><li>【思路】</li><li>【思考】</li><li>【bug】</li></ul>]]></content>
       
       
       <categories>
@@ -145,37 +126,12 @@
     
     <entry>
       <title>矩的概念</title>
-      <link href="/2022/08/02/%E7%9F%A9%E7%9A%84%E6%A6%82%E5%BF%B5/"/>
-      <url>/2022/08/02/%E7%9F%A9%E7%9A%84%E6%A6%82%E5%BF%B5/</url>
+      <link href="/2022/08/02/work/%E7%9F%A9%E7%9A%84%E6%A6%82%E5%BF%B5/"/>
+      <url>/2022/08/02/work/%E7%9F%A9%E7%9A%84%E6%A6%82%E5%BF%B5/</url>
       
         <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">问题：不规则图形的中心、重心、质点如何求取？</span><br><span class="line">牵扯概念：</span><br><span class="line">矩</span><br><span class="line">    1. 物理上的矩——力矩</span><br><span class="line">    2. 数学上的矩——期望、方差、原点矩、中心矩</span><br></pre></td></tr></table></figure><h1 id="矩（Moment）"><a href="#矩（Moment）" class="headerlink" title="矩（Moment）"></a>矩（Moment）</h1><p>什么是矩？<br>矩是观察与描述随机变量的工具，不同矩就是不同的维度，即从不同的角度（维度）去观察随机变量分布情况。</p><ol><li>是计算在第k个维度，移动到原点&#x2F;中心的问题，也可以理解为偏离原点&#x2F;中心</li><li>偏离某一值的惩罚</li></ol><hr><h1 id="1-物理上的矩"><a href="#1-物理上的矩" class="headerlink" title="1. 物理上的矩"></a>1. 物理上的矩</h1><h2 id="1-1力矩"><a href="#1-1力矩" class="headerlink" title="1.1力矩"></a>1.1力矩</h2><p>输入变量（自变量）：力矩<br>力矩 &#x3D; 力臂 X 力</p><blockquote><p>例1：一个船舵，3个船员同向转动船舵，如何每个船员用了多少能量？<br>例2：一个船舵，3个船员中有一个反方向转动船舵，如何计算每个船员平均使用多少能量？</p></blockquote><p> $a_1 &#x3D; \frac{F_1L_1 + F_2L_2+F_3L_3}{3}$  &lt;1&gt;<br> $a_2 &#x3D; \frac{(F_1L_1)^2 + (-F_2L_2)^2+(F_3L_3)^2}{3}$  &lt;2&gt;</p><p>计算公式是没问题的，都是平均力矩，但是为什么第二个式子却需要加平方？——如果直接计算平均力矩，例2中会出现力矩被抵消，最终计算比实际小。</p><ul><li>例1可看为计算一阶原点矩——衡量力矩的平均水平</li><li>例2可看为计算二阶原点矩——衡量力矩的总能量</li></ul><h2 id="1-2中心矩和原点矩"><a href="#1-2中心矩和原点矩" class="headerlink" title="1.2中心矩和原点矩"></a>1.2中心矩和原点矩</h2><p>船舵问题中，力矩均指向船舵原点，上述问题计算的就是原点矩；当指向其他位置，可理解为“中心矩”。<br>但是中心是一个定点，针对中心的具体位置，在如下中解释说明。</p><table><thead><tr><th align="center">名称</th><th align="center">含义</th></tr></thead><tbody><tr><td align="center">一阶原点矩</td><td align="center">数据的平均水平&#x2F;程度</td></tr><tr><td align="center">二阶原点矩</td><td align="center">数据移动到平均位置的平均能量</td></tr><tr><td align="center">一阶中心矩</td><td align="center">0</td></tr><tr><td align="center">二阶中心矩</td><td align="center">数据离散&#x2F;集中程度，或数据偏离平均水平的程度</td></tr><tr><td align="center">三阶中心矩</td><td align="center">偏度——数据偏离平均位置的平均水平</td></tr><tr><td align="center">四阶中心矩</td><td align="center">峭度——数据偏离中心的密集程度</td></tr></tbody></table><hr><h1 id="2-数学上的矩——概率论中"><a href="#2-数学上的矩——概率论中" class="headerlink" title="2. 数学上的矩——概率论中"></a>2. 数学上的矩——概率论中</h1><h2 id="2-1矩的概念"><a href="#2-1矩的概念" class="headerlink" title="2.1矩的概念"></a>2.1矩的概念</h2><p>输入变量（自变量）：离散随机变量——离散数值</p><blockquote><p>定义：设X和Y是离散随机变量，c为常数，k为正整数，如果$E(|X-c|^k)$存在，则称$E(|X-c|^k)$为X关于点c的k阶矩。</p><ul><li>c&#x3D;0时，称为k阶原点矩；</li><li>c&#x3D;$E(x)$时，称为k阶中心距</li></ul></blockquote><table><thead><tr><th align="center">名称</th><th align="center">公式</th><th align="center"></th><th align="center"></th><th align="center">常用</th><th align="center">名称</th></tr></thead><tbody><tr><td align="center">k阶原点矩</td><td align="center">$E(X^k)$</td><td align="center"></td><td align="center"></td><td align="center">1阶原点矩</td><td align="center">期望$E(X)$</td></tr><tr><td align="center">k阶中心矩</td><td align="center">$E[(X-E(X))^k]$</td><td align="center"></td><td align="center"></td><td align="center">2阶中心矩</td><td align="center">方差$D(X)$</td></tr><tr><td align="center">k+l阶混合矩</td><td align="center">$E(X^kY^l)$</td><td align="center"></td><td align="center"></td><td align="center"></td><td align="center"></td></tr><tr><td align="center">k+l阶混合中心矩</td><td align="center">$E[(X-E(X))^k(X-E(X))^l]$</td><td align="center"></td><td align="center"></td><td align="center">2阶混合中心矩</td><td align="center">协方差$Conv(X,Y)$</td></tr></tbody></table><h2 id="2-2期望"><a href="#2-2期望" class="headerlink" title="2.2期望"></a>2.2期望</h2><ul><li>期望，又称均值，是对将来某种情况发生的估计值</li><li>平均值，已经发生&#x2F;存在的事件&#x2F;数据的平均<h2 id="2-3理解说明"><a href="#2-3理解说明" class="headerlink" title="2.3理解说明"></a>2.3理解说明</h2></li><li>原点矩指向0</li><li>中心指向离散随机变量的期望</li></ul><hr><h1 id="图像矩"><a href="#图像矩" class="headerlink" title="图像矩"></a>图像矩</h1><p>在求取图像的矩时，通常对图像进行二值化，其前景为1，背景为0</p><table><thead><tr><th align="center">名称</th><th align="center">公式</th><th align="left">意义</th></tr></thead><tbody><tr><td align="center">零阶矩</td><td align="center">$\mathrm{M}<em>{00}&#x3D;\sum</em>{\mathrm{I}} \sum_{\mathrm{J}} \mathrm{V}(\mathrm{i}, \mathrm{j})$</td><td align="left">面积</td></tr><tr><td align="center">一阶矩</td><td align="center">$\mathrm{M}<em>{10}&#x3D;\sum</em>{\mathrm{I}} \sum_{\mathrm{J}} \mathrm{i} \cdot \mathrm{V}(\mathrm{i}, \mathrm{j})$</td><td align="left">横坐标和对应像素值的乘积</td></tr><tr><td align="center">一阶矩</td><td align="center">$\mathrm{M}<em>{01}&#x3D;\sum</em>{\mathrm{I}} \sum_{\mathrm{J}} \mathrm{j} \cdot \mathrm{V}(\mathrm{i}, \mathrm{j})$</td><td align="left">纵坐标和对应像素值的乘积</td></tr><tr><td align="center">一阶矩</td><td align="center">$\mathrm{x}<em>{\mathrm{c}}&#x3D;\frac{\mathrm{M}</em>{10}}{\mathrm{M}<em>{00}}, \mathrm{y}</em>{\mathrm{c}}&#x3D;\frac{\mathrm{M}<em>{01}}{\mathrm{M}</em>{00}}$</td><td align="left">随机图形的质心</td></tr></tbody></table>]]></content>
       
       
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>图像金字塔1</title>
-      <link href="/2022/06/24/paper/%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%941/"/>
-      <url>/2022/06/24/paper/%E5%9B%BE%E5%83%8F%E9%87%91%E5%AD%97%E5%A1%941/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Feature-Pyramid-Transformer"><a href="#Feature-Pyramid-Transformer" class="headerlink" title=" Feature Pyramid Transformer "></a><center> Feature Pyramid Transformer </center></h1><blockquote><p>图像在空间和尺度上存在丰富的视觉语义信息，融合不同尺度的特征，有助于获取全局信息，特别是目标检测任务中小目标检测性能差，本文任务江不同尺度的信息进行结合，可解决此问题</p></blockquote><ol><li>self-trans:进行自注意力特征提取，使用Mixture of Softmaxes代替原来的softmax函数</li><li>Grounding Transformer (GT)：<br>原文描述：将高层的语义概念与低层特征图的像素特征联系起来，注意此处只是连接起来<br>目的在于使用high-level的语义信息，增强低层特征<ul><li>代码具体操作：Q为低层特征，KV是高层特征，利用transformer建立两者的关系</li></ul></li><li>Rending Transformer (RT)：<br>原文描述：使用low-level像素特征来渲染higher-level的内容特征。<br>目的在于使用low-level的细粒度信息，增强高层的粗粒度语义信息<ul><li>代码中的具体操作：使用低层进行低维嵌入提取低层的信息直接应用在高层特征上，同时将低层下采样卷积成高层尺寸，两个相加</li></ul></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> work </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Paper </tag>
-            
-        </tags>
       
     </entry>
     
@@ -232,61 +188,11 @@
     
     
     <entry>
-      <title>Instance Enhancement Batch Normalization:An Adaptive Regulator of Batch Noise</title>
-      <link href="/2022/05/12/paper/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B62/"/>
-      <url>/2022/05/12/paper/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B62/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Instance-Enhancement-Batch-Normalization-An-Adaptive-Regulator-of-Batch-Noise"><a href="#Instance-Enhancement-Batch-Normalization-An-Adaptive-Regulator-of-Batch-Noise" class="headerlink" title=" Instance Enhancement Batch Normalization: An Adaptive Regulator of Batch Noise "></a><center> Instance Enhancement Batch Normalization: An Adaptive Regulator of Batch Noise </center></h1><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><ul><li><p>BN层可通过输入的batch对数据进行归一化，但同时也引入了噪声，适当的噪声有益于模型的优化和泛化，但是BN层对于风格迁移这种任务会引入过多噪声</p></li><li><p>IEBN通过简单的线性变换重新校准通道间的信息，对数据起到了正则化并加固的网络的训练过程</p></li></ul><h1 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h1><ul><li>对于SE-Block，是对特征层[H,W,C]进行最大池化或者平均池化，得到[1,1,C]，再通过FC进行线性变化处理</li><li>IEBN也是是对特征层[H,W,C]进行最大池化或者平均池化得到[1,1,C]，但对每个channel只设置两个系数做线性变换，参数量大大减少，同时性能良好</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> work </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Paper </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Perceiver:General Perception with Iterative Attention</title>
-      <link href="/2022/05/11/paper/transformer1/"/>
-      <url>/2022/05/11/paper/transformer1/</url>
-      
-        <content type="html"><![CDATA[<center> Perceiver: General Perception with Iterative Attention </center><h1 id="code"><a href="#code" class="headerlink" title="code"></a>code</h1><ul><li>傅里叶位置编码<ol><li>每个像素拥有一个轴向和纵向的傅里叶位置编码向量——其中向量维度为13，两个为26，加上输入通道则为29，即image上的一个像素点使用一个29维度的向量表示</li></ol></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> work </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Paper </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>EdgeFormer</title>
       <link href="/2022/05/10/paper/Former/"/>
       <url>/2022/05/10/paper/Former/</url>
       
-        <content type="html"><![CDATA[<center> EDGEFORMER: IMPROVING LIGHT-WEIGHT CONVNETS BY LEARNING FROM VISION TRANSFORMERS </center><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><ul><li><p>存在问题：</p><ol><li>VIT优于大型卷积模型，提取全局信息，但存在计算复杂</li><li>卷积网络建立模型局部关系，存在硬件支持，小模型训练相对容易</li></ol></li><li><p>改进：</p><ul><li>将VIT柔和到卷积网络中</li></ul></li><li><p>模型结构，使用新提出全局循环卷积代替self-attention，再使用一个简单的channel wise attention实现通道注意力——使用空间、通道注意力代替ViT中的注意力结构</p></li></ul><h1 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h1><ul><li>从图像的行与列来构造空间注意力相关模块<ol><li>GCC-V——位置编码pe[CxBx1]通过双线性插值后[CxHx1],再将其沿水平方向复制得到[CxHxW],加和到输入X上，将X沿V垂直方向堆叠（得到两块），使用一个[CxBx1]通过双线性插值后[CxHx1]的向量作为卷积核，卷积后得到[CxHxW]</li><li>GCC-H——位置编码pe[Cx1xB]通过双线性插值后[Cx1xW],再将其沿垂直方向复制得到[CxHxW]，加和到输入上，将X沿H水平方向堆叠（得到两块），使用一个[Cx1xB]通过双线性插值后[Cx1xW]的向量作为卷积核，卷积后得到[CxHxW]<blockquote><p>其中垂直方向则按照垂直方向堆叠，且卷积核也构造为垂直向量;水平方向按照水平方向堆叠，且卷积核构造为水平方向</p></blockquote></li></ol></li></ul><h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul><li>位置编码对于目标检测以及分割这种对位置敏感的任务十分重要</li><li>当前层的全局核覆盖的像素实际上只有一半来自源输入，其他均为零，因为卷积会改变特征尺寸（否则使用padding，常用padding就是0，这就是其他为零的原因）</li><li>token mixer用于在不同空间位置的令牌之间交换信息，channel mixer用于在不同通道之间混合信息。</li></ul><h1 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a>Idea</h1><p>动态改变位置编码、kernel来应对不同尺寸的输入</p><h1 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h1><p>换汤不换药，使用新的空间、通道注意力结构对transformer进行重建，结合卷积和VIT的优点，提高了模型的实现能力</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="EDGEFORMER-IMPROVING-LIGHT-WEIGHT-CONVNETS-BY-LEARNING-FROM-VISION-TRANSFORMERS"><a href="#EDGEFORMER-IMPROVING-LIGHT-WEIGHT-CONVNETS-BY-LEARNING-FROM-VISION-TRANSFORMERS" class="headerlink" title=" EDGEFORMER: IMPROVING LIGHT-WEIGHT CONVNETS BY LEARNING FROM VISION TRANSFORMERS "></a><center> EDGEFORMER: IMPROVING LIGHT-WEIGHT CONVNETS BY LEARNING FROM VISION TRANSFORMERS </center></h1><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><ul><li><p>存在问题：</p><ol><li>VIT优于大型卷积模型，提取全局信息，但存在计算复杂</li><li>卷积网络建立模型局部关系，存在硬件支持，小模型训练相对容易</li></ol></li><li><p>改进：</p><ul><li>将VIT柔和到卷积网络中</li></ul></li><li><p>模型结构，使用新提出全局循环卷积代替self-attention，再使用一个简单的channel wise attention实现通道注意力——使用空间、通道注意力代替ViT中的注意力结构</p></li></ul><h1 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h1><ul><li>从图像的行与列来构造空间注意力相关模块<ol><li>GCC-V——位置编码pe[CxBx1]通过双线性插值后[CxHx1],再将其沿水平方向复制得到[CxHxW],加和到输入X上，将X沿V垂直方向堆叠（得到两块），使用一个[CxBx1]通过双线性插值后[CxHx1]的向量作为卷积核，卷积后得到[CxHxW]</li><li>GCC-H——位置编码pe[Cx1xB]通过双线性插值后[Cx1xW],再将其沿垂直方向复制得到[CxHxW]，加和到输入上，将X沿H水平方向堆叠（得到两块），使用一个[Cx1xB]通过双线性插值后[Cx1xW]的向量作为卷积核，卷积后得到[CxHxW]<blockquote><p>其中垂直方向则按照垂直方向堆叠，且卷积核也构造为垂直向量;水平方向按照水平方向堆叠，且卷积核构造为水平方向</p></blockquote></li></ol></li></ul><h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><ul><li>位置编码对于目标检测以及分割这种对位置敏感的任务十分重要</li><li>当前层的全局核覆盖的像素实际上只有一半来自源输入，其他均为零，因为卷积会改变特征尺寸（否则使用padding，常用padding就是0，这就是其他为零的原因）</li><li>token mixer用于在不同空间位置的令牌之间交换信息，channel mixer用于在不同通道之间混合信息。</li></ul><h1 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a>Idea</h1><p>动态改变位置编码、kernel来应对不同尺寸的输入</p><h1 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h1><p>换汤不换药，使用新的空间、通道注意力结构对transformer进行重建，结合卷积和VIT的优点，提高了模型的实现能力</p>]]></content>
       
       
       <categories>
@@ -299,56 +205,6 @@
         <tags>
             
             <tag> Paper </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Beyond Self-attention:External Attention using Two Linear Layers for Visual Tasks</title>
-      <link href="/2022/05/09/paper/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B61/"/>
-      <url>/2022/05/09/paper/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B61/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Beyond-Self-attention-External-Attention-using"><a href="#Beyond-Self-attention-External-Attention-using" class="headerlink" title=" Beyond Self-attention: External Attention using"></a><center> Beyond Self-attention: External Attention using</h1><p>Two Linear Layers for Visual Tasks </center></p><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>自注意力通过计算所有位置上成对亲和力进行特征加权来更新每个位置上的特征——这个特征能够捕捉单个样本中的远距离依赖关系，但其计算都复杂且忽略了不同样本之间的潜在关系。<br>本文设计了两个外部的、小的、可学习的、存储共享的结构，仅由两个级联线性层以及两个归一化层——只是线性复杂度，且考虑了的所有数据样本之间的相关性。</p><h1 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h1><ul><li>使用可学习矩阵作为整个数据集的先验知识memory<ol><li>使用可学习矩阵$ M_k $作为整个训练中的key</li><li>使用可学习矩阵$ M_v $作为整个训练中的value</li></ol></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> work </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Paper </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>JOJO</title>
-      <link href="/2022/05/08/life/JOJO/"/>
-      <url>/2022/05/08/life/JOJO/</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="46620823b00ff4d2d273340504405608e4955a57827d0d78802c75c8d5b09f64">d6183a03306b1dea4b48207219cc7eefef1b01d79e8c1be979c192e16a1e9484cb883b8478251a8586ec5d9548e2765f1648484d7e3f1d7a34895fc0900ecd797c9a2726c349ef68d51c8f7bb5901975e3ea14d8d0198cbe2509715950a6eee5afcc9552cdb45178a05735a06ee11069c53df22075c3638d8db1c55b56e28eb7ed559ee18aaf28da840673f05bab0470f7444bfc9363eebe570b49a7a85e2e7cc3c49df36128ffe2bd9b8244fb713ad74f8c5bb7fa22aacbcca6e9051e3e861527d5e7cad2d18e3d82298f350e24ba2aff69d4b36de18cb050132b6cb924ff14c8627d07d492f5160aa1bc5daf5993b2e7427e9163c7cdc89b7682ef34557cbb65c230aa54ff7c2ef40159f5579dd980ac8f87f2a2d692a7602c007534c34c73c8d1ab4324481df6ceceb1cde647effbcd1eb6224e7c587929d9184de84d8cf4ba5e96e62cec38a1fa8c19ee1c590d66612059a7ff7456c7405245edfc2f00fb609eb5d517d4a3d984f393e7a65d4ed8aca632423e2ecf45e7a3217a35670389ada48935e6b681ee33943aa7bb31eb649dccfc5809ad9086f4aecc54c41d8d3a1a63cb1cbc190ebdec80d95062801ceabd45a8b455dac371d22bd0947dfe9488d9b3996b870a67a2cf952dd523df22941bc7d22a99991a42949f2eb42a71491c54eb20b915922d99aef2bed22974aa0eef0181bb7ecaa6d2f1bb9297536141364f0eeeac727514081b66aee384573da31c82453e59d565ae27c1f4e1360719f8b686832691fa262d3d85e6fac530a36209ac2c96b587b96b2797e6dbb2147761</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-      
-      <categories>
-          
-          <category> life </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Me </tag>
             
         </tags>
       
@@ -424,31 +280,6 @@
         <tags>
             
             <tag> img_fusion </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>DETR深度理解</title>
-      <link href="/2022/04/28/paper/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/"/>
-      <url>/2022/04/28/paper/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/</url>
-      
-        <content type="html"><![CDATA[<h1 id="End-to-End-Object-Detection-with-Transformers"><a href="#End-to-End-Object-Detection-with-Transformers" class="headerlink" title=" End-to-End Object Detection with Transformers "></a><center> End-to-End Object Detection with Transformers </center></h1><blockquote><ol><li>因为预测是模型预测，而标记是人为标记，得到的预测第一个不一定就直接与认为标记好的目标直接对应，如何将预测到的[class, box]和GT对应？</li></ol></blockquote><p>首先用二分图的方法进行信息匹配，匹配预测和标记之间相似程度，每一个预测目标只能与一个GT对应。对应好后进行损失计算</p><blockquote><ol start="2"><li>decoder输入的object queries如何理解？</li></ol></blockquote><ol><li>可理解成起控制decoder输出各式的作用，因为其本来就是随机初始化，自学习的token</li><li>本文经过可视化后，可以理解为每个token以不同的角度去分析encoder编码后的token信息</li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> work </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Paper </tag>
             
         </tags>
       
@@ -557,56 +388,6 @@
     
     
     <entry>
-      <title>Learning Affinity from Attention:End-to-End Weakly-Supervised Semantic Segmentation with Transformers</title>
-      <link href="/2022/04/25/paper/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B21/"/>
-      <url>/2022/04/25/paper/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B21/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Learning-Affinity-from-Attention-End-to-End-Weakly-Supervised-Semantic-Segmentation-with-Transformers"><a href="#Learning-Affinity-from-Attention-End-to-End-Weakly-Supervised-Semantic-Segmentation-with-Transformers" class="headerlink" title=" Learning Affinity from Attention:End-to-End Weakly-Supervised Semantic Segmentation with Transformers "></a><center> Learning Affinity from Attention:End-to-End Weakly-Supervised Semantic Segmentation with Transformers </center></h1><blockquote><p>将transformer引入图像分割，使用MHSA得到的激活图作为预处伪标签，其作为标签还需要细化预伪标签。</p><ol><li>AFA模块来学习transformer中MHSA中的语义亲和力</li><li>自适应细化模块PAR用来有效地控制AFA生成亲和力标签的可靠性并确保伪标签的局部一致性</li></ol></blockquote><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ol><li>语义分割通常需要大量标记labels，故提出使用弱&#x2F;廉价标签，常用的方法是：首先使用一个分类模型生成类激活图作为伪标签，再经过细化后才能被用来作为语义分割网络的训练标签——这意味着需要训练多个模型</li><li>AFA能学习MHSA中的语义亲和力用于改进初始伪标签，但为了确保这种改进的可靠和局部一致性，提出自适应细化模块</li></ol><blockquote><p>模型思想：</p><ol><li>Transformer作为backbone，输入图像</li><li>分支一：提取由transformer得到的语义亲和力信息，通过MLP进行语义亲和力预测得到亲和力特征信息A，</li><li>分支二：对transformer提取到的特征图直接进行分类层，其一将其通过类激活得到初始伪标签B，该标签再由PAR细化处理并得到亲和力特征信息C，[A,C]计算亲和力信息损失；其二经由类别预测直接输出类别损失</li><li>分支三：将由transformer得到的特征图经由decoder重建得到分割特征的预测信息D,将[A, B]进行Random wolk后再PAR细化得到分割模型能用来训练的最终伪标签E，计算[D,E]的预测损失</li></ol></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> work </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Paper </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>SimMIM：a Simple Framework for Masked Image Modeling</title>
-      <link href="/2022/04/23/paper/%E5%9B%BE%E5%83%8F%E6%8E%A9%E8%86%9C/"/>
-      <url>/2022/04/23/paper/%E5%9B%BE%E5%83%8F%E6%8E%A9%E8%86%9C/</url>
-      
-        <content type="html"><![CDATA[<h1 id="SimMIM-a-Simple-Framework-for-Masked-Image-Modeling"><a href="#SimMIM-a-Simple-Framework-for-Masked-Image-Modeling" class="headerlink" title=" SimMIM:a Simple Framework for Masked Image Modeling "></a><center> SimMIM:a Simple Framework for Masked Image Modeling </center></h1><blockquote><p>本文模型不需要特殊设计，使用简单的离散VAE或聚类实现masking和Tokenization就行<br>探究图像掩膜模型表征好的原因:</p><ol><li>使用中等大小（32）的掩膜对图像随机掩码</li><li>直接对原始像素进行回归预测</li><li>预测头架构简单，且性能不比复杂层差</li></ol></blockquote><h1 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h1><p>[1]——使用附加网络进行patch tokenization，通过掩膜来破坏短距离连接</p><h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1.Introduction"></a>1.Introduction</h1><p>1.1 掩码的自监督学习范式广泛应用于NLP领域却在计算机视觉表现的不温不火的原因：</p><ol><li>图像具有更强的局部关系，即相互靠近的像素往往是高度相关的。复制靠近的像素可以很好地完成任务，显然通过语义推理并不容易办到。</li><li>视觉信号是原始的、低层次的，而文本分词是由人类产生的高级概念。那么，对低层次信号的预测是否对高层次的视觉识别任务有用？ </li><li>视觉信号是连续的，而文本分词是离散的。那么，如何利用基于分类的掩码语言建模方法处理连续的视觉信号？</li></ol><p>【注意】：掩膜大小为32在很宽的掩膜率范围内性能都能表现的富有竞争力，但是掩膜大小为8就需要掩膜率高达80%才表现良好</p><p>模型共有四个部分：masking strategy——encoder architecture——prediction head</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> work </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Paper </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>transformer的意义在哪里</title>
       <link href="/2022/04/21/work/transformer%E7%9A%84%E6%84%8F%E4%B9%89%E5%9C%A8%E5%93%AA%E9%87%8C/"/>
       <url>/2022/04/21/work/transformer%E7%9A%84%E6%84%8F%E4%B9%89%E5%9C%A8%E5%93%AA%E9%87%8C/</url>
@@ -662,31 +443,6 @@
         <tags>
             
             <tag> AI </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>心累</title>
-      <link href="/2022/04/18/life/%E5%BF%83%E7%B4%AF/"/>
-      <url>/2022/04/18/life/%E5%BF%83%E7%B4%AF/</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="a72e971753ffe09e9919f440d6efbafb5f7df4d2f9d8db6dcec075954f932315">556f064327254578d4f5db008d23104a723911764892c06eb641010e272d20c4769f539efe1b1ba283d209c7ef1f8915e678596f418475c686cb249b78694ff887608c5e4bb77a759c0fb2c2c27dd8a217770879e419299122c5debc336b851b1b795155cf4762452f3620174b7ae8a146a86dc774184be5c9ef67af8e14691c832741b27f91dd5bbf1f85982083e9d0155c94fa767b1a86dc055fce100737ad262629a42ca3f51670575a55e7d7fb8146ae0307b4627f8fab073effdb671f90bad8e67e36a6af3881953ff8a0242db5c35aa7299df560431fd809aac760d20f2a36263c98eab2564fccb987c29e9da71a42172c05890eec8e4ffeb6d8f5dd572f4b6db17ceacedd8f2f9f2a421f498add01ade417a36f5e4c4022d7d9bbf6f26d01fbae3947448f6a61585960a439f2d51a6f7c05d3e8e8e7c1e9136bbb1b452af2681537482f87c67a15fd5d3b2d7546ac4f14eeb68590c40cb00a5cc65bb7986fd4b21fa24e94c54456e88d1001e954c8b89a6ecfc75db42e69c87d89dcd48c270f8c5f9636ff4a1d4c756b6502dac1ece7eef18b2aaf7def504d443f8505f1919eb501a05ba4860ba3579c127192f91614a7da79c324ee5941d646d1f2c6145ac2f17f2f01560bbfbed8d6bf61308d2ed998a149e41c55f580296640b6fd7255a72704df3fec026a874de05bd480cd2bb3ca0598ae64b7b81c951eceef425f8e2dbedd58410bee6e0ffce8feb1fae4b0c3f855306a770b9a5f2d840ed65646a826541b06a907701f46369de62c84ebd32515a552d33a51b2b71c7c16509aa6e1921dba695b1e1c3bfc99a4dcdd230dd30e782ec8cf7516118f9e5a8b9a6e98f6d9e34fea532f614973096d2f0f4a0ae733d0c9a094482465ea4ed06ab0e57afed0a1b00b8b2180a2a3fbc64eae3c8794545fbb3b599dc7169d3e88efc503c4ead50b4e7330ddf2a450020a3181834bfc45e8c774e9b9d4de30e5a9acab15ddf2400ff7b1ed68e4200c931b3e5f9463453d9acf6a942138117d91f6524b4929e35fe8cb5f821ade622869ea69303f2475367e23908fbcdc69e78c25ae634595351d0fc112fbdb198a80ef9a16d332c76f2aad032830ba528c3c84d5ee11b4a20c8cc9ece8017126ecc2c9da1650c7a73b5eab2c86ddc88e24504e7a7b9f3b85d07dad7fb7a155d843017fcc7fa63a40a6a88512fa5a1d5e7084b47c96e7088ecb725bb68dfd7018cdd5504b304a65db867fa896ae051f9425a247cf28eeeabc8fb988696ad34fbf8620da388d8eb93d3256249d2635a5421b2813285dbdcb877b2d593de5c274839bffed8ac7b68f30f871068624b003d212d2d192f0dbfef6c85d1187e8ea74e890afc1dc31c734ec6c95fba2415c02c658f6fb604a1dc938639525861d26f6344370abb33204e76699912f4b0465b6d3954d280d2f2574057471d4fd6b1346bbad9018866dfab64e5a85017e1fb5aa615f728705e972b84bb890c54189e923cdc943f6c44c03bf8d4ccc7047ce7bbd7a1814ce823118425a6393cf7377fb36183d7a7989ebc8ec7da00e30c680c67c0cef09d1e171b38b25566785d2c6ac22254643e518f91f0aabf78b4ad6f1ce0a212250acb72fdf2df3efcd11f91adcf88a00350590cd640788a8d1ab3a6d6dd90f21fee13a63944808b26018fb6aa70493b156947efbcf837cbad54389a7ab470523ddd699c3318617ec44c0aed7423dc1d6e27b19ebe8499d0ddb4f95f196eb360651d02456172d7f60cc26219b60b6b88e45191ec9d21cbcaeebfc8c5299e66a3da9d634944a3b19cdc418fc2f73d0bbe2db406ee152c7a4d5d5f410e2eba376f9d900d790d4b74fff0c8fcae0aaa25f56c763e5bd3eea5d479976394657afea0d6bd66c375279c3cb33e8230a1a3fa54d15219264728c3652855a3882155ffc4120ca3fb5a97db25e0be388b17c896a24264dd6b4ca3e19bd1f7fe862eb803a35a75657e511bbe1b83ea2004b0bf00dacdf03b0ec0d460bf27001f668140936c7b89679bc583d5bc2cef2c788933f1d542bbe1d2ce1c3ccda59bf961369bf67aea8d864d949948906fd2f96893fa5fd1535ef6f81afca9b1486f3d8d8983695e72a812dc3a63c350cb05e844a45e168907d198c680d1586f2fa7684eb828383187e6ae745b6044225365b634a837d4ae0e4817c93556cef239206ee6e01c7c4097247240029af4fd167466713740ec6c3aa1a459e6c80036a2e9835aa51e0ea4abe4358c47fda415a7536e9914b6227954327fcf9deaf6dfdfaee9cf30a125edd16505a146816c442a697009739c90bf6162831c2504272d7eaeca325e38fd3d4e928e1ddc43399976c38fdc5d52aa43c69b406e272f078eda241c742206514db5dfc654b70d72c2fb6bca4c4ef7448aaf2167b872e6ed16a767906d7253535c0ea2c7f59514a48770b71cfc605b2471b1b8b2f69fbb7c2d3f0e9bc812518b23a6485f84641b2fd39ac5d2e9fed7b635a196c2413a8224722e8e2a5ad2af34cde162136dd2265d9b66100267f6fd679ffe3d130eaf678d63f81dad997b589fdc48d331c376a3bc052574773c8e74b1550287d79e23a6aeb4a72de1237d5f7ca415176ab3936e7d3ab0ae6ce957ec6725c92c45654b956df927d75b41696969654dc14ce819d98c8481b35333326cfb5485c1381ff2608f318eb09bcdab9d499381ea3489ab339174669dfe101e6f0de4b4cf7833bda6328eee1d42e9356474c17f3e4c6fadca6d8d70325c6841d2a795c01be7caf29138c2ae6b432c5f276b570398481da8dfcdc1280b5a176082ea47195bb2f2cef817140f63d0f2cd53b2384ed7759104da277e790e515e152c7472e5c7426c6348858f6a209fec411ec7ac066ae57d606aec5f9566baf3565f20bf9f3e765e65ecb76557c2f42c111cbe7df9028a7f4efc45183e9cc6a3ead67516188bfba37a5b0e2ee93060c7c1f427f3e99317013710a49a74d9e10cb0b84e58a298076a4ad8c8da3b6906704b8af6a342f95df74fd9eaf2c9588bdf85f36328255079848d4813bd432bed0854f45ce0cfd9c9ecd5a3957fcbed15b566a64dc2090d31b281e875107b23d0664edcc392d89a674fd0d14daabfd042da8323c99a6dbab434667c1ae96b05f5bacd23d0e2cad748f7c1bda290e523246171287933f2f10cb5866856aeeec912bec4943dcd036c992bf0b2c37671812a47f606dde6fb9d0f8f4c79ba37c40fb861786fcc3c8a8f100c32e70826975474ffb7a05b5b2584f36fd65278a7be49385e1f9bead70e6c0df943a25a41119f51e8994631aec9c395a198045453d8d4138e88b56064a2a97d45594fa997fe4a4797b5a495ed9bfac3ab28c5f5032c16556d5aef1c882aca9a5848b774dfdb67a875190a39a092d371fc66331c9f1922b68ee3ab99f078a53130e823e5e351db71b307a1bf7f3fb11107a4f7396fc56a906ce6d8bed83324075a04c35653cf0e46fc7ac1b2d6fcd6c18931a7c68dbae08b9f631c5c911057018ecc45528d86dab50d9190cc717c11ef5a804c680e30c6ddf9451dd0a9ae437ca21842f3c90a276c0c0eebe89e23477d0bc639d7c4576ada8c24a85dfe3797d7ebad2e134315efff2f98ddb876834800c32a30fdb1c2a5b6be3a832220dae96a8aa3d8947ece63393b125781fc816c7d5a5d82b5f236c4dcc900b86d54a1d0090f9070dd980ff026bdd3f2ca375149dd1fbc7eb29e2141fc209f16a64ba1c154fa716f5bcb10b6a09256daf2e22c64fc3109fc7c8725d81c20eadaa746d4ba27c01e2e9f89cb5ff5386c06818ef640c245bd201d20ad162dcdb057081cda16e79bc865a8a66596bb5995ff283fdc8791374fd22d0976e46809f50fbec7fb79767d1fe8612e80e3cf1a4da808854823a32e51c8e4803dac9ef274a12d60929459be2b4c7d466ba8ba247c93ee5440fd7f9c5681230b873f7a8ed495770288e364660c298fb99626c5e8f5101df8376ea81ce374ac3bffd31015c662f06a7252b2b906672dc6ba17694a782922e456fb76dddb72180a9357c42ff776c97a3a1fa878551b1fea79748434e42565df096123469f0518eff8ac3caf718f3d69db60dc368ca5cbad063c3e98dedaeaadb60642154596074b70503e41868c4216230ccf4cb2212d79ba1c7346c7ad29a1387f663c20261c4ca91b42d93bbf8b84c3c055d0473126208b4f59668b289715ed00f8f8c2a2099e75275e717e5c4faa04864b8c7593403fedeb70fcd3d450b224e458c09454e364bb462cb3b52d6d0317dd13efed6a9</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-      
-      <categories>
-          
-          <category> life </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Me </tag>
             
         </tags>
       
@@ -762,81 +518,6 @@
         <tags>
             
             <tag> AI </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>2022-4-12</title>
-      <link href="/2022/04/12/life/2022-4-12/"/>
-      <url>/2022/04/12/life/2022-4-12/</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="01518544ca6add0616e307616dee4d65e988996498208f5bdf3206651fe5d9dd">b3cf69ad95289fed13e724d57178b1a51fb4439f19aa62b82935113c005d7df75cbaaf50c19978e36a2e6b09ccd7ded776f8679f2354c924be14aab5439f6f567334ab6d711219a82bb6e69bb388f12e4866a7232ed819eb22f557edd84a36434584d49fe81597180f03e5000df7ff3206d26463b588773ac7b6b8bf6a176672056493ca080183a6422e208a2d11d8e2b27eb45ae6002b261ac31a91bcc2b17816d0e61e5153da90372b61aabbe0f7286be5fae26d33298554e4522b5daaeeb6595962bb02905c4601d19be8f41b595fd0c54b274cb2adf7254262ebd02d0218f80d702c713ada2fb317c8253efe3fa49a0a3914361e1395bd96b9774e789ed5f14f413228c899a70be205819126a58c2a64d4616024a447ef17ed05134440233e635039df0c5da3ad11acecebae0a4265cafdfa5ae473d98c258f8b7b638435d621c650e16897650bd39e6435075069ff25eafcad69cb7e2600e2b70d7c5c23cfda01d27aed7abe0a3be68a3e91261dbd631be31911bac030b60e57f8b81b72db5cd1a8b47479bff34ce50dc93622567a2c2746dd2672bf7ed672746ca363ac969e6b143c678ac13a24225096370ae403e5cbd0a10baa9d25d4c23c43df0a872c0082314371a00bc434c193988d2f624301f1296c22bf5b057a89874ebd6d22e9f3aa1bf02842a273c0fc97e5cd89c89f6254f9c8c1d82c31e42accb50cb7fd355db346b42b0a17f3b3bdca5fc5dbe34f73cb18e6bb0900ab47f9ae3a95cac944df8896211fbbd917802a3aad511f51caa1f99bbd653e4a12381819fc5a7a5ac76366a754a6e8cc05d7863a50b34e8fa1a402609d39432b5d2ed9333e06c2581c09cac5d47d5019b10382aeb1b891fc3fc2ddeca3320ca28d2b9a4e57c5890418b5a29f689c0484029a5ff0ac9888ffc0e16863dee83b003cdd09b6097e095aa25d26fcc4763021f352a8a94b4c06672cd5b8d13f4c7e3fdb8430cc48fe43094f8f0b0875b854eed3eaccee678f42397c994865ab5bcd63645c39089c0e1f413aa8da34529a181a832c6fb8cf67997ef01e54ce5650086e699bbfb20bdc895c7242b743b351bb46987f4b0eba7325fe8ab50d99b65bc2eb80a2949b1c7e92848bdcf0bb30aa35efce2e635eeb72a5fab2ebb2a319bfadabe2203b638410662fada75b07a9595d22bd3e9c5abe714f87342774a424a9ceaee6b453333e31e23a</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-      
-      <categories>
-          
-          <category> life </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Me </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>邪恶</title>
-      <link href="/2022/04/12/life/%E9%82%AA%E6%81%B6/"/>
-      <url>/2022/04/12/life/%E9%82%AA%E6%81%B6/</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="530805f297517d48ec28992eedde9233284db6ba0b6bec2e0eb6bb04052767eb">365f6828a6d9432dd36f78bf1ae632b0d3d14b9bca3110ec97aee6034e8ebaf640c1d3cf2e3457a7480ec63857b578391ef0a9a8a4b194702c107265b0aeee8b3bed3a38137295bb2fa736a76dae1f50a3f3026e34abe9b4a8be79b622e6d40072a8c48ab1d60dcebe716b4dd603421570332435cef19678c5440fa1bf434d222b8a59f8048d4db4f69dcb51d0bc603fcef0e0f2dc04fca44d022c93ad9ef6dc4659d33d56687dc6b4cb38f5770435ac6b63d7fbbf29066ba9b98c0395d96110d361b463d8ec9660de5e13354fb53e17cfcbd6868389302e3d2b277195e39149fcd6a9009a67df6ea4aa362db672dbe80a82bd7780a2d9c6f9debfece114456e5aa045b16c77b75b510f226ea1784da9</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-      
-      <categories>
-          
-          <category> life </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Me </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>ArtFlow：Unbiased Image Style Transfer via Reversible Neural Flows</title>
-      <link href="/2022/04/11/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB2/"/>
-      <url>/2022/04/11/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB2/</url>
-      
-        <content type="html"><![CDATA[<h1 id="ArtFlow：Unbiased-Image-Style-Transfer-via-Reversible-Neural-Flows"><a href="#ArtFlow：Unbiased-Image-Style-Transfer-via-Reversible-Neural-Flows" class="headerlink" title=" ArtFlow：Unbiased Image Style Transfer via Reversible Neural Flows "></a><center> ArtFlow：Unbiased Image Style Transfer via Reversible Neural Flows </center></h1><h2 id="文章概述"><a href="#文章概述" class="headerlink" title="文章概述"></a>文章概述</h2><ul><li>图像迁移过程中出现内容泄露，主要原因是decoder不是无损重建，故文中提出projection-reversion结构，该模块核心思想是projection和reversion是对称的，其各小模块共享，reversion在结构上完全是反过来的projection，这样的结构有效解决了内容泄露</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> work </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Paper </tag>
             
         </tags>
       
@@ -970,75 +651,6 @@
     
     
     <entry>
-      <title>抱歉</title>
-      <link href="/2022/04/03/life/%E6%8A%B1%E6%AD%89/"/>
-      <url>/2022/04/03/life/%E6%8A%B1%E6%AD%89/</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="d97aff4b256e06de5f6b745002518349373595d52c7adb064578799d8eaaac62">7ab9d85c8eda3888a25d4b7fa9c695bd44f6ad7c704f97ef3b670a2230628f08</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-      
-      <categories>
-          
-          <category> life </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Me </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>将</title>
-      <link href="/2022/04/03/life/%E5%B0%86/"/>
-      <url>/2022/04/03/life/%E5%B0%86/</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="0b4927115b1be92104c2d0bc157641c0936b0d61c7baf31e7d81bea4cd6e6a31">661d78eb8061ffc98aff07f0d7343e2d07b1af3758ceb59b4c7fb8a4dfaa9899184712fc5f504d916283a0f61102baa42eaa83f5064ffd3c0aa41bc8546e1887dec1ca9475edd43242a409b54656b46adf0132059f0d230499bced73bc74567bcdc233233cd8d42c89ab97640f9fd305d706d82a8f0027d82a0346e7968f2d0ad843ea1387dae909cae0503ffe190997bf104728a89817e891003892b7dde18143aa498aee9b6dbcb18e6590e5f830aaad9ecdb0f2a001c98d2b3e89cb3ae0185057aff9d1a04873dfd7f1b640df44e6654c3d785dd3491e75a970f0cf863bd58f7775ab9b303c94ac3d56f42e26d65bda61e3c94430531fd43a6957e21dab8bdd2425c0962a6983e73b8b877a73348b1446df6dd6b29836c29c6dfe18e6ab03d560bb762ecbb620ea7cefc965c638187e4ca7ee03de0b60a7f7f3c16b53ae02e986992b76fa887d3248a9b50adf8b8d6688f29a55ac2ab3049682ef5db0acfe8b8e8e6ab044bd048cc3f07c25bf2fe28074a1c7ad0325d7f43ad7df34e6154767225ec4c432058aab29ef7ceab3c8bbbf3a7ea73e26a09192a4eeb0caa72766bfd12a2628c5f4024b408ed3d25f6efaf95d259591a1873e1e37ec7ba74d863a31747f3cd4602cb20cc94d48b79543bbcfe1558cf1e6c98cce6090c4c377e855fb0d900e057fa622c593e42d0dbe51c10d023e36548285b845c9b23985ef2878180c5ade8f92e5e932d88a931492abcdd7e3a4958c9887557bbfcb3664454d0296923ce15cb410bd2855018619b6380e5efff28ac7892351acc79081555b16dd1aa2c999b1a7c9251a893fe2e8d69448e447d5716f0441f8d45c96cfabedb21cba3f8dfedb966986a80b8b2a4c3ed067cef0254a1632d67ccc167816e6fe8e435693f6fd1f0438723a16b6bb5c49e8fe348b3a40c0954259e6cf35e9a108f26fefac8eea0269d6aa59b4eaafb3cf9a49191e779ab78603e49bff47b2cf940bc551a0985303a1b24b4c545f6a17c7ef8dab984bb959257869f467c8a2be754ca1dbe1705f1717252586d7b07ad47341034ba5ae75033eeb1cb50b7d90ff8f01971ff56fe752a619662fae0313bd902720c88cca7ec54db715d0b92258dc3e65aa150f4edb81c3bebfab8a9331fd4c8ff4ee5bf4f30ec3e0ec3fb6d13cc10d90781f30cb1923b4c03ae0f1027a1e701a62ac6a0f7ae34a62a96189cc37d9edc821102cdf6d7121a6c2b130753e8bf7bfa77c69101545f3fe6491f609b16bd35ae4e88f86876e56645ce81805ac002411e1dd4c2828f338bac701151ae1649ace7c4358424ef73419cd9136da97c76b852c1a0e6e563fd0838ff234f78c24c1d38493d210abbb72e49bcb66ae9d7c634c6525c1c243e22919a0dd90e6f4d2bac95dafaf337c9151f4c8a0f4a5caa3a8c0710ead84033e9a065939f22426c3b4142e71bbc9ea1928a585aaa7a88ff65810b21653d599eb6dd93518b2b2542776acc57796dc39da5176ce49f42c25a1bfa3de8af81bdabf69202368faf6e0ab16ce93514ee0fcae6b85dcbbe6aed593a4527f93b72941c69d04f8569fea462977a94f302d3c01c3e932c21100c1260a6191168ca4c1505c770630c4d8197816a5893b5bb08e5936ae8eb260dd67727d988c69faf5ee0c69e530bef6b3cacb73b7608b922f35eed8a8de1d79b52115967ed18909b652a6cd028d1c6e413de60b18a9856038955102f9ee75062d3efb5bbe4068f367895d4ab690ef50d45d80c22e4711fbd9dc2aace25d640522e1f743c45ebc00797bededd5e2f5de4d8d9b29ba90719fc88c1d51006b5e40cf23f7b941f550ea148331874ea4e72eaf49e054ed9fcef1066f94b49d98d782c3891ab25ce3f468d654b1eb378578764f04605dcb04f29ae88cfb84f65addbb7896fee9b62f67f047a182aa14d83bf3a103c54563b8eb230a68b8adc101132477ffe3b52b4760c6cd0f1fa36b11cdb5dd8b0cab2b1c106e2dd08e4039061a9de7f2e17863b187714e05c1d7d8a216d67d90b9faeda4a53497529b07c6e0d7b718f4398dc35e16add642d8b353ec16226d892245eb0f65719d8a7427ab5e8d9b3d2a3bdf26ca888cfb2f2e22db713156c771a3e7b9e02efee7e353bc4ad8c5ee3a8feca2a84d224b08a46823846d617a3541cbb8329ba1b7934250c349a4895505ad4cc8479ab348482d74f4c4d5f99281cd84af8c75d67acd8b91c7a54817b3a6898dbb02df1186feb692d1ba054c88a773435997a163d7fc76a8890006d23dd7ae4f32a7cc86fc8d981637eedcb712d844ef80cb0fef6d943aed236c7a6ea224f3a339f3cda0178162e2eb4a3260970c5bd5b01008148b4facabde4b8788eeed1c32557cbeb202405817d0d53526abd7e9769e0e8a474b7a22c669f06b435176ae74fc2ea45bf18597909b4f9f1bb07ad753072d7ec988e5a6d074fa7ec3aa33a25734566e4617e13748f86d55055c1a32859e01c5dec9ef27ae4b167388d3cb9397cc53af0705e4f520bec56f8bca41701c648cbbf3023e6dd633d622b2f9b2711b507ed504c8fabb1d548ee355c58152af419d80a33fb5e2c5a259ff39296bf19ccee3ea22d952f5f4e2f7c14d81a7b90aa35c5f16dc73a8803a7624abb059f5e8629a81f80a8344edbda52ad08bf0e7db7713cb7d45e434f012afae892c4879847187a8245dd5bcb4b472b02dd0c4b992abf04f700d10709866208a9770290fd81aa4c68b1801cd76200b00fb12b6a741155822ac30b7fe6badbecac0a29ea5a1a54c88fca50292b6f8203d6e4d87d05cf0887122a98fe1bbc070703a62a79fc60629582b3018b93b677f0768c26f49be7a3816fa2df0ff460fa2e5fe56c7d65eaf274226c4ebdad8f2a68d806d7f0b2a0fc7e87c2526a74b7c8508fc0aac4aee433fd6e360282538e55f0d7221a94f8276269243bef630ade8189a053fea19f11418393574b46c491ba1ac3fb6df6e1b85477fe901dcd7461655c23f7ca9627f5b59e8c7e73b5ea3b4c5b35cad387f1f68d0993d24716e2a5a96ff2bfe7783ed90f985db0f1f461ed8d363c5f06726383cb42ec2dbc1234fb6c5068c91ab4ed5865b7157141292f1215f65e29d07a8dfd3f06f15c7cca0bd371d5acecc12d1844a3293760a27ed3b99ae10673377ad33248a69429efd2af8d17626f4b64ba7ab7d1a4082c8356061b1428e48142f5d89c0dd2577b0127b0d7c4c75e7ab2a2a6f80dc8e355e6b23798174e9136d0ff57c4722a37ae88529d58e1c549315b3905e9add8c048caeadc4a5f74230eb3bb2b1851755bc8260cba055b5a30927ed12dd3867c78cabed0c15b001e36a5a2038ffb1804204a49adee7bf101ad4f3a748fab009a34803995a55e1ed7ad79daf44f35e75e88085c4b2256d03cac8cabdabab76e5c454e8efff0e4fdba65cdfeb2e994fb7757744432a0a5ba3a0b9114bbfb3e1eeb42f8fee901a38cec55364e81db38ba0ff9be2f19dce0ac11c8be0aa0cb162dfe3104f81029aeb29980085e49c471d867466460f8758637d7e225147b91b0f240a9826b64112ef39598b883149b62115c9433da4968e92712968b0fd7417d568328a5910f6a36995eb63d2d805c53bfc65cb2b6943c85f52f701986e3eee317d547703a688e5d6b874aef86b908edcdabcd604ce85734beafd7db31cebd1e12ee55d0cf21dbadf60c9826727268cbd60afcfa202c1d10178e4997214374a323bf3fb015af61fd21d32a1f8ca0436da944576f8a3b5e0e7ac0cc17f0dd4169bb9b333670317dc43efb454682fdcf184cee092aadc56cdf556611a59cd48f9bfc65a8371e386618cde9fd462ad4024426bab55d80a99397650df2cca12609c06cc2be721ce751e6022772db7922cbd48539998c8f0519987123b536b06f743a19651f0d9d825295490f18d4676d8f812edc3f4bda294310675a22acd8050abe7c1da0f7529699e3fa548e221288b1c721952b5b77a992a981879d8767ea92748532427096ba8451bd8abe06fef8da973e4f30c5e1680f78844aed5ddf4d5f718b36a2d0519defff1cdea97fed29908348c5550fd54c3ce9b07c8efbc5df0da672d02ee3d73fad1ce010e234afac88a11d307604a7e3891a451d6f2ca8093dc1e839ff0f143446abcba540eea2dc899f3bb6c223e1d2581827b631464d5c47c592c068480078ba68bfa2e2441671d9021a7d4e3924569f385b6347294fb9d37c22fe43d8a5edad8281a68e182b0167ab271463a87ae2a70910bb11b9ed0fde15a25cec6</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-      
-      <categories>
-          
-          <category> life </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Me </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Idea</title>
-      <link href="/2022/04/02/Idea/"/>
-      <url>/2022/04/02/Idea/</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="73fc77f843c6aeacab1f0cdc3579a71bddd0bb62b040e0e7bbc7e8b2a1826e77">b37e1c5f21f5af8a2d0feaf56fcb9ee1b85e5698fc43d4497edf61ce25fb459a8ab63d148a137dd47c5985e2afd45fa6fd605ef6c7198f5da845bc1e151e1e9d4207ad8b96f7a00bcf6385a3aa611fefbe63c640a45fc904f5f50aaa90eb46a89c4355d4b4037c51ccc3b1374d987c5c1d01d739bab095b55ae7964a58c1b3d419ef6cc6156e2434121cbba8b66c88849d328bba7deff6d2ffe0cacf756a0fd1d7f1c8a7061dd7c1dbafad0e31487fdf55493e72feb3cfa0a1fe3eb6bb9fc83956a05b5efb0428e938410c950a3db6a37dedc557dc10ca73b354de0b4c935527aeedba1d14d00f1658ab182ef2054149e09bada79d61d6127d44a6752ae7457932b3ad609052a0733b59b2a7518d44296912fba943d9abfc500259c21c7f176c1faf9c55332e699767c31581700bac6700f56ecaac83e6e89b8d92ef2a25abfa6fa6dab599208ba9e716a6995f233912e08aaff891f68aeedb1df9800b423c00e2ec753ac2d8c666ca8b018dbe0651e686b3aba08fda3ac2fe61e1f28e6fa1f53c858f45f7d6945d97b9d1698dc48434e048d0086162eb05e953c9d16cfcc38e22eb7187a904abe2d73df0164568b16869610cd2fa1f31522ae1cb7de957a4314d1050ae024132951a0f2af363ff2f5441986fcb99ab3ffe4044e9b81ead3384822cecd37aab4f515853414847af006d0adad4e21456a8d5b3b05f712207cb2a08c4a93bb4444bbf29e6fdcc1b175324e565a9eef07c1787ca39627c35702de5b26ee9fe9360e80b3b7f9820c5d22ef4ff59775514e0b6cc701138c3a66dd28d32d46091afd7b0fe02156bee9b8e779d3c7ff29da187c84bd1e9a75f4add4249a52cc4f6aadeae8dbcb62defe7ebf32b</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-      
-      <categories>
-          
-          <category> life </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>hexo博客中渲染数学公式</title>
       <link href="/2022/04/01/blog/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%B8%B2%E6%9F%93%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/"/>
       <url>/2022/04/01/blog/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%B8%B2%E6%9F%93%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</url>
@@ -1164,69 +776,6 @@
     
     
     <entry>
-      <title>TOC</title>
-      <link href="/2022/03/29/LIFE%20TOC/"/>
-      <url>/2022/03/29/LIFE%20TOC/</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="d46d88f3f5914b623715509d7832039254faa82e49f25fe8d62f84da79d6e49e">901015936e2ec1bc2a4d01c822635a06dbabc75c330bdf0d123f64dbd819e43430d0a05c3025834c03c24ebf318f6df515738cb63f9a216b3cae01030f30249b4c39b0efee78df4317fd591b23e5ad8076fd989204ca0663875ca43ddf17ac047e07e2008653afaaedb91f3cc83954156c99bb710833be778b8c37fc25407c487afe0884174bec091d37da6a9571d6638822e59a719bbf7009d1aafcb89e62fa86a2ef73ad1e4584fdb376c7fedd7f639c14477c26f5eb04e7cbc7b3b12b1703d1b08113d72ea2c291fb53a6cd0e7f2e87afb2fd909082b621c3197c0d6b23bf5caa8d0876faeab6a2e299446beec4befa296bec2ab7e55da3f9e0dd6eb6dd4269442bab58c02d7f64168221ee47ccbc3b529c0245cfa8f9368ff4b86f8798dacb0b9b7f59ec6ab0b43f19920248892296383e87f503627811dc4dbd8ad70b91489be916abd58132128660b8f71b01f2f1fdbaea22ac28af0b0a987a80ccd6fb6544a8ca44bc2f1c49a8e8f8adef3cccceb3e2d1415d8bc3afa31fbec33995f0aed8dbfcce5c1ceb0c252fbc261ae3d308b7e60f6c8faa2b00aead7451cc53b32c5948c78196f1d48e991e9b04df40303ecae276b6ee81c4c18a60e639236af5148f34a2c86930ea46034082105e15826cadb587d0734847dd406bedaf99ea8311733cfdf8c12f1ab784284235bc5b3bb7cb18431ef9098b8bfd5fcbd03b333c4c7dfd0876b512cb49704fa97141fb40fb7680cc549d2660d2190e228a729b260adbde430b3f64745ba49fcc57843d8ab13bb880b0a5df4cbb5dd9220d53f9d3d7cc39b5a60d67c5fee3f34ad577aea58e4efb700fa1ff423f8c1aca80a1c1427b5e8cc9e22605d47bead6e1794f6632a3becaa56d2666048df083011f4b571c9b74bfb73b025c2d49c491637f4884da7feb91d2f954d8f3f3dedd9987630df8b492b7acbec9804ce04a216c4c68ba5d6d3dee2b49133bf73bb70daddad98add</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-      
-      <categories>
-          
-          <category> life </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> TOC </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>双向</title>
-      <link href="/2022/03/29/life/%E5%8F%8C%E5%90%91/"/>
-      <url>/2022/03/29/life/%E5%8F%8C%E5%90%91/</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="c89fb12ebdfd2ce00ed8d2b221fea91a9aa40c737ca8541c01040aa9b4742fe5">d8eb541f534e62ff3f46f2f28f0d52a5a1cc6b8838a78340aa66e10bc3a389411123a8e26eecb6d8e16d64418164ed19020aa495700bffdfd5bc9dce1c28f86effba5c06d69bb9741f76c7c8fcb95c76cdcb028fd22690e1110134dcd9df3c2e255924d15160f6dbc18803f06c762044a161653cab4d7283144587248b2870df513c38b156dcb7ac9c5f4b189b46c69cc001a6f326058c08f5b01e5c8c3770f2fdfe6f53b7df9a1d8f1b4e4e9b8a11cca3cb2e47073a25eb6d685997bb127d7b68b35fe28e9852d6d4e5daece160cc48005baa59fccd715970803a68bd82a82b29be2bdb237b0b30fa5fbf828e7ef621872ae5a7df7548765294d473a419ee0118b52a2026afdab44908f6994aca32bc7ddf7f21868fd60eda6ce13592b6b6b1368b2bc7c83f9d67895d778762136f39c4cc30632c689fd5d4e07360465d5f0eac7e34c9d22f5adafef4007830e740b777bb5021d5305ccf6d0335ab86e995bd4bdffc4dd7199a4411d20de69051c07cf0be3b6ac6ce920d551ecf7c3a96583a7c0ccf88ff5e01436fc33bd3e18b6c5e</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-      
-      <categories>
-          
-          <category> life </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Review</title>
-      <link href="/2022/03/28/Review/"/>
-      <url>/2022/03/28/Review/</url>
-      
-        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="a4759d7bcae7af1f7cccdaa9e15a4a89b11f5a419cc09e66e7d1c38b71bd1f15">a225aaeba5e546997ae504eef50c6509f5a4f9ad7e3301693286f8c489cd995caef3c83e181321ec516d47e0f488188dc4c20a56a1c0e037c191efc25fa922e05645579b86ab67fda7699943c0fbc3c86b249ca271929bfa94260cc8906726ee49358dd181c68403581c1fcfdaf4dc7fd0fed894aff009a099c6ff7b78552f5154649821f370e25eebb596f0fb20966b15bfe63b8f69c27c816f981579da059b14f02ce9852744bd3360cbc94f2fed12f0657f46e52bd1338e057414ef05ce357b94566bdada2bb0ace6e08dff61e42241d3a01764d507dbe4991de52540dc66600860ecb1843bc43371cb56929e0b980ebb651ce0dbd687c52e4411cc7d41ac8e36371adad3864cb30add34f372f54a6e75b73c5ce213aa7e4723df37fa4c09a2429165b0aca5fb7f3fb9f9159477c4a86f530601a2886b1f7fd2519f3620f0ebf290ca6ff941a8fde97c8e5058140dc578a04f2a743dd011c774944d15a5f1849a04f87cb98859f60706084719440d378dc250f8b2ec0710e9d1fccb8fd9436812c63665bce42e28cb06a9a6885bba206d0ebb886c66a445d97d2bc4a81538f12b816f159d833e6eaf93cc5df30d40a4d01863d4d4ff24d602397616123a2bf6b6416c6aa859dd0ee536830b3e3c98aae4cc647e410b8e476cecee4230b7c91def04ca9e15583ae0a1405016d69ffa78dafa00dee33cdbbe3331104cdfccccd1ffa2719ca92dde74064e2540222c7c711a00164eb8d69e23c687aca46d26087f47ca452bfbcd7ec3b0225652ec20a357ced0aff9fe101131d2e9f94addf7888f22335b1000349c88869f5d02c546e80fb8138d8987ba5c2c7e5da6b951c10337454af25c3eba897107cd3de0cabe36161abd9a4bcb1963c28e8a998d425566ff12257a6ad17ab6d04abdc62ce955a89867cc08b112ffc7d2413fca5d6f914c8b7c968932398236d66f1768e5da2eeb3825a7eb9e4b03f4c0754439deaaca4010aa0b9fdae7fce3f5d262f391b7a68e37a0bf7a56f459a5710de084fd33a9ddaff9c3642158c3e27e7d1214e26c0da5f9fd75af8d974e70ffc1d3e4a84f767b28207815b048823fc0ee4854d92c581b52eddc1d261e15f13598d1ddf8081153763c1c11cdaf1cf8926e5cbc2d9f1244a8e3ef9fdb4be8ba9b9f2ed644292573eae18dcf5e9df9e32dd86c1372e687fd112b11ea92fa5761bce938f0b6507e42808ba4168408d5ec553e158a2bc33226c6f19c050eca212a57ad61d4564c5187285b2d8e1d05f2986d2a50f4e3c9c01c56f6a79eb2eee1fc3f1077c34fd3d2ab25a6a3af0819834d9f5909e1673511911fb1a5ffcba2ad309096d2a55ba1bdd021b1ac846945df66826f26a57b4b6ea709208adafcfcf81d7f7e679b8e8523a34d4338b805d0a4e59c57c292d9d2e4aabf6be190d85437ea7bf73946dbfb63da045fc7d7dd0a959869a217419eacc623d81932c61e3673bce19352bb77384f0bf28e22223c8c61bfbd8b75951b7b284b6ad792e5f96632829de7fb071b9dd0cfe703b17f8ad02181eb40ad829bcea74cd377baa62eb14c6d8a9214a4b054b535e5d0236ef4e7dc685ccc48f463020c8c5a907209d9ca8941a73a4eae592b563b2f0a78919594989ad3fd759fbca7f0e2669d27d00539fde1f991881c8a3d9e7ee6377a80485d0057e2e77bce47d82412e6edbda6b43b346260151daea625f74e8aaf415241c81e0197691d7b469662d8d730773f68056092c08cc806c8965eacbebe831eb4f471d5e5d58f1cc387599ef58ca0a1826c6ca8ccd6a7451c15b3dce3984968f7296cb1ba2f46fab3e4496396fae2214a87a493ef054518cba4b9029a24c109aeb8ba6eb1a734e6e304d4d2cc2c9a8c29a62f42efc64b98f0592112842db8c476bca5f0b21f58631338e7952f0aa98bc687572b6848baa787906fbe76cb356867936acec8319ac29ae0b86eec4b2d0457f93964e90d0beeb48e4e5c26a27615cf05125de4a62ef70f6a2f0fb52db679bc915fe78e432314915248339c7d2819a1fd6766d3621573d8a37031d96166586a57d3d5c5bacfd89ff35bd3a7adb144996ab1a22d4d0f46e992ba2714afe8df85ccf4db0b6d4663aa783bd88892518f1132dd6edb64756ae316936e5e94636c60abe58f396dad0b8c6f2833ba155483e42749fc066e708ff6760185666a6511a752173104d1ac1e1878dec473c599f47f710744c1bf200b971307fd4f43c28aed58c4b793bd466b9f2343a35bcaa81b7dd9b88022a16614bb04556802303817cef1ad1b86758b939446b25070a027e4aa595c04997ac92866b06edbb7f90e833176703d2190de3b48d2711652897b4011c14bfa264a595c72e28da460e0b4f6c407bc4893ec0d94a5dd97483860c3218c3b601288697029bde0530ce50442b992afd53a891073bcbbc3fda09d2827e1aefc1925901633ea5d17dc9e3b318dba7217872029e6c5dca904b0be7dee70c5f073ae9c3dd18200787a1cd09f7aacc844916d09538108e1131da415d84da5f5e67aa3b71fad2e73d839a3532d6b2de76c37a02904261a262bcc7dd0c2a23aad2707f48adad2d6d970d2a16833429443ba43f242582b942c5f09cfdb3139a1e4d159ce88741769d2c65a8c79bb810752cbc216cf8ad595a6bfc53a381fabd9f83b0df3db7d72808514d24534a7ebc8959e353fe0f5ad7fd0222cc880ac136f837d3c0536226fe5b48c3fdc6e4a953f9a0186b586d765a237a45ce796ea61f7c166d1f011f7e89157c233ebad8ff8a977d92baf2ed5b4ff505fde92c9f5f81748f950d50be43a8471fad289d0ad9ab1b5fee7a8344b2ca212fc838042b45c5d27c1e34521916996618c6b305281d6540f2a08c5fa0484372044810dddd95b1af696fef9e3768870a82876b639eb7b6f15ff0f8997fc1f0a843b787243b8811b6a74d222e62acc9bafc061a663e673e41ec56fd2eda16a753492fdea1fd772dba54a10ea6abfdb323e5fd4b849822d83e8dab19274802d8b8260113677661af96c63df36176df8f7d40725d7558b5a9cd364976b0a60c76823c5c46c339d60497f1be2a12236ee1f69f95dce9ce0e3d1f931530b5fdf26745ac0824dc66f4c03fa13ef66c47192799f588fc95e30fb6591c34e4adeb3907badf1cb73ccc80c4170695e900cc58004072c90d365bd26ca6b6ebf850b5939a2a27c81eba3b2c17cd6279e15b05222fdde3b4910dd3846d4d5ed6d6dad19b98658ab6183d976167069e91bfebcfd705fea3787402e553ac4869abfb47df9cc7d74864e79a084b3421dc359dc36f05cf259f6e2d0a38798142f230d36fa9aeb3e8466321e88a8daf216b91e852c63fc624c4573d06cb136b180437a6d844e7d0c6d86ceb23f0045e394951e4581c4348d845870d3e5fe00d75878dade45408f7e5c293813fcf4b9801aca8b2528150abf124c290c069e135f7cf977f905d73ca19fb8a16f393328d0a214eed8087fb9d892bfcac542a20525e7031044c34d0f8cf536d930d7fee547999832dccdca24bf2459a93dec0092500ec5491965b3cd1e8b465e9a4d7baa2d362752fc1cbc509c8d13b6a95424af8bc87f028c226d75063dc5f249d4057769429dc453ca1813e8b34e606eac8fc9ef4f20e558abb020358fc08927599f857de7eb4ef87ad59a1aec729bad711a5a0767cae17fded0475795ed96ec841b0f7502ba584f3e5b6a6b7ff355eadcc93c8fa57655df0d958e6e57a2dc966736cf78595d5d4930c9e035d704014c6e463423d8d563eeea85515ab769e32b09d6349e56204c97677a75a4282309fd3a21a0566f1efc4a6c8623981f17080f203f301c66eb31b38efa004125fdf265948c4046ad31aa43f35107de5d3a217a7bcda6b97e25f5d330b593f64d2d1b70e74c4debeab505a00732c8fdd66554eadb6a66de7ebbf76bcbba2d1af3b18d56db4abaab2d2cadff46c1ae0bbc484c2d6891ce42d1f188d1019d76d4eed83d1a097a75573655a503e79a151c1e29afc0e57d5d0299e84febc0bc59ea2080492ba91c64ada85f44d639536cd2b5037b7610ead618bfdf86c4639d920663129afcafd17bae68f5ba1c22e3ed7fb86af9a1e000f7ce0f1435b65a439fc2455a2a4098cf2232ce2e103c492836e4510f050aeb98263f635792d4efc7d32660fe8414f2cf70af5c6290ed030a24e521ae8b7830c5a2407869b749a09e73ea04c5fa3b1821c3c4d4ca38ad6acd665390e9eee8dc05ae7f3e3309c633379f1bd962b2dc27c5cac468fb3c90629eaf0527ff3feb063a837aeae2ff57411e6ea3fc41cbf15933b46ba560b514df0c67cd0917a4009987a56178c9b4254edfe97d1675d288b97f77948937931eae0d77e74dd7ab0c8a6903af5717618b0a5c9390f5076bb0546f6854651e3f5d40f873816edf096848f4c2c45e7c134976e1d3e8b9dcaeac97ca36471fc502889b4a3d32c5369fae80186bae6f5a228d661abd60cefd78b02fc36b699b3fbdb3b26dad1a49dfa61ceba1171eeaebbdcf95fd65298d42fd4c75683f1f745bf939761c891baa70bc249cbeeadd92d59eb2fe539f600b3d61fb30cf21e5c852b7808ae8b7902766d68be824b93939d8e0ffb3f73783cc446b38799bc87e4442adedb4c8892ee0c0cd0462e53bf11c6cac032bca0cb33d765dc49e970ea9fc19e11c5b97f618a876e560775d0ae70dd150793b38a8bcb2b7d43432ac9f98d300c514c30ca3245566d6e6829dc36e5f713e6935250a84ac1b48910f5daa242c64117def007e88e72d939a17bae8d65c589ce941fc79eabeeb1f3a879520c98395b6dc9e5af404f788ea7ce32bc0770c3b363f0f2e3a442f66b2405afa7ddd98db79871d92394b8c6fa73c43f3b7f57aa6ec7aba803533db1e31bdb60bb7817f3fab052abd6cdd30a1d703a1caddbd28d5654e70e5d11d19c84545f0582871638840fbd906eb76fcc44d1caa00a836931ed51194890d6ef48a417c9358a0704fe0a3321bad8e60ca1e0b8c68166e439c5f7a1ec21deb4ec24c618671edf9d1be938ce33e144c40d2ccb706a4d105d3e41fcf545e269d18d573bed3697fced4060073518638cc92924954299eefc4ea56ca4ee706ce84d5ddf3c053ead14d8a808869aaf41a310e511350491186d0d8caaa852a8998855a65309b88835a7608d00e51fc0590e3a954c65bb3fe6c8d77d1085fba6ab433f614cac541380f2aeb32cd458157f31a2a1cb9fe6a371d4125b7894786afe2a85d3d3add255129567522ed0ba4b76bd64249174a60f2262cccbdbbaefa4159950118d6107e2ff2e9f06233333e69579bc639df5db6d9508607e96a3c75aa218235215d3110a243864e520dfcad432098c1ec100df7364febbb74dd41304fb178df3c26dcda213b7cd22d709d73a987cbeb72b338929d3cec07f36a4c919e72e84177188137434bdcb81a6f2550198725a8f2f69ee6d6c8c79a0635a9834e9243e11fb35fd21a5bd7288854134d9d2ccf66a058f4eef868d6a71910e603710e5cbd81b37e6fe97128098cb4408c541d9af3a4e451569f46cfb831968d98f890f8736ec47210a55e33dcaabb86148619ee6d45c441f7dce3710bc1de1c70c68acf56691d4bac8e098b4b2e5120274fa9da38bbae361fda95e0efc03906fce63a28cf60b547bbc5641cfa2c452ba74dd29726c1e4ae1939765f7f7d228c71e8e0e1adec8a673549c4a781782b425ea333266f4b2704269a57631dcd83620a5c9986f9f6c5fb0a594ba403bf61805e73f07f5d80c519430021dcfe0259bf65f318951e2589d9c3b0de8c7bc6643614074d56310db69523bd2484c2defa20714703cede7875661b0a40be0509f1f7b30cea9e6e43bd7a57144595faacde661d6e4398c499ec7bec62ede18ae43017345218dc87527cc70f83c7620ce8543c855c09921bcf5e286401b7301e998af23e540d3f4022f0923db3729c9fa5804a175cac9a9d9dd8a59125d84a5e3a2f4479bdc237df7b945fcac30a2fbce41c7a3d63d2c413d0f04d91dd064322ae6573fbea1144821db0cd1a226ab9cc8956ea2713bc5e56fbcfc05f1e56c017b37150fa7e5942f792ee17152dc5c5b69eb90a2f6ac8620e7b7fe05b8d24a9f53550e0f89cda0f5932023837f47cb6d39f51378284c2b0f61b931c27d213b166e5a7c42351fcfd2f60e491f483c2c8ff07b0e5261f07def3bf0e46706cf84bd6265b88845d5a4bd55a28e8c26c542d8a426a0a7ab1d8c97de2ac3d8632b35bce6de07e42f5f5e93469b49d9854af6183a963ac4bbcf267643eec990ad991a39b2c3fb6244ef793aa6cb2aff082de5a6e9a154fcc6b5af9d558fc2c1ff579d2a37ac88a8fcb990228b0aa26814e634ca75cae85d3b6067267c615feaadef4c67fbef34e8f6faa37c60e15dec13316bab1d64d84085bf6a208372bbd309994434186cbc4a5395d83e00f3ff5490d835ef018dc47fa1e3ae130274f2f92b8e0286fabb304d7f29203eb33fce4da608160f5a4d3601bc3a6e0c9659840679a21243bfbc29ac27ac87d0fbd7bc94ccfc7895456b7509ec197b4afe2406afd9a0abbaa92c41f5cc11a6b7d5d0425e8a1d9f2e00676d1dfa0513f707f316b348336df94b97140be8343eba0127e845584c0554b8bab41b05931287ad7316241ebe5389c443704722285f1cd908cdf4229b633145f6cacc1654e2fb11cabc724d7a460397131cb2eeaa70336d8f00caa6c52c1c832082c01a7ee575c213b09dc9ecd1acb89a0aac97d40068957579c59bd92acabbc474c3ad5cdef556fb680c770dc8372a89c50a00b2df2c598733e1842a0be72773ebd5f46dc9678952a4b29bcb0dc4c3472a8a77bbc3a4ffdc0123653693ea4ef2cfee3620712e8aa5a15a5f55af74ec448e4928b0cde9c06d3f996b844e715092dc1cb1806b22a869721886657939075a65a93d21a658fd4c387216b1204d9cc80ea78fa3c6f2958cb1375e6541c2a1e94626ed0a474ec2425c4496e108b8cb5eb7ed3c656f1a65792fbf79e080111d2e6f0c99b66ff2361964be43dc45bbea08eb1d75595699b7b9b4f0a13792bfd16af2d3de43fc51753303b96cf5a69e4fd83ef228ce2984d74394ce8e88c2d4f6063cf4eb2a1ea753f83cbc7d868d12547ed2d6586eb736b1118c2526d02da6d528a95a3cc97cc327d1971f55c9f46ecddfc450b86a7c3c1339b12320c0ee83ab8f20175dbf56e905a67d5b79f345bc2cec56b7e0e24134f5ce4ea2bd4bccc5a61cbbcff36143710e5479080b1065305f41b77d7b838304047d5ed9f8bd85fad0f9b38de124b79bba41a389b4965ecbb37e15e295d256920c934edfd69e4f29c7bdd2620bd0d5682248c2f32d7217b726485a0b12de7e39c797e9e647fa94f069e4610e4b505de4955d63c23142dbeb5a4a014fb60bdc7695068ab18a0fc6bf0e2489f5746ac25ac070afa1d6738e7329f9b70f906e788c62e465b2173b867ae27496fee4b2a9278b050992793ecd6472101b8096c26d7733591f81c45a727eececdc5a9bfcc45de714b1e0a7249f6596e0f4a830fe1b845b188ed917165c100e6c20c6508b1af6b0fd55b7ee15dccf8d85294cdf410a433a3b657bbcbdbf43b3c7e19c50b8f81b9092adebc3f720bba9e706d5d9c2bfd1522e208b85779cb6da5343b15aeb5b63fe3d3a3aaa8963afea4dbfa096e71163581948476097a0ecaeb4850734b2911b7c4b962294e4b9f28daf8e0cdc42f2c263f280bd9ee44ee953ef438e44b1c817469ae3659c21d198bc3bf3eb77240e8df0933c05d9d18a282e4fc046aff3b4c615b045e144bb9bd1b7059389c5ba6dbc8d83e3b5b71e85ef09f0431561353bdad565dff67919c4dfa0f7e72f6f6d4900ffe44f8ae027c0e69767e560be3fc6ba2b1ecda5b871bf2ba8b88256a36ed23a63ecf3be4a556594765825f74647579944aea046dc3ea56fb0872b45a4610bcc38e203168190417e163267261bf14765d452bfc517410812785b060455e475d0fa054f3b02a6815febc02fbafedbd55b163eb92366b1bb692865fe2315526c09acc5243b862a70d3cbfcc034b107fe8e87e48ddc8f9a271cf23eaa6ab1664d76c9784775b926b4981665d84dab674646c7605035b30e240440505602b4b86f1419f82e2e7069e6974c122b1b72a7ede6caaf92a0c019fc6bbb0de85dd713a92983ce3091542a0b3884cba7e9fda67cfff5eb4b61774118bbd8246675de7c066f594123cd699bf096170dd436a15933e6e27598ead46b99f2078ee7d9efa8ba63476ed555d96dbc2c1af3e487bf68ac2fc976d90f7062eb5026b5164b35acf739b443c124428dc5e2b2094691e7d6e75c95b95d8d7560979aa2490759d15bedd44d36e1b521f51c6719e73c19bc635ac0eac448ff9ae7a28a223ae18ee31e864205e28288edcc8dff2dd6ebfa0d4ca243992e1e1d50680a7f20361f26375e9a9e282875ddc32fbe32da2b7a89b5e2ab29cf4e14876695332cbfdbf875dc7484620989ca1df8f15ecbc0071281dfd540bba5ebe490ba646ea624f23a08f53393a4458cba1d696dad83301d3f5f8d25bc952ff35cbd3146e6c208fa024a273ddde1d6acfd653d5d7b35f48c2cdf751e25c89181cdc92b8a07f768d6bbd61e5ddab8e1b40ea2aa15f30d8b6712e6a52a131148f8ec833c352e6e2847c384a0db5d254903b50c2a7c6e28939d569b503bc6e29b4d0ad078fc73c6d6cfcf9356c5ac5404570593132bdc9b8e71b1cdcf9b538b1bff690c69e4261386e0a76da957db1d38f0ec63cc2cab9400f793a41fa16a0af22aa0c27c12a39ef84a4d3496299f09f3856e25907f01db198dc79c39e72251440eedd38b494f602172244522e1940802fd089a00023fcf7d5765b710f41cdc5e3af85e2d0a2077da5c680919d719212d423c19fa741854104524c69e4bd3ae63a1ec443d2a4ebb3701420c47f0da3ed89649dbfe13882f1e8cde34cf803df4f7d2d4d83ca66d291cd888f6317dd67e734d1339f3c0c5024238019883564a54847a1a44ff383e621478b3e3754bd6378c87713bf0aad04cf1124097e610b82cb1900e38ae35466b9d58632af7046dbae1b4064acf7f5bd62b5427c7c83e3e1cc15f99fd5207e7ddb84cedd74da7610b992d9993cb2aff7b05bb06e1deb7c53e6757eb89e1f9290af4f949b09633e0307e97173a377a1f4c205dc5d586ee2e8e4dd4fe1d42497aeb998a90eb8b674582e51419594dc02049a662ecda222abd5726ce8a5bcda7592c8f7f475f9bdd2f4f705b69bcc319d228d4433c3457c592f31bb37d91b3536596efadb7aa9bbe3443c02f4ed4231d0e43c0b387a999515a3ee508accd7d4760f64822b090a2a6b203790035a0016150f3e2f811abb89501a49c5c0e72b21aa2810a7e5ca427985079465e3ed78682d74f83870705255a2c566675f9ee023589d9dc3811f889a00b138c16351776098e6a426095e46130f82900054c613102f8a089f7f08f72e3bd9049c533891ea9daeb379511628080516cad73debc9c8f8143b117038a8a642e23d3e1dad83d8ea310a10dc34ea8be6b38c85891676347589de0aa7f8a27b06cf5d401660c68b3b46795498145a62fa52e5e90956954e3c509fee306f5ae2d39050552e03c833b5069b9bf9b59476fd6012380f6b38ccb0e3dfe31cd23238aed661147f74df6cb01f4006719fb9566635d153b721292bc2b4ceeb90120613ab321ab2da50ff490a6cc227f869ad87dd1cb9eae9f1251f4084be3f4a0e54b3a41061c6922cdc1c8fd4e3719828680284e364c1c8260b98cec9e13bbc9ec55df4fa870904a7220fb34abd8f6e89d93b880b9c8a1d79a802bade6d0d6e1ef47ae694f8c1e4bffb9d322845efd0c54cb13569d4451759ddf9cabc3c704f5095f3a9deb19d4c8b6d7d6f63a7b785cc599b5377f0919871e0d353ad7457b55ea17bbbe9ee94cc9cdfdc39852f21794bc45dda76c4014a4c721fe4f8bf1971b69860d87e9abb6a42d8761a4cf117c4bee605eb52a2c0a69928aef73c2c372df5b455ece0ce05573628e13e4c15ffceea86db8eb5470bd19280ec2992c687604aa00e8eec255204c3f54942664c2b524154e18b218e691bb1f016c1b77c3d1693c45f1e4a93659e4a023319d704964aa59a5ce369db1e14ca7954dc7b00ec039c826990c47f9d99edd03d73641ca7fd79bfe10b40a0c8cf8d55bc51a403915ed993ab22ab9ded6883c7ceda599973af7eb1e562b4b2f029099e147183fba80d3e72a147a12907fa5e2509184e6dc45fde5048e672a0f8c8b2f40ff9f5fe3dc4ce79f004185d1afdb2dd0ee72e8e9ad4d88f29f52a1eecc07868617ca3667bc178d135dba0052b5b6f811ceaffba0041de4c39bbd75fd38bec18635aab6cd7da55822f3fadce91bd4428132a1ab774b13fe6e3557d941eb130ff2553a0fc499e9b7db54b307f7313a57779fdc535b14c57add22fe3841bbbf0d93e1aec8ac9e861ef3b522c9b2da74458e97e02a98ac76e7697c15d2457a5323d5e4163763bb71b921dc03c827e1580cd929ffb3a0512b04872e6044600ee6e96bfc925a152af30bb82832cd84617ef1b40cd2166db33405f3eb313af58b4226d591517641718936134dd87a0cc1c5eb994ad3cb7c86a62f87efcec9b345dae18735bc47594ce191b63747d372851d9ca24adef748e30b402d80c4a3efca0af6b1a1207a4a1a42baee5cf8008dafe907c6e1c176d629a94aadd93a0b58b681ba01ea9686f31744a94c1a234fbdb16ef65de459ccf3109f51835d8600bffa1a2752ec80e47413a6785efe19a9ad7d392cf44a922abeb74f6819a4280af9b47ea8933732acbdfc770654b5b0d96a9f0db59f9ccdd7414995f05e1edd4f5e7fe61224b04a6d5cf4bdcd83b54c0deff2ce4432113a0ce0cb4f1593ad7f3a221c76bdd341baf28c7290157a003f16faeaa83fe5002a9a15562af8521f5b68c81bb6cae61f2fbe34ad71b44bef8c576a2fd9378c466f3885270aee1e2b4e7e0c6ccd99675c34efddeb0cda351aeb16d852b9b451a8eefef53a006a4a2f1c162941dae0e0dd77f9a8427df05b1a2472b4c1d92144d13a6aa1523f86c5e92cafdb09ec86e86f9fb5dc688a8ba26359dd4911ccad315d5a62570fae5ffb4416ed252539276fd2a4130a3622f12155184afa95bacd9d0abaeca02980eb4878ff5c76dc1efe678b8f63eee7d79289756a431406b77b714b62caa694e9e588363f01f8b781c86dd6f7048b40442e15ec476477e087de065ddb25b112fd8efc4865f396460270e456e6fea24986236efb63ceb5760a54561da20c089772264061e0e1cfb062156366b8b55ed54dad331feab263c73d5156d59e68a7723cf794cb79776ffa124e27511d7593a915332d4c0f6384032e9dde2fdfb0a6f94e2883be28027dad8bda31f417e41bfe8a3756ac0a42794a5aba3ecd7c2712959b6c879fbd41af289377eeab372a7e35393ee8e8a54fd1274e30fc96cfdf1f94e0e246961a38494c10441115cda3ba2723a4389b440b686e2f22997b1285ceee3275f34190a92d5c992efc6b80f2138f38616d98170b2627354979bd4984b4ca8166065ca069a4770524789ec03fe22b4ec0248af1b2a1e3286c09dd37aa887b2000eed8d02d804f66a6815cb1bd1e988e23363509e09540772887ca35dee2e40929db06462b314d9b0a579fffd6526561931326e20c918bbdaebb24cdebb4651550b6e117dc2ae201b7b6c7bdece28bdd1d1517c15c02441948a616ce1d5a6ca3db6850100ced2eb757dd4be6f5cecfeb24c1e732acf92716b59a11fbda400e38e93e06fcf4c16f4653f7e86fb42a04e586a8f94b981c70730553d8228147d41b477dddc7a1a7e7d09330b15eec72b1a7e511393bd0fc0b2956549fe4091c44b235a7073ca4abdfc653ff32e57e5f3519d571d6dac3a3b95c1e9749ffbe5c84cbd85133da80571601a79db0b04a0b13cddaf52589a11ecf3c729ff42b490875ec5796d2c7759a4ff2da502a4a88eae3b01d8c90004552f9c8d7a41d3e27ca572831e1f4d045978b33f26c5b25f1c05cc9f1b1eb5a33fe6ae42af2c91f9902c3b827c3ddeb67cd68e323e371fd054415693eacb6b2e72863135822c53ad1fc8b99d24535c03c03b785ebba8a12709214e4b6344e01297e14afda650d8f5af29e41a879ecb11c03d5359b418f011269ac4bf3060ef169f6bbd7c03e68763302ee8cb54c6324846e8d8e328177b41c01e9342d84e69f97e94522e2cf9bbb1037802dcb284f2398ed4d1e81c9c7f304ab6e8a630f0db1edfa53d8535fda3c3a7a9d5824a3fda00e970366b69e8e1b4e5e83690f77a2523261dd357832487b6f5d2f61cae9063d39ab1b4009175201b20f9e0679f7a101548413c6cd3c139b0e92ee96ba172a852e0195ce2e46bb716cbb386c230eacc2a222d51f70bdc3a6c74d7f0f4b6c2244068136040f7d24d3d0254f59f42c3d7246802e74b1651a0879b967c4d00486e6fe6f7d90cdf62d615b306b982d12c28462ff274e6a75e27a432af42404a3687cdd4d95e548ca57106886547ae77740444723b963c8f049c252935ae47f37d60eb7a994db6b507715b427cdca7c3064c6f40ac8658612065f0e4d927ec63f795fa75e88b88e9d6db3d0502bf2dcf1549fa7775aea6654f93caeeff83eae816e03979b92f2b538e6a05df6cc18e95a4987d98e8484c2e7793b2a92e2e8e0422d22e64f8640cc51600a451cf82cf5b4f7f5326dea600d7e9abba753d17364ed2df8059e4304a90a994d28175b93cbae2814a85509d8e91a8d9c8b1b971d2da2136e31b859e862a3e0ae08532e437ce181366f59688f37091fd3daf262024ef2f05b7675c8d1e6e6528e22af17c57d6c3cb8a9020db800e6d098055a15ff55ec6d7cf7c0f128ad7736f3cd0bc8e75e7bf6f97ed4072efa14f3e358e30253ae4224f5310738ddee0f5c7f735d4be8ab0910f066c23c03f5a5420b8767713fc49fccac7d3c96acbead35dafb12fc0c298be8727cbf3a28314c3a9a8a72c97d8d4d139ee695b9f0a875b296fd2eecb572aafa5ae2fc1366cf3724e1132bb1b8d8a732026a34b41ee960bfa524ce091c677494ef900cbb3cc8f0e5e83d271070ea2655976fb356fd45ab08e29bef077b3c3e8e5f4e662d79e7589fbb3b1a6fe3f55374b38bcde623df9a95880adc0739c304903eec25ca21edf9c36d2bd836f1c39f8f520051c820544e6814128fdec306944f3083e190b7217036ada63542a64a0f947d00db599d7c90e75a71dc2d5459c8457baf7b6239d2ace5334d3f607d2e121e1bc0608be4bc587559e0300236c829a55940db0048159e26ae54450b9b31667d06352191d799a0f41abe3818445056da4c04edd03e1fdccfd9c94a287c575425aadfee94621089e2fa3c81a0b577dca024f4061d794b5ad8b718f3384fb59c47dc804adb9c909290b6ec163692386bed3b0879c3656bc712f64f5d30f8235b813712842577ac566eaffbf1205e34c010e4a011b9d9d8bcc0640e658607c4ae759df18cd9c3d4b133a914fec46eba5fe40d50ef535b5482953a54a0575c1690182394ef9b963bf67164a7abcdb27105b29a18d8f2a5a10aa69c3dab03dd26b50a38e419d7e42e4e304abc49b47c61861db8cbd6290aaf884c3ff3e06b959a57b48f80220a9a7b94add530e4816a2bac2ae9cd4d6f08fa6bc2e964b473cb82caac6dbbce5da5ef4bcf566e2e3c22f06c74216dc263c416c44d811bb457f18b865f5199aa518c822eb90a81d9627114ba18a4562662fcc46204c4294bc8eb6300d57c8364e3e83145f3b3dd2ae0932f1b6f53a3d6c526733447572da2b5222dd860a94fce7b66f8155b0ed8fae82b46f2a0c661268fa6fc902f4716e6ccbe09b68298468f5c742a6764fa59ff479819cbdbc6c66e681cc0bdea71b822e9c45be27253a6b6e23726039de7d64c1d7a7d20c2b85f4534bbd6a22913fd7bc18b5eaa523cecf83371d87c410d3610d9a92326f5c9d6e684f26e479ba6a661a6f1dbbe3248342c4ea479d466926c5c39e7597b87140488124d59b51e225573a799d255028093157a31b6bb0d5654ec51513e898fb9f5319033d2fb5972855546ef0c1893f3fca902e7c511176a25fc7911863b5773f012fd1ef43f3d389cb8abffd020109e57b6fc8277eb573a31d2585fe7969f42152fb8f781f6509f8d1c5ceccafebfe6ada381e555613062865a2b0500aae3b2c0b5ab22c23c63b882a97d66e3905aa64e1d7d643b336fc871860552511105f4e41ed3ef9b9b21f8448e9206016d404b691dd67deadf5b250a4d41b1311ec32c815c4f4b9a1ee84a91963fb4304d451ea6fde5b6e4870866f218c7645b5f48ccc05b357f01a92780b12cb45304d219231aa18218b500df2e99d2e6895a7b7285655f1f4b58ab5a40876d8a78552c514973b2425f1a197d9f7398aadccdaa1062f2c7d486de7fcbb243ffc6f6f751512f249193c2dcb9b43cf4e6c411accb733a4f13f951bb93742b84b6b19ddd1c10231b96b33ce6e24f9393bb4f87fa3845c95b79bc3de62261c925a11f6ae141d82900b8e28f377f2e0dbdd80b5842ccbec955efba1b242f5402578243da6b16851d8968c8d74d4d76e536b4aeab3633dbd180002f8c8efa09384a5a78d0e2bfaefcef18212ca4a51d11b8b5253b7f31a0f0b15978d14d70c655e693dfa5dee35984ef1737c5fca9176f11c26e9581f9e81773d291a28481dec395df164075fc26ae829ccd607ca923581318b334198888d920b51282203e9f76457f6517d211801a011bc26d7e902bec205419433b77b59da9afbab3a500b8526195a3026f1f5b7342cf8ceabe24895b2ab7be173af0c73c17831309db58a5fbbac7af1518fff0fd0160d2bb3f6ad1f05fcd829394f15458e58868ceff9e36e5be33cd8425577007a861ce997a24d94cb4f023456def2691d25c4301a6a0ce0a05d22b61693375fe0298ddcf4d049966d5e8c00fd0283be3be633c467b0d87315d8de81c0cf191538ad697366e9e8d028731b609e3193f73879ab6aae5e90946cb8fc7a97000bbea597a7c906277341bf8b287d3bb86ad4d5845f1e7da4c5a6d5593d0e257e5d9e2ec289fdc759ccb4cb836b22caa69120f5aa75b8aa0649dd00989f90e56e3cb903c80a719327949118f5c30cd4f18e0d72db81ab6749550c56f97a1210722aa9a2fded7477e26b1b622eb9b8cad0f860e5417b86017eae68d3bd37aaff95bb879e671ed3b0ac9217fbd0bc6302b11e25e2a69bf2f160ad590847cb7103e6897001f69bb488d9259ad75f3223c256cb5450a8eee18ec53262666db73c6cbef314277f657818055a791e0bc21c53db64651fe8a3ab718ddc2ebbd6f2f27ed55872afc45faa67b2c2a0de957b3d3c6e88b396af18f981c88358c05b532cc972a6e098d413ba444618aac7e47c91a141be5170033b888a6fdd94ff8e3df70ca9a5f30707131daf50849ef7201fa2e58911ab5c8cede7ea776e9aca2753df90fa3c652c543c5ac72bd8d7ecacf0cc8ee63f8800ad4bac1e0de902808f7e10564318bb519f013b4ad48b6a7e36beee38cb1b6c3e84dd34efdbc6f13a5918a6a4960d511498c995c7c42fef222701317ec0c00e913445324526a4ca58a89dc081c2ef2d8a9bb8a8f289b48a608bcf0b02b91e371c275f0df64628864b1b7a2ff023d4698022cea91d65c7035722a095002d9912ebf42a6c0d9aeae7ff9e6eb4348459b16b58c9e0baf66ed29e13ef2cdb1f75c8f4addb5ff81a93dce2b33de59d68af0c7c121278200d60d44c2b8181b509b18a0c326f7ceb2d3089e8d5b2933261024a9184989a0ebb808a2bf18fb874f84bf4f448963b7454c84ea75f12f86e99f61cf4e00064d1770a614e34265fcbcd53bbaa699012cc6a05b6820e2db629e935ee8beff1b3f9c805f1def3bf9c3ff34823dc46ce74b4ee1081c78c91e9cf3ff88fc3d3d91b8f4930de22511e608683c2ca79b2aa3b72518551fe4e2f759e997e346862d8d3a121dce7d240ebca861aea9198aae8ac7d66e73544a620b06181885919a489930b582ca68eb1a84925175fffe26de47514e98d39feeeadaf09f624d66e2a2065b8e5abee76072462d5d39a1bd829d4845664a0e4f736d601e7476bb90dd84eabb07a13a0f7805cc1c3292bb7946ed0f212550f8bd9280f0f8f4b08d4c6bcf40973fd3008f5399d8e970c1b21c70564be0debb9c8d0f89f108bc054f7525194b004783e705f81eccbce547e4c3585066139eb5977cb540ce3bf79f76c065c240de551bc6a5c76e196d321aa9ef22ba75cb186091e9392f013010152b1ac18797eb3173cc07bc832afeade570c04fe2cb72452ad7e84921450bad093abc366e9d5d55bf5e0f6b4d65f52d842adf94d5b38ad20f7d74e6d613f08442a5cdcbdac162cb941575e3f6cdb9cefaaa67a8ad133a0f4f6ad68098263133ea44b7afc3b02d83100b4dce1755e615952f3b43d56356fb2eabe09d0491ebb074ec5f3168af6a6ec20deec1a26043216afb8f5efd9433e2bd80d61f5016f1ca43dbba95a46e97bc3c56bd92290b87a4bce5e69682868f77dcd25822e77228b079b918448e37d1b75a071dcc12840490c99ff6c7ae4eb7f085e1484ca57f47a34edca42e548a92c4cb646f0b7cd78b546056c3ea1ceb4aebbb3f4c352cd411fa0e8b0929a2ef5b198b8</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      
-      
-      <categories>
-          
-          <category> work </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>模型调整方法探究</title>
       <link href="/2022/03/27/work/%E6%A8%A1%E5%9E%8B%E8%B0%83%E6%95%B4%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6/"/>
       <url>/2022/03/27/work/%E6%A8%A1%E5%9E%8B%E8%B0%83%E6%95%B4%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6/</url>
@@ -1269,31 +818,6 @@
         <tags>
             
             <tag> AI </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Paper</title>
-      <link href="/2022/03/25/Paper/"/>
-      <url>/2022/03/25/Paper/</url>
-      
-        <content type="html"><![CDATA[<h1 id="文献总览"><a href="#文献总览" class="headerlink" title="文献总览"></a>文献总览</h1><h2 id="图像修复"><a href="#图像修复" class="headerlink" title="图像修复"></a>图像修复</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="">Generative Image Inpainting with Contextual Attention</a></td><td align="center">使用背景信息填补前景遮盖，做相似度计算</td><td align="center">None</td></tr><tr><td align="center"><a href="/2022/04/07/paper/%E5%9B%BE%E5%83%8F%E4%BF%AE%E5%A4%8D1/" title="[gan]High-Fidelity GAN Inversion for Image Attribute Editing">[gan]High-Fidelity GAN Inversion for Image Attribute Editing</a></td><td align="center">使用失真图▽的特征图加入到decoder的low space中，还提到有差异的两张图如何对齐</td><td align="center">None</td></tr><tr><td align="center"><a href="/2022/04/09/paper/%E5%9B%BE%E5%83%8F%E4%BF%AE%E5%A4%8D2/" title="Image Inpainting with External-internal Learning and Monochromic Bottleneck">Image Inpainting with External-internal Learning and Monochromic Bottleneck</a></td><td align="center">优化缺失区域来间接引导非缺失区域着色</td><td align="center">None</td></tr></tbody></table><h2 id="风格迁移"><a href="#风格迁移" class="headerlink" title="风格迁移"></a>风格迁移</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="/2022/04/10/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB1/" title="StyTr2:Image Style Transfer with Transformers">StyTr2:Image Style Transfer with Transformers</a></td><td align="center">根据输入图片学习一个位置标签（硬编码-&gt;软编码）</td><td align="center">仅值得参考</td></tr><tr><td align="center"><a href="/2022/04/11/paper/%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB2/" title="ArtFlow：Unbiased Image Style Transfer via Reversible Neural Flows">ArtFlow：Unbiased Image Style Transfer via Reversible Neural Flows</a></td><td align="center">特征提取与图像重建结构完全对称</td><td align="center">None</td></tr></tbody></table><h2 id="GAN"><a href="#GAN" class="headerlink" title="GAN"></a>GAN</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="">Training Generative Adversarial Networks in One Stage</a></td><td align="center">将GAN的双阶段训练改为单阶段训练，但无法多次训练D，只训练一次G</td><td align="center">训练源码，没有任何效果</td></tr></tbody></table><h2 id="transformer"><a href="#transformer" class="headerlink" title="transformer"></a>transformer</h2><table><thead><tr><th align="center">Paper</th><th align="center">New Idea</th><th align="center">Review</th></tr></thead><tbody><tr><td align="center"><a href="">Axial attention in multidimesional transformers</a></td><td align="center">将整幅图片进行patch转换成仅关注轴向信息，有效降低transformer计算量</td><td align="center">None</td></tr></tbody></table>]]></content>
-      
-      
-      <categories>
-          
-          <category> work </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Paper </tag>
             
         </tags>
       
